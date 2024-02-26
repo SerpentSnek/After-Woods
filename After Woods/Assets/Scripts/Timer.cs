@@ -1,13 +1,15 @@
-﻿public class Timer
+﻿using UnityEngine;
+
+public class Timer : MonoBehaviour
 {
-    [Serialized field] totalTime;
+    [SerializeField] private float totalTime;
     public Timer()
     {
     }
-    public AddTime()
+    public void AddTime()
     {
     }
-    public CountdownTime()
+    private void CountdownTime()
     {
     }
 }

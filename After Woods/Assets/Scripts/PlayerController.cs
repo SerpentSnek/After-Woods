@@ -1,44 +1,46 @@
-﻿[RequireComponent(typeof(BoxCollider2D))]
+﻿using UnityEngine;
 
-public class Player
+[RequireComponent(typeof(BoxCollider2D))]
+
+public class Player : MonoBehaviour
 {
-    private EnemySpec enemySpec;
+    private EnemyController enemyController;
     private RadiationSpec radiationSpec;
-    [SerializedField] private int totalHp = 100;
+    [SerializeField] private int totalHp = 100;
     // How much radiation player can take before it starts to damage the player
-    [SerializedField] private int totalRadiation = 10;
+    [SerializeField] private int totalRadiation = 10;
     // Rate at which radiation depletes health. In this case, lose 5 health every second
-    [SerializedField] private float radiationRate = 1.0f;
+    [SerializeField] private float radiationRate = 1.0f;
     private int currentHp;
     private int currentRadiation;
     private int foodAmount;
 
-    public global::System.Int32 TotalHp
+    public int TotalHp
     {
         get => totalHp;
         set => totalHp = value;
     }
-    public global::System.Int32 TotalRadiation
+    public int TotalRadiation
     {
         get => totalRadiation;
         set => totalRadiation = value;
     }
-    public global::System.Single RadiationRate
+    public float RadiationRate
     {
         get => radiationRate;
         set => radiationRate = value;
     }
-    public global::System.Int32 CurrentHp
+    public int CurrentHp
     {
         get => currentHp;
         set => currentHp = value;
     }
-    public global::System.Int32 CurrentRadiation
+    public int CurrentRadiation
     {
         get => currentRadiation;
         set => currentRadiation = value;
     }
-    public global::System.Int32 FoodAmount
+    public int FoodAmount
     {
         get => foodAmount;
         set => foodAmount = value;
@@ -55,7 +57,7 @@ public class Player
 
     void OnEnemyCollide2D(Collider2D other)
     {
-        if (other && other.tag == 'Enemy')
+        if (other && other.tag == "Enemy")
         {
             CurrentHp -= 5;
         }
@@ -63,7 +65,7 @@ public class Player
 
     void OnRadiationCollide2D(Collider2D other)
     {
-        if (other && other.tag == 'Radiation')
+        if (other && other.tag == "Radiation")
         {
             CurrentRadiation += 5;
         }
@@ -71,7 +73,7 @@ public class Player
 
     void OnFoodCollide2D(Collider2D other)
     {
-        if (other && other.tag == 'Food')
+        if (other && other.tag == "Food")
         {
             FoodAmount += 1;
         }
@@ -79,7 +81,7 @@ public class Player
 
     void OnBunkerCollide2D(Collider2D other)
     {
-        if (other && other.tag == 'Bunker')
+        if (other && other.tag == "Bunker")
         {
 
         }
