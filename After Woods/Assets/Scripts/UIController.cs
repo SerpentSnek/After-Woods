@@ -6,6 +6,10 @@ public class UIController : MonoBehaviour
 {
     [SerializeField]
     private UnityEngine.UI.Text foodCounter;
+    [SerializeField] 
+    private GameObject healthBar;
+    [SerializeField] 
+    private GameObject radiationBar;
 
     // Start is called before the first frame update
     void Start()
