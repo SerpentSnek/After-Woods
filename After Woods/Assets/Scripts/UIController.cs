@@ -7,7 +7,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Text foodCounter;
     [SerializeField]
-    private UnityEngine.UI.Text timer;
+    private UnityEngine.UI.Text timerText;
+    [SerializeField]
+    private float timer;
     [SerializeField] 
     private GameObject healthBar;
     [SerializeField] 
@@ -19,7 +21,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         this.foodCounter.text = "Food";
-        this.timer.text = "Timer";
+        this.timer.text = "Timer: ";
     }
 
     // Update is called once per frame
