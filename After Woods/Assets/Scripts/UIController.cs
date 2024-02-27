@@ -21,7 +21,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         this.foodCounter.text = "Food";
-        this.timer.text = "Timer: ";
+        this.timerText.text = "Timer: ";
     }
 
     // Update is called once per frame
@@ -29,5 +29,13 @@ public class UIController : MonoBehaviour
     {
         // TODO change this line to include calculation for total food
         this.foodCounter.text = "x";
+
+        timer -= Time.deltaTime;
+        this.timerText.text += timer;
+
+        if (timer <= 0.0f)
+        {
+            // TODO add what happens when timer ends
+        }
     }
 }
