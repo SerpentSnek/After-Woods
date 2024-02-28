@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IInputCommand
+namespace IInput.Command
 {
-    void Execute(GameObject gameObject);
+    public interface IInputCommand
+    {
+        void Execute(Rigidbody gameObject);
+    }
 }
