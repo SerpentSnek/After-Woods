@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Character.Command;
+using Input.Command;
 
-namespace Character.Command
+namespace Input.Command
 {
     public class PlayerJump : ScriptableObject, ICharacterCommand
     {
