@@ -2,40 +2,34 @@
 
 [RequireComponent(typeof(BoxCollider2D))]
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private EnemyController enemyController;
+    // The radiation spec provides info on damage dealt
     private RadiationSpec radiationSpec;
-    [SerializeField] private int totalHp = 100;
+    [SerializeField] private float totalHp = 100;
     // How much radiation player can take before it starts to damage the player
-    [SerializeField] private int totalRadiation = 10;
-    // Rate at which radiation depletes health. In this case, lose 5 health every second
-    [SerializeField] private float radiationRate = 1.0f;
-    private int currentHp;
-    private int currentRadiation;
+    [SerializeField] private float totalRadiation = 50;
+    private float currentHp;
+    private float currentRadiation;
     private int foodAmount;
 
-    public int TotalHp
+    public float TotalHp
     {
         get => totalHp;
         set => totalHp = value;
     }
-    public int TotalRadiation
+    public float TotalRadiation
     {
         get => totalRadiation;
         set => totalRadiation = value;
     }
-    public float RadiationRate
-    {
-        get => radiationRate;
-        set => radiationRate = value;
-    }
-    public int CurrentHp
+    public float CurrentHp
     {
         get => currentHp;
         set => currentHp = value;
     }
-    public int CurrentRadiation
+    public float CurrentRadiation
     {
         get => currentRadiation;
         set => currentRadiation = value;
@@ -50,40 +44,95 @@ public class Player : MonoBehaviour
     {
         //totalHp = 100;
         //totalRadiation = 10;
+        enemyController = FindAnyObjectByType<EnemyController>();
+        radiationSpec = new RadiationSpec();
         CurrentHp = TotalHp;
         FoodAmount = 0;
         CurrentRadiation = 0;
     }
 
-    void OnEnemyCollide2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other && other.tag == "Enemy")
+        switch (collision.gameObject.tag)
         {
-            CurrentHp -= 5;
+            case "Enemy":
+                OnEnemyCollide2D(collision);
+                break;
+            case "Radiation":
+                OnRadiationCollide2D(collision);
+                break;
+            case "Food":
+                OnFoodCollide2D(collision);
+                break;
+            case "Bunker":
+                OnBunkerCollide2D(collision);
+                break;
+            case "Beast":
+                OnBeastCollide2D(collision);
+                break;
+            default:
+                Debug.Log("null gameObject collision");
+                break;
         }
     }
 
-    void OnRadiationCollide2D(Collider2D other)
+    void OnEnemyCollide2D(Collision2D other)
     {
-        if (other && other.tag == "Radiation")
+        if (other.gameObject != null && other.gameObject.tag == "Enemy")
         {
-            CurrentRadiation += 5;
+            CurrentHp -= enemyController.DamageOutput;
+        }
+        else
+        {
+            Debug.Log("enemy null collider");
         }
     }
 
-    void OnFoodCollide2D(Collider2D other)
+    void OnBeastCollide2D(Collision2D other)
     {
-        if (other && other.tag == "Food")
+        if (other.gameObject != null && other.gameObject.tag == "Beast")
         {
-            FoodAmount += 1;
+            // Instakill
+            CurrentHp = 0;
+            // Get the game manager to load the game over screen
         }
     }
 
-    void OnBunkerCollide2D(Collider2D other)
+    void OnRadiationCollide2D(Collision2D other)
     {
-        if (other && other.tag == "Bunker")
+        if (other.gameObject != null && other.gameObject.tag == "Radiation")
         {
+            CurrentRadiation += radiationSpec.RadiationDamage;
+        }
+        else
+        {
+            Debug.Log("radiation null collider");
+        }
+    }
 
+    void OnFoodCollide2D(Collision2D other)
+    {
+        if (other.gameObject != null && other.gameObject.tag == "Food")
+        {
+            this.FoodAmount += 1;
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            Debug.Log("food null collider");
+        }
+    }
+
+    void OnBunkerCollide2D(Collision2D other)
+    {
+        if (other.gameObject != null && other.gameObject.tag == "Bunker")
+        {
+            // call GameManager to load new scene
+            GameManager.Instance.LoadNextStage();
+        }
+        else
+        {
+            Debug.Log("bunker null collider");
         }
     }
 }

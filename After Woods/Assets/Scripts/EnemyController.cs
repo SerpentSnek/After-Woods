@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float damageOutput;
+
+    public float DamageOutput
     {
-        
+        get => damageOutput;
+        set => damageOutput = value;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
