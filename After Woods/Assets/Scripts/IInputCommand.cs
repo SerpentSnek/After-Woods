@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IInput.Command
+namespace Input.Command
 {
     public interface IInputCommand
     {
