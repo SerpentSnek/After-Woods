@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Input.Command;
+using IInput.Command;
 
-namespace Input.Command
+namespace IInput.Command
 {
     public class PlayerSprint : ScriptableObject, IInputCommand
     {
