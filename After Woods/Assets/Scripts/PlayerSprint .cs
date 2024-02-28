@@ -8,7 +8,7 @@ namespace IInput.Command
 {
     public class PlayerSprint : ScriptableObject, IInputCommand
     {
-        private float speedfactor = 1.2f;
+        [SerializeField] private float speedfactor = 1.2f;
 
         public void Execute(GameObject gameObject)
         {
