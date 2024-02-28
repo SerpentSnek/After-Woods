@@ -16,17 +16,17 @@ public class Timer : MonoBehaviour
     }
     public void AddTime()
     {
-        totalTime += 1f;
+        this.totalTime += 1f;
     }
     public void ResetTimer()
     {
-        totalTime = 20f;
+        this.totalTime = 20f;
     }
     public void CountdownTimer()
     {
-        if (totalTime > 0f)
+        if (this.totalTime > 0f)
         {
-            totalTime -= Time.deltaTime;
+            this.totalTime -= Time.deltaTime;
         }
     }
 }

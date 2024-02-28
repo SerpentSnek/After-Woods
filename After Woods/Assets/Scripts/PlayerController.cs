@@ -4,6 +4,9 @@
 
 public class PlayerController : MonoBehaviour
 {
+    /* Use IPlayerCommand to bind inputs for eating food and baiting food */
+    // private IPlayerCommand ...
+
     private EnemyController enemyController;
     // The radiation spec provides info on damage dealt
     private RadiationSpec radiationSpec;
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour
                 OnBeastCollide2D(collision);
                 break;
             default:
-                Debug.Log("null gameObject collision");
+                Debug.LogError("null gameObject collision");
                 break;
         }
     }
@@ -128,7 +131,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject != null && other.gameObject.tag == "Bunker")
         {
-            // call GameManager to load new scene
+            // call GameManager to load new scene (mock main menu used for testing)
             GameManager.Instance.LoadMainMenu();
         }
         else
