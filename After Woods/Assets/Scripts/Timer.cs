@@ -4,13 +4,29 @@
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float totalTime;
-    public Timer()
+
+    public float TotalTime
     {
+        get => totalTime;
+    }
+
+    public Timer(float totalTime)
+    {
+        this.totalTime = totalTime;
     }
     public void AddTime()
     {
+        totalTime += 1f;
     }
-    private void CountdownTime()
+    public void ResetTimer()
     {
+        totalTime = 20f;
+    }
+    public void CountdownTimer()
+    {
+        if (totalTime > 0f)
+        {
+            totalTime -= Time.deltaTime;
+        }
     }
 }

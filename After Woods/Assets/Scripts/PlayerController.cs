@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
             // Instakill
             CurrentHp = 0;
             // Get the game manager to load the game over screen
+            GameManager.Instance.LoadGameOverScreen();
         }
     }
 
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject != null && other.gameObject.tag == "Bunker")
         {
             // call GameManager to load new scene
-            GameManager.Instance.LoadNextStage();
+            GameManager.Instance.LoadMainMenu();
         }
         else
         {
