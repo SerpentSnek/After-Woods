@@ -8,7 +8,7 @@ namespace IInput.Command
 {
     public class PlayerMoveLeft : ScriptableObject, IInputCommand
     {
-        private float speed = 5.0f;
+        [SerializeField] private float speed = 5.0f;
 
         public void Execute(GameObject gameObject)
         {
