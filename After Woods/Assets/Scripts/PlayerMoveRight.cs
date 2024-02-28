@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using IInput.Command;
+using Input.Command;
 
-namespace IInput.Command
+namespace Input.Command
 {
     public class PlayerMoveRight : ScriptableObject, IInputCommand
     {
