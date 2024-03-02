@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
     public void LoadGameOverScreen()
     {
         DontDestroyOnLoad(gameObject);
+        this.ResetPlayerStats();
+        playerController.FoodAmount = 0;
         // SceneManager.LoadSceneAsync("whatever game over scene is named");
     }
 
