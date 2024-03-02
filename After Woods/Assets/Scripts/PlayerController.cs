@@ -10,12 +10,12 @@ public class PlayerController : MonoBehaviour
     private EnemyController enemyController;
     // The radiation spec provides info on damage dealt
     private RadiationSpec radiationSpec;
-    [SerializeField] private float totalHp = 100;
+    [SerializeField] private float totalHp;
     // How much radiation player can take before it starts to damage the player
-    [SerializeField] private float totalRadiation = 50;
+    [SerializeField] private float totalRadiation;
     private float currentHp;
     private float currentRadiation;
-    private int foodAmount;
+    [SerializeField] private int foodAmount;
 
     public float TotalHp
     {
@@ -43,14 +43,13 @@ public class PlayerController : MonoBehaviour
         set => foodAmount = value;
     }
 
-    void OnAwake()
+    void Awake()
     {
-        //totalHp = 100;
-        //totalRadiation = 10;
+        totalHp = 100;
+        totalRadiation = 50;
         enemyController = FindAnyObjectByType<EnemyController>();
-        radiationSpec = new RadiationSpec();
+        radiationSpec = FindObjectOfType<RadiationSpec>();
         CurrentHp = TotalHp;
-        FoodAmount = 0;
         CurrentRadiation = 0;
     }
 
@@ -132,7 +131,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject != null && other.gameObject.tag == "Bunker")
         {
             // call GameManager to load new scene (mock main menu used for testing)
-            GameManager.Instance.LoadMainMenu();
+            GameManager.Instance.LoadNextStage();
         }
         else
         {
