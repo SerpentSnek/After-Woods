@@ -27,15 +27,17 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO change this line to include calculation for total food
-        this.foodCounter.text = "x";
-
-        timer -= Time.deltaTime;
-        this.timerText.text += timer;
-
-        if (timer <= 0.0f)
+        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+        if (Input.GetButtonDown("Fire1"))
         {
-            // TODO add what happens when timer ends
+            
+            playerController.CurrentHp = playerController.CurrentHp - .1f * playerController.TotalHp;
+            healthBar.GetComponent<HealthBarController>().ChangeValue(playerController.CurrentHp/playerController.TotalHp);
         }
+
+        this.foodCounter.text = playerController.FoodAmount.ToString();
+        
+        // change timer text using beast reference
+
     }
 }

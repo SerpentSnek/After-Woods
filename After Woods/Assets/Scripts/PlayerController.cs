@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
                 OnBeastCollide2D(collision);
                 break;
             default:
-                Debug.LogError("null gameObject collision");
+                // Debug.LogError("null gameObject collision");
                 break;
         }
     }
@@ -137,5 +137,22 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("bunker null collider");
         }
+    }
+
+    void Update()
+    {
+        if (Input.GetAxis("Horizontal") > 0.01)
+        {
+            var newPosition = gameObject.transform.position;
+            newPosition.x += 1f * Time.deltaTime;
+            gameObject.transform.position = newPosition;
+        }
+        if (Input.GetAxis("Horizontal") < -0.01)
+        {
+            var newPosition = gameObject.transform.position;
+            newPosition.x -= 1f * Time.deltaTime;
+            gameObject.transform.position = newPosition;
+        }
+
     }
 }

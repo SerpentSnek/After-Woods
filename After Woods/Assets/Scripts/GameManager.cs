@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    public PlayerController playerController;
+    private GameObject player;
     //private bool isNewGame;
     public static GameManager Instance
     {
@@ -18,6 +18,15 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
+
+    public GameObject Player
+    {
+        get
+        {
+            return player;
+        }
+    }
+
     // https://learn.unity.com/tutorial/implement-data-persistence-between-scenes
     private void Start()
     {
@@ -32,14 +41,15 @@ public class GameManager : MonoBehaviour
             this.LoadStartScreen();
         }
         //isNewGame = false;
-        playerController = FindObjectOfType<PlayerController>();
+        player = GameObject.FindWithTag("Player"); ;
         this.ResetPlayerStats();
     }
 
     public void ResetPlayerStats()
     {
-        Instance.playerController.CurrentHp = Instance.playerController.TotalHp;
-        Instance.playerController.TotalRadiation = 0;
+        var playerController = player.GetComponent<PlayerController>();
+        playerController.CurrentHp = playerController.TotalHp;
+        playerController.TotalRadiation = 0;
     }
 
     // Main menu is just a placeholder to test scene switching;
@@ -61,6 +71,7 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         this.ResetPlayerStats();
+        var playerController = player.GetComponent<PlayerController>();
         playerController.FoodAmount = 0;
         // SceneManager.LoadSceneAsync("whatever game over scene is named");
     }
@@ -70,6 +81,7 @@ public class GameManager : MonoBehaviour
     {
         //this.isNewGame = false;
         //playerController = FindObjectOfType<PlayerController>();
+        var playerController = player.GetComponent<PlayerController>();
         this.ResetPlayerStats();
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(playerController.gameObject);
