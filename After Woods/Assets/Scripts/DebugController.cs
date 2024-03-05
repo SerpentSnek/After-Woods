@@ -16,5 +16,13 @@ public class DebugController : MonoBehaviour
         {
             healthBar.GetComponent<HealthBarController>().ChangeValue(ratio);
         }
+
+        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+        if (Input.GetButtonDown("Fire1"))
+        {
+
+            playerController.CurrentHp = playerController.CurrentHp - .1f * playerController.TotalHp;
+
+        }
     }
 }

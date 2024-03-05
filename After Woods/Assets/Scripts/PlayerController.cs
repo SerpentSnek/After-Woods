@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     /* Use IPlayerCommand to bind inputs for eating food and baiting food */
     // private IPlayerCommand ...
-
+    private float speed = 5.0f;
     private EnemyController enemyController;
     // The radiation spec provides info on damage dealt
     private RadiationSpec radiationSpec;
@@ -45,12 +45,12 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        totalHp = 100;
-        totalRadiation = 50;
+        totalHp = 100.0f;
+        totalRadiation = 50.0f;
         enemyController = FindAnyObjectByType<EnemyController>();
         radiationSpec = FindObjectOfType<RadiationSpec>();
         CurrentHp = TotalHp;
-        CurrentRadiation = 0;
+        CurrentRadiation = 0.0001f;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -143,15 +143,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetAxis("Horizontal") > 0.01)
         {
-            var newPosition = gameObject.transform.position;
-            newPosition.x += 1f * Time.deltaTime;
-            gameObject.transform.position = newPosition;
+            var rigidBody = gameObject.GetComponent<Rigidbody2D>();
+            if (rigidBody != null)
+            {
+                rigidBody.velocity = new Vector2(this.speed, rigidBody.velocity.y);
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
         if (Input.GetAxis("Horizontal") < -0.01)
         {
-            var newPosition = gameObject.transform.position;
-            newPosition.x -= 1f * Time.deltaTime;
-            gameObject.transform.position = newPosition;
+            var rigidBody = gameObject.GetComponent<Rigidbody2D>();
+            if (rigidBody != null)
+            {
+                rigidBody.velocity = new Vector2(-this.speed, rigidBody.velocity.y);
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
 
     }

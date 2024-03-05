@@ -28,13 +28,8 @@ public class UIController : MonoBehaviour
     void Update()
     {
         var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
-        if (Input.GetButtonDown("Fire1"))
-        {
-            
-            playerController.CurrentHp = playerController.CurrentHp - .1f * playerController.TotalHp;
-            healthBar.GetComponent<HealthBarController>().ChangeValue(playerController.CurrentHp/playerController.TotalHp);
-        }
-
+        healthBar.GetComponent<HealthBarController>().ChangeValue(playerController.CurrentHp / playerController.TotalHp);
+        radiationBar.GetComponent<RadiationBarController>().ChangeValue(playerController.CurrentRadiation / playerController.TotalRadiation);
         this.foodCounter.text = playerController.FoodAmount.ToString();
         
         // change timer text using beast reference
