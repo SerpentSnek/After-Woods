@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, Reset
 {
     private static GameManager _instance;
-    public PlayerController playerController;
+    public GameObject Player
+    {
+        get
+        {
+            return GameObject.FindWithTag("Player");
+        }
+    }
     //private bool isNewGame;
     public static GameManager Instance
     {
@@ -31,15 +37,14 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             this.LoadStartScreen();
         }
-        //isNewGame = false;
-        playerController = FindObjectOfType<PlayerController>();
-        this.ResetPlayerStats();
+        this.ResetStats(Player);
     }
 
-    public void ResetPlayerStats()
+    public void ResetStats(GameObject obj) // have this with a Reset interface instead
     {
-        Instance.playerController.CurrentHp = Instance.playerController.TotalHp;
-        Instance.playerController.TotalRadiation = 0;
+        obj.GetComponent<PlayerController>().CurrentHp =
+            obj.GetComponent<PlayerController>().TotalHp;
+        obj.GetComponent<PlayerController>().TotalRadiation = 0;
     }
 
     // Main menu is just a placeholder to test scene switching;
@@ -60,19 +65,17 @@ public class GameManager : MonoBehaviour
     public void LoadGameOverScreen()
     {
         DontDestroyOnLoad(gameObject);
-        this.ResetPlayerStats();
-        playerController.FoodAmount = 0;
+        this.ResetStats(Player);
+        this.Player.GetComponent<PlayerController>().FoodAmount = 0;
         // SceneManager.LoadSceneAsync("whatever game over scene is named");
     }
 
     // see https://www.youtube.com/watch?v=HBEStd96UzI
     public void LoadNextStage()
     {
-        //this.isNewGame = false;
-        //playerController = FindObjectOfType<PlayerController>();
-        this.ResetPlayerStats();
+        this.ResetStats(Player);
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(playerController.gameObject);
+        DontDestroyOnLoad(Player);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

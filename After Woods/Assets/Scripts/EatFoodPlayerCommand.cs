@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EatFoodPlayerCommand : MonoBehaviour, IPlayerCommand
+public class EatFoodPlayerCommand : MonoBehaviour, IInputCommand
 {
     [SerializeField] private float hpRestore;
 
@@ -10,6 +10,12 @@ public class EatFoodPlayerCommand : MonoBehaviour, IPlayerCommand
     }
     public void Execute(GameObject player)
     {
-        player.gameObject.GetComponent<PlayerController>().CurrentHp += hpRestore;
+        if (player.gameObject.GetComponent<PlayerController>().FoodAmount > 0)
+        {
+            player.gameObject.GetComponent<PlayerController>().CurrentHp += hpRestore;
+            player.gameObject.GetComponent<PlayerController>().FoodAmount -= 1;
+        }
+
+
     }
 }

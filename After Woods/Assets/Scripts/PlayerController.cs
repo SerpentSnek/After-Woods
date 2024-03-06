@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject != null && other.gameObject.tag == "Enemy")
         {
-            CurrentHp -= enemyController.DamageOutput;
+            CurrentHp -= other.gameObject.GetComponent<EnemyController>().DamageOutput;
         }
         else
         {
