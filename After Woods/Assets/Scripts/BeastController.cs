@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 public class BeastBehavior : MonoBehaviour
 {
-    private Timer timer;
+    // Use GameManager.Instance.TimerObject.IsTimesUp to trigger Beast's action
+    private void Start()
+    {
+        Debug.Log(GameManager.Instance.TimerObject.IsTimesUp);
+    }
     public BeastBehavior()
     {
     }

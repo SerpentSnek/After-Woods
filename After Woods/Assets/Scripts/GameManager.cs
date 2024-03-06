@@ -4,14 +4,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour, Reset
 {
     private static GameManager _instance;
-    public GameObject Player
+    public Timer TimerObject;
+    protected GameObject Player
     {
         get
         {
             return GameObject.FindWithTag("Player");
         }
     }
-    //private bool isNewGame;
     public static GameManager Instance
     {
         get
@@ -37,14 +37,20 @@ public class GameManager : MonoBehaviour, Reset
             DontDestroyOnLoad(gameObject);
             this.LoadStartScreen();
         }
-        this.ResetStats(Player);
+        if (TimerObject == null)
+        {
+            TimerObject = new Timer(20f);
+        }
+
+        this.ResetStats();
     }
 
-    public void ResetStats(GameObject obj) // have this with a Reset interface instead
+    public void ResetStats(GameObject obj = null) // have this with a Reset interface instead (done)
     {
-        obj.GetComponent<PlayerController>().CurrentHp =
-            obj.GetComponent<PlayerController>().TotalHp;
-        obj.GetComponent<PlayerController>().TotalRadiation = 0;
+        Instance.Player.GetComponent<PlayerController>().CurrentHp =
+            Instance.Player.GetComponent<PlayerController>().TotalHp;
+        Instance.Player.GetComponent<PlayerController>().TotalRadiation = 0;
+        TimerObject.ResetStats();
     }
 
     // Main menu is just a placeholder to test scene switching;
@@ -65,17 +71,17 @@ public class GameManager : MonoBehaviour, Reset
     public void LoadGameOverScreen()
     {
         DontDestroyOnLoad(gameObject);
-        this.ResetStats(Player);
-        this.Player.GetComponent<PlayerController>().FoodAmount = 0;
+        this.ResetStats();
+        Instance.Player.GetComponent<PlayerController>().FoodAmount = 0;
         // SceneManager.LoadSceneAsync("whatever game over scene is named");
     }
 
     // see https://www.youtube.com/watch?v=HBEStd96UzI
     public void LoadNextStage()
     {
-        this.ResetStats(Player);
+        this.ResetStats();
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(Player);
+        DontDestroyOnLoad(Instance.Player);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -12,7 +12,7 @@ public class BaitFoodPlayerCommand : MonoBehaviour, IInputCommand
         if (player.gameObject.GetComponent<PlayerController>().FoodAmount > 0)
         {
             player.gameObject.GetComponent<PlayerController>().FoodAmount -= 1;
-            timer.AddTime();
+            timer.AddTime(1);
         }
     }
 }
