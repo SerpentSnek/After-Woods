@@ -14,7 +14,7 @@ public class DebugController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire2"))
         {
-            healthBar.GetComponent<HealthBarController>().ChangeValue(ratio);
+            healthBar.GetComponent<HealthBarController>().SetHealth(ratio);
         }
 
         var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
