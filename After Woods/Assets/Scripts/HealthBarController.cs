@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthBarController : MonoBehaviour
 {
-	public Slider slider;
+    public Slider slider;
 	public Gradient gradient;
 	public Image fill;
 
@@ -17,7 +17,7 @@ public class HealthBarController : MonoBehaviour
 		fill.color = gradient.Evaluate(1f);
 	}
 
-    public void SetHealth(float health)
+    public void UpdateHealth(float health)
 	{
 		slider.value = health;
 

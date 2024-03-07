@@ -8,16 +8,23 @@ public class DebugController : MonoBehaviour
     private GameObject healthBar;
     [SerializeField]
     private GameObject radiationBar;
-    [SerializeField] private float ratio;
+    private bool firstUpdate = true;
 
     void Update()
     {
+        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+        if (firstUpdate)
+        {
+            healthBar.GetComponent<HealthBarController>().SetMaxHealth(playerController.TotalHp);
+            radiationBar.GetComponent<RadiationBarController>().SetMaxRadiation(playerController.TotalRadiation);
+            firstUpdate = false;
+        }
+        
         if (Input.GetButtonDown("Fire2"))
         {
-            healthBar.GetComponent<HealthBarController>().SetHealth(ratio);
+            healthBar.GetComponent<HealthBarController>().UpdateHealth(playerController.CurrentHp);
         }
 
-        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
         if (Input.GetButtonDown("Fire1"))
         {
 

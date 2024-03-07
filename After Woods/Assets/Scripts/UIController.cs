@@ -14,11 +14,12 @@ public class UIController : MonoBehaviour
     private GameObject healthBar;
     [SerializeField] 
     private GameObject radiationBar;
+    private bool firstUpdate = true;
 
     // TODO add variables for food components
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         this.foodCounter.text = "Food";
         this.timerText.text = "Timer: ";
@@ -28,9 +29,12 @@ public class UIController : MonoBehaviour
     void Update()
     {
         var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
-        healthBar.GetComponent<HealthBarController>().SetMaxHealth(playerController.TotalHp);
-        healthBar.GetComponent<HealthBarController>().SetHealth(playerController.CurrentHp / playerController.TotalHp);
-        radiationBar.GetComponent<RadiationBarController>().SetMaxHealth(playerController.TotalRadiation);
+        if (firstUpdate)
+        {
+            healthBar.GetComponent<HealthBarController>().SetMaxHealth(playerController.TotalHp);
+            radiationBar.GetComponent<RadiationBarController>().SetMaxRadiation(playerController.TotalRadiation);
+            firstUpdate = false;
+        }
         this.foodCounter.text = playerController.FoodAmount.ToString();
         
         // change timer text using beast reference

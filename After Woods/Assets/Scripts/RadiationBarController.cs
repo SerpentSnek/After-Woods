@@ -9,17 +9,17 @@ public class RadiationBarController : MonoBehaviour
 	public Gradient gradient;
 	public Image fill;
 
-	public void SetMaxHealth(float health)
+	public void SetMaxRadiation(float radiation)
 	{
-		slider.maxValue = health;
-		slider.value = health;
+		slider.maxValue = radiation;
+		slider.value = radiation;
 
 		fill.color = gradient.Evaluate(1f);
 	}
 
-    public void SetHealth(float health)
+    public void UpdateRadiation(float radiation)
 	{
-		slider.value = health;
+		slider.value = radiation;
 
 		fill.color = gradient.Evaluate(slider.normalizedValue);
 	}
