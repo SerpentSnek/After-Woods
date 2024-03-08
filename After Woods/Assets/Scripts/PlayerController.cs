@@ -6,155 +6,184 @@ public class PlayerController : MonoBehaviour, IReset
 {
     [SerializeField] private int foodAmount;
     [SerializeField] private float totalHp;
+    private float currentHp;
     // How much radiation player can take before it starts to damage the player
     [SerializeField] private float totalRadiation;
+    private float currentRadiation;
     [SerializeField] private float radiationDamage;
     private bool isDamagedByRadiation;
-    private float currentHp;
-    private float currentRadiation;
 
-    public float TotalHp
-    {
-        get => totalHp;
-        set => totalHp = value;
-    }
-    public float TotalRadiation
-    {
-        get => totalRadiation;
-        set => totalRadiation = value;
-    }
+    public int FoodAmount { get => foodAmount; set => foodAmount = value; }
+    public float TotalHp { get => totalHp; }
     public float CurrentHp
     {
         get => currentHp;
-        set => currentHp = value;
+        set => currentHp = Mathf.Clamp(value, 0.0f, totalHp);
     }
-    public float CurrentRadiation
+    public float TotalRadiation { get => totalRadiation; }
+    // public float CurrentRadiation { get => currentRadiation; }
+    // for debugging
+    public float CurrentRadiation { get => currentRadiation; set => currentRadiation = value; }
+    // public float RadiationDamage { get; private set; }
+    // public bool IsDamagedByRadiation { get; private set; }
+
+    public void Reset()
     {
-        get => currentRadiation;
-        set => currentRadiation = value;
-    }
-    public int FoodAmount
-    {
-        get => foodAmount;
-        set => foodAmount = value;
-    }
-    public float RadiationDamage
-    {
-        get => radiationDamage;
-        set => radiationDamage = value;
-    }
-    public bool IsDamagedByRadiation
-    {
-        get => isDamagedByRadiation;
-        set => isDamagedByRadiation = value;
+        currentHp = totalHp;
+        currentRadiation = 0;
+        foodAmount = 0;
     }
 
-    void Awake()
+    void Start()
     {
-        TotalHp = 100;
-        TotalRadiation = 50;
-        CurrentHp = TotalHp;
-        CurrentRadiation = 0;
+        Reset();
+    }
+
+    void Update()
+    {
+        if (isDamagedByRadiation)
+        {
+            currentRadiation += radiationDamage * Time.deltaTime;
+            if (currentRadiation >= totalRadiation)
+            {
+                DieFromRadiation();
+            }
+        }
+
+        if (currentHp <= 0)
+        {
+            Die();
+        }
+
+        if (Input.GetAxis("Horizontal") > 0.01)
+        {
+            var rigidBody = gameObject.GetComponent<Rigidbody2D>();
+            if (rigidBody != null)
+            {
+                rigidBody.velocity = new Vector2(5f, rigidBody.velocity.y);
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+        }
+        if (Input.GetAxis("Horizontal") < -0.01)
+        {
+            var rigidBody = gameObject.GetComponent<Rigidbody2D>();
+            if (rigidBody != null)
+            {
+                rigidBody.velocity = new Vector2(-5f, rigidBody.velocity.y);
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (collision.gameObject.tag)
+        if (collision.gameObject != null)
         {
-            case "Enemy":
-                OnEnemyCollide2D(collision);
-                break;
-            case "Radiation":
-                IsDamagedByRadiation = true;
-                break;
-            case "Food":
-                OnFoodCollide2D(collision);
-                break;
-            case "Bunker":
-                OnBunkerCollide2D(collision);
-                break;
-            case "Beast":
-                OnBeastCollide2D(collision);
-                break;
-            default:
-                Debug.LogError("null gameObject collision");
-                break;
-        }
-    }
-
-    void OnEnemyCollide2D(Collision2D other)
-    {
-        if (other.gameObject != null && other.gameObject.tag == "Enemy")
-        {
-            CurrentHp -= other.gameObject.GetComponent<EnemyController>().DamageOutput;
+            switch (collision.gameObject.tag)
+            {
+                case "Beast":
+                    OnBeastCollideEnter2D();
+                    break;
+                case "Enemy":
+                    OnEnemyCollideEnter2D(collision);
+                    break;
+            }
         }
         else
         {
-            Debug.Log("enemy null collider");
+            Debug.LogError("null gameObject collision");
         }
     }
 
-    void OnBeastCollide2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (other.gameObject != null && other.gameObject.tag == "Beast")
+        if (collider.gameObject != null)
         {
-            // Instakill
-            CurrentHp = 0;
-            // Get the game manager to load the game over screen
-            GameManager.Instance.LoadGameOverScreen();
-        }
-    }
-
-    void OnRadiationCollide2D()
-    {
-        //if (other.gameObject != null && other.gameObject.tag == "Radiation")
-        //{
-        //    CurrentRadiation += RadiationDamage;
-        //}
-        //else
-        //{
-        //    Debug.Log("radiation null collider");
-        //}
-        CurrentRadiation += RadiationDamage;
-    }
-
-    void OnFoodCollide2D(Collision2D other)
-    {
-        if (other.gameObject != null && other.gameObject.tag == "Food")
-        {
-            this.FoodAmount += 1;
-            Destroy(other.gameObject);
+            switch (collider.gameObject.tag)
+            {
+                case "Bunker":
+                    OnBunkerTriggerEnter2D(collider);
+                    break;
+                case "Food":
+                    OnFoodTriggerEnter2D(collider);
+                    break;
+                case "Radiation":
+                    OnRadiationTriggerEnter2D();
+                    break;
+            }
         }
         else
         {
-            Debug.Log("food null collider");
+            Debug.LogError("null gameObject collider");
         }
     }
 
-    void OnBunkerCollide2D(Collision2D other)
+    void OnTriggerExit2D(Collider2D collider)
     {
-        if (other.gameObject != null && other.gameObject.tag == "Bunker")
+        if (collider.gameObject != null)
         {
-            // call GameManager to load new scene (mock main menu used for testing)
-            GameManager.Instance.LoadNextStage();
+            switch (collider.gameObject.tag)
+            {
+                case "Radiation":
+                    OnRadiationTriggerExit2D();
+                    break;
+            }
         }
         else
         {
-            Debug.Log("bunker null collider");
+            Debug.LogError("null gameObject collider");
         }
     }
 
-    private void Update()
+
+    private void OnBeastCollideEnter2D()
     {
-        if (IsDamagedByRadiation)
+        currentHp = 0;
+    }
+
+    private void OnEnemyCollideEnter2D(Collision2D collision)
+    {
+        var enemyController = collision.gameObject.GetComponent<EnemyController>();
+        if (enemyController != null)
         {
-            OnRadiationCollide2D();
+            currentHp -= enemyController.Damage;
+        }
+        else
+        {
+            Debug.LogError("missing enemy controller");
         }
     }
 
-    public void Reset()
+    private void OnBunkerTriggerEnter2D(Collider2D collider)
     {
-        CurrentHp = TotalHp;
-        TotalRadiation = 0;
+        GameManager.Instance.LoadNextStage();
+    }
+
+
+    private void OnFoodTriggerEnter2D(Collider2D collider)
+    {
+        foodAmount += 1;
+        Destroy(collider.gameObject);
+    }
+
+    private void OnRadiationTriggerEnter2D()
+    {
+        isDamagedByRadiation = true;
+    }
+
+    private void OnRadiationTriggerExit2D()
+    {
+        isDamagedByRadiation = false;
+    }
+
+    private void Die()
+    {
+        // Get the game manager to load the game over screen
+        GameManager.Instance.LoadGameOverScreen();
+    }
+
+    private void DieFromRadiation()
+    {
+        Die();
     }
 }

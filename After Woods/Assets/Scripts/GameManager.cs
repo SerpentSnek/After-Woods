@@ -20,17 +20,15 @@ public class GameManager : MonoBehaviour, IReset
         }
     }
 
-    public GameObject Player { get; private set; }
-
-    public Timer Timer { get; private set; }
+    public GameObject Player { get => player; }
+    public Timer Timer { get => timer; }
 
     // https://learn.unity.com/tutorial/implement-data-persistence-between-scenes
-    private void Awake()
+    void Awake()
     {
         if (_instance != null)
         {
             Destroy(gameObject);
-            // why is this here?
         }
         else
         {
@@ -40,11 +38,11 @@ public class GameManager : MonoBehaviour, IReset
         }
 
         //isNewGame = false;
-        player = GameObject.FindWithTag("Player"); ;
+        player = GameObject.FindWithTag("Player");
 
         if (timer == null)
         {
-            gameObject.AddComponent<Timer>();
+            timer = gameObject.GetComponent<Timer>();
         }
 
         this.Reset();
@@ -61,24 +59,17 @@ public class GameManager : MonoBehaviour, IReset
     // may turn into pause screen or something 
     public void LoadMainMenu()
     {
-        DontDestroyOnLoad(gameObject);
         // for all Load methods just use SceneManager.LoadScene(scene_name)
         SceneManager.LoadSceneAsync("MainMenuPlaceholder");
     }
 
     public void LoadStartScreen()
     {
-        DontDestroyOnLoad(gameObject);
         // SceneManager.LoadSceneAsync("whatever start scene is named");
     }
 
     public void LoadGameOverScreen()
     {
-        DontDestroyOnLoad(gameObject);
-
-        var playerController = player.GetComponent<PlayerController>();
-        playerController.FoodAmount = 0;
-
         this.Reset();
 
         // SceneManager.LoadSceneAsync("whatever game over scene is named");
@@ -90,8 +81,6 @@ public class GameManager : MonoBehaviour, IReset
         //this.isNewGame = false;
         //playerController = FindObjectOfType<PlayerController>();
         var playerController = player.GetComponent<PlayerController>();
-        this.Reset();
-        DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(player);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }

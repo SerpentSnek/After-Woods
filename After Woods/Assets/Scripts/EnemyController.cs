@@ -2,12 +2,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private float damageOutput;
+    [SerializeField] private float damage;
 
-    public float DamageOutput
-    {
-        get => damageOutput;
-        set => damageOutput = value;
-    }
+    public float Damage { get => damage; }
 
 }

@@ -3,43 +3,45 @@
 // Timer class's sole purpose is to provide methods for the Beast class
 public class Timer : MonoBehaviour, IReset
 {
-    [SerializeField] private float totalTime;
-    private bool isTimesUp;
-    public float TotalTime
-    {
-        get => totalTime;
-    }
-    public bool IsTimesUp
-    {
-        get => isTimesUp;
-        set => isTimesUp = value;
-    }
-    public Timer(float totalTime)
-    {
-        this.totalTime = totalTime;
-        IsTimesUp = false;
-    }
+    [SerializeField] private float initialTime;
+    private float currentTime;
+    private bool isTimeUp = false;
+    [SerializeField] private bool isActive = false;
+
+    public float CurrentTime { get => currentTime; }
+    public bool IsTimeUp { get => isTimeUp; }
+    public bool IsActive { get => isActive; set => isActive = value; }
+
     public void AddTime(float timeRestored)
     {
-        this.totalTime += timeRestored;
+        this.currentTime += timeRestored;
     }
+
+
     public void Reset()
     {
-        this.totalTime = 20f;
+        isTimeUp = false;
+        isActive = false;
+        currentTime = initialTime;
     }
-    public void CountdownTimer()
+
+    void Start()
     {
-        if (this.totalTime > 0f)
-        {
-            this.totalTime -= Time.deltaTime;
-        }
-        else
-        {
-            IsTimesUp = true;
-        }
+        Reset();
     }
+
     void Update()
     {
-        this.CountdownTimer();
+        if (isActive)
+        {
+            if (this.currentTime > 0f)
+            {
+                this.currentTime -= Time.deltaTime;
+            }
+            else
+            {
+                isTimeUp = true;
+            }
+        }
     }
 }

@@ -16,11 +16,13 @@ public class DebugController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             playerController.CurrentHp = playerController.CurrentHp - .1f * playerController.TotalHp;
+            playerController.CurrentRadiation = playerController.CurrentRadiation + .1f * playerController.TotalRadiation;
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
             playerController.CurrentHp = playerController.CurrentHp + .1f * playerController.TotalHp;
+            playerController.CurrentRadiation = playerController.CurrentRadiation - .1f * playerController.TotalRadiation;
         }
 
         // if (Input.GetButtonDown("Fire1"))

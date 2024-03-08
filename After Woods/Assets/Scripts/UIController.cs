@@ -8,8 +8,6 @@ public class UIController : MonoBehaviour
     private UnityEngine.UI.Text foodCounter;
     [SerializeField]
     private UnityEngine.UI.Text timerText;
-    [SerializeField]
-    private float timer;
     [SerializeField] 
     private GameObject healthBar;
     [SerializeField] 
@@ -26,19 +24,24 @@ public class UIController : MonoBehaviour
     {
         var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
         healthBar.GetComponent<HealthBarController>().SetMaxValue(playerController.TotalHp);
-        radiationBar.GetComponent<HealthBarController>().SetMaxValue(playerController.TotalHp);
+        radiationBar.GetComponent<HealthBarController>().SetMaxValue(playerController.TotalRadiation);
     }
 
     // Update is called once per frame
     void Update()
     {
-        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
-        this.foodCounter.text = playerController.FoodAmount.ToString();
-        healthBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentHp);
-        radiationBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentHp);
-        Debug.LogWarning("radiation bar is broken");
+        // Timer
+        timerText.text = GameManager.Instance.Timer.CurrentTime.ToString();
 
-        // change timer text using beast reference
+        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+
+        // Food
+        this.foodCounter.text = playerController.FoodAmount.ToString();
+        // HP
+        healthBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentHp);
+        // RP
+        radiationBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentRadiation);
+        // Debug.LogWarning("radiation bar is broken");
 
     }
 }
