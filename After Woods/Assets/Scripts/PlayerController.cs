@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         {
             this.climbdown.Execute(this.gameObject);
         }
-        else if(coll.IsTouchingLayers(ladderLayer))
+        else if(coll.IsTouchingLayers(ladderLayer) && Input.GetAxis("Horizontal") == 0)
         {
             rb.velocity = new Vector2(0, 0);
         }
@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
         if (isOnGround && Input.GetButtonDown("Jump"))
         {
             this.jump.Execute(this.gameObject);
+            Debug.Log(rb.velocity.y);
         }
         
         if (isSprinting && Input.GetButtonDown("Fire1"))
