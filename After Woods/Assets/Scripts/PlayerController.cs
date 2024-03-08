@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
     {
         if (isClimbup)
         {
-            rb.gravityScale = 0;
             this.climbup.Execute(this.gameObject);
         }
         else if(isClimbdown)
@@ -137,6 +136,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Ladder"))
         {
             isLadder = true;
+            rb.gravityScale = 0;
         }
     }
 
