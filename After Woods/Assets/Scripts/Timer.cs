@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour, Reset
     {
         this.totalTime += timeRestored;
     }
-    public void ResetStats(GameObject obj = null)
+    public void ResetStats()
     {
         this.totalTime = 20f;
     }

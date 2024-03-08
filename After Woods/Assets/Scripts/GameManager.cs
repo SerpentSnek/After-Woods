@@ -4,14 +4,21 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour, Reset
 {
     private static GameManager _instance;
+    private GameObject _player;
     public Timer TimerObject;
     protected GameObject Player
     {
         get
         {
-            return GameObject.FindWithTag("Player");
+            if (_instance == null)
+            {
+                Debug.LogError("null player");
+            }
+
+            return _player;
         }
     }
+
     public static GameManager Instance
     {
         get
@@ -31,26 +38,35 @@ public class GameManager : MonoBehaviour, Reset
         {
             Destroy(gameObject);
         }
-        else
+        else if (_instance == null)
         {
             _instance = this;
+            _player = GameObject.FindWithTag("Player");
             DontDestroyOnLoad(gameObject);
             this.LoadStartScreen();
         }
         if (TimerObject == null)
         {
-            TimerObject = new Timer(20f);
+            TimerObject = Instance.GetComponent<Timer>();
         }
-
-        this.ResetStats();
+        if (Player != null)
+        {
+            this.ResetStats();
+        }
     }
 
-    public void ResetStats(GameObject obj = null) // have this with a Reset interface instead (done)
+    public void ResetStats() // have this with a Reset interface instead (done)
     {
-        Instance.Player.GetComponent<PlayerController>().CurrentHp =
-            Instance.Player.GetComponent<PlayerController>().TotalHp;
-        Instance.Player.GetComponent<PlayerController>().TotalRadiation = 0;
-        TimerObject.ResetStats();
+        if (Player != null && TimerObject != null)
+        {
+            Instance.Player.GetComponent<PlayerController>().CurrentHp = Instance.Player.GetComponent<PlayerController>().TotalHp;
+            Instance.Player.GetComponent<PlayerController>().TotalRadiation = 0;
+            TimerObject.ResetStats();
+        }
+        else
+        {
+            return;
+        }
     }
 
     // Main menu is just a placeholder to test scene switching;
