@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaitFoodPlayerCommand : MonoBehaviour, IPlayerCommand
+public class BaitFoodPlayerCommand : MonoBehaviour, IInputCommand
 {
     private Timer timer;
     void Start()
@@ -9,7 +9,10 @@ public class BaitFoodPlayerCommand : MonoBehaviour, IPlayerCommand
     }
     public void Execute(GameObject player)
     {
-        player.gameObject.GetComponent<PlayerController>().FoodAmount -= 1;
-        timer.AddTime();
+        if (player.gameObject.GetComponent<PlayerController>().FoodAmount > 0)
+        {
+            player.gameObject.GetComponent<PlayerController>().FoodAmount -= 1;
+            timer.AddTime(1);
+        }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, Reset
 {
     private static GameManager _instance;
     private GameObject player;
     //private bool isNewGame;
+    public Timer TimerObject;
+
+
     public static GameManager Instance
     {
         get
@@ -40,16 +43,25 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             this.LoadStartScreen();
         }
+
         //isNewGame = false;
         player = GameObject.FindWithTag("Player"); ;
-        this.ResetPlayerStats();
+
+        if (TimerObject == null)
+        {
+            TimerObject = new Timer(20f);
+        }
+
+        this.ResetStats();
+
     }
 
-    public void ResetPlayerStats()
+    public void ResetStats(GameObject obj = null) // have this with a Reset interface instead (done)
     {
         var playerController = player.GetComponent<PlayerController>();
         playerController.CurrentHp = playerController.TotalHp;
         playerController.TotalRadiation = 0;
+        TimerObject.ResetStats();
     }
 
     // Main menu is just a placeholder to test scene switching;
@@ -70,9 +82,12 @@ public class GameManager : MonoBehaviour
     public void LoadGameOverScreen()
     {
         DontDestroyOnLoad(gameObject);
-        this.ResetPlayerStats();
+
         var playerController = player.GetComponent<PlayerController>();
         playerController.FoodAmount = 0;
+
+        this.ResetStats();
+
         // SceneManager.LoadSceneAsync("whatever game over scene is named");
     }
 
@@ -82,9 +97,9 @@ public class GameManager : MonoBehaviour
         //this.isNewGame = false;
         //playerController = FindObjectOfType<PlayerController>();
         var playerController = player.GetComponent<PlayerController>();
-        this.ResetPlayerStats();
+        this.ResetStats();
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(playerController.gameObject);
+        DontDestroyOnLoad(player);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

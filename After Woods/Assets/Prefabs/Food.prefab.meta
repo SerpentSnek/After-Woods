@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:After Woods/Assets/Prefabs/Food.prefab.meta
 guid: f6d14c2670bb000408cec51289a4a21c
 PrefabImporter:
+========
+guid: 0d46b5373667abf40a7798f4d6d2eadc
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> game-logic:After Woods/Assets/Resources/Sprites/Above Ground Background.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

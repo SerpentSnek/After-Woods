@@ -4,18 +4,14 @@
 
 public class PlayerController : MonoBehaviour
 {
-    /* Use IPlayerCommand to bind inputs for eating food and baiting food */
-    // private IPlayerCommand ...
-    private float speed = 5.0f;
-    private EnemyController enemyController;
-    // The radiation spec provides info on damage dealt
-    private RadiationSpec radiationSpec;
+    [SerializeField] private int foodAmount;
     [SerializeField] private float totalHp;
     // How much radiation player can take before it starts to damage the player
     [SerializeField] private float totalRadiation;
+    [SerializeField] private float radiationDamage;
+    private bool isDamagedByRadiation;
     private float currentHp;
     private float currentRadiation;
-    [SerializeField] private int foodAmount;
 
     public float TotalHp
     {
@@ -42,15 +38,23 @@ public class PlayerController : MonoBehaviour
         get => foodAmount;
         set => foodAmount = value;
     }
+    public float RadiationDamage
+    {
+        get => radiationDamage;
+        set => radiationDamage = value;
+    }
+    public bool IsDamagedByRadiation
+    {
+        get => isDamagedByRadiation;
+        set => isDamagedByRadiation = value;
+    }
 
     void Awake()
     {
-        // totalHp = 100.0f;
-        // totalRadiation = 50.0f;
-        enemyController = FindAnyObjectByType<EnemyController>();
-        radiationSpec = FindObjectOfType<RadiationSpec>();
+        TotalHp = 100;
+        TotalRadiation = 50;
         CurrentHp = TotalHp;
-        CurrentRadiation = 0f;
+        CurrentRadiation = 0;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -61,7 +65,7 @@ public class PlayerController : MonoBehaviour
                 OnEnemyCollide2D(collision);
                 break;
             case "Radiation":
-                OnRadiationCollide2D(collision);
+                IsDamagedByRadiation = true;
                 break;
             case "Food":
                 OnFoodCollide2D(collision);
@@ -73,7 +77,7 @@ public class PlayerController : MonoBehaviour
                 OnBeastCollide2D(collision);
                 break;
             default:
-                // Debug.LogError("null gameObject collision");
+                Debug.LogError("null gameObject collision");
                 break;
         }
     }
@@ -82,7 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject != null && other.gameObject.tag == "Enemy")
         {
-            CurrentHp -= enemyController.DamageOutput;
+            CurrentHp -= other.gameObject.GetComponent<EnemyController>().DamageOutput;
         }
         else
         {
@@ -101,16 +105,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnRadiationCollide2D(Collision2D other)
+    void OnRadiationCollide2D()
     {
-        if (other.gameObject != null && other.gameObject.tag == "Radiation")
-        {
-            CurrentRadiation += radiationSpec.RadiationDamage;
-        }
-        else
-        {
-            Debug.Log("radiation null collider");
-        }
+        //if (other.gameObject != null && other.gameObject.tag == "Radiation")
+        //{
+        //    CurrentRadiation += RadiationDamage;
+        //}
+        //else
+        //{
+        //    Debug.Log("radiation null collider");
+        //}
+        CurrentRadiation += RadiationDamage;
     }
 
     void OnFoodCollide2D(Collision2D other)
@@ -139,26 +144,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetAxis("Horizontal") > 0.01)
+        if (IsDamagedByRadiation)
         {
-            var rigidBody = gameObject.GetComponent<Rigidbody2D>();
-            if (rigidBody != null)
-            {
-                rigidBody.velocity = new Vector2(this.speed, rigidBody.velocity.y);
-                gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            }
+            OnRadiationCollide2D();
         }
-        if (Input.GetAxis("Horizontal") < -0.01)
-        {
-            var rigidBody = gameObject.GetComponent<Rigidbody2D>();
-            if (rigidBody != null)
-            {
-                rigidBody.velocity = new Vector2(-this.speed, rigidBody.velocity.y);
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            }
-        }
-
     }
 }
