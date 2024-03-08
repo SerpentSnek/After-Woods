@@ -45,12 +45,12 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        totalHp = 100.0f;
-        totalRadiation = 50.0f;
+        // totalHp = 100.0f;
+        // totalRadiation = 50.0f;
         enemyController = FindAnyObjectByType<EnemyController>();
         radiationSpec = FindObjectOfType<RadiationSpec>();
         CurrentHp = TotalHp;
-        CurrentRadiation = 0.0001f;
+        CurrentRadiation = 0f;
     }
 
     void OnCollisionEnter2D(Collision2D collision)

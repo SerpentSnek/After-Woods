@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     }
 
     // https://learn.unity.com/tutorial/implement-data-persistence-between-scenes
-    private void Start()
+    private void Awake()
     {
         if (_instance != null)
         {
