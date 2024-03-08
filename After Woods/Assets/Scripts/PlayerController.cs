@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using IInput.Command;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     private Collider2D coll;
     private Rigidbody2D rb;
@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     private IInputCommand left;
     private IInputCommand climbup;
     private IInputCommand climbdown;
-    public LayerMask groundLayer;     
+    public LayerMask groundLayer;
+    public LayerMask ladderLayer;       
     private bool isOnGround;
     private bool isClimbup;
     private bool isClimbdown;
@@ -42,13 +43,13 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = 0;
             this.climbup.Execute(this.gameObject);
         }
-       else if(isClimbdown)
+        else if(isClimbdown)
         {
             this.climbdown.Execute(this.gameObject);
         }
-        else
+        else if(coll.IsTouchingLayers(ladderLayer))
         {
-            rb.velocity = new Vector(0,0);
+            rb.velocity = new Vector2(0, 0);
         }
 
         if(isMovingRight)
@@ -60,15 +61,11 @@ public class PlayerController : MonoBehaviour
         {
             this.left.Execute(this.gameObject);
         }
-        if(isJump)
-        {
-            this.jump.Execute(this.gameObject);
-        }
+
     }    
     void Update()
     {
         isOnGroundCheck();
-        Debug.Log("debug");
         isSprintingCheck();
         if(isLadder && Input.GetAxis("Vertical") > 0.01)
         {
@@ -104,19 +101,13 @@ public class PlayerController : MonoBehaviour
 
         if (isOnGround && Input.GetButtonDown("Jump"))
         {
-            isJump = true;
-            Debug.Log("jumping"+ rb.velocity.y);
-        }
-        else
-        {
-            isJump = false;
+            this.jump.Execute(this.gameObject);
         }
         
         if (isSprinting && Input.GetButtonDown("Fire1"))
         {
             this.fire1.Execute(this.gameObject);
-        }
-            
+        }   
     }
     void isOnGroundCheck()
     {
@@ -153,7 +144,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Ladder"))
         {
             isLadder = false;
-            rb.gravityScale = 1f;
+            rb.gravityScale = 1;
         }
     }
 }
