@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour, Reset
     // https://learn.unity.com/tutorial/implement-data-persistence-between-scenes
     private void Start()
     {
+        _player = GameObject.FindWithTag("Player");
         if (_instance != null)
         {
             Destroy(gameObject);
@@ -41,7 +42,6 @@ public class GameManager : MonoBehaviour, Reset
         else if (_instance == null)
         {
             _instance = this;
-            _player = GameObject.FindWithTag("Player");
             DontDestroyOnLoad(gameObject);
             this.LoadStartScreen();
         }
@@ -99,5 +99,6 @@ public class GameManager : MonoBehaviour, Reset
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(Instance.Player);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadSceneAsync("Stage2Placeholder");
     }
 }

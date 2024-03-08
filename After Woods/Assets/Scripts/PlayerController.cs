@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("check for collision");
         switch (collision.gameObject.tag)
         {
             case "Enemy":
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
                 OnFoodCollide2D(collision);
                 break;
             case "Bunker":
+                Debug.Log("landed on bunker");
                 OnBunkerCollide2D(collision);
                 break;
             case "Beast":
