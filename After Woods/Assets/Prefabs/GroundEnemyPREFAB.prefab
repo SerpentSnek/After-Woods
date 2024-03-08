@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7728073937904963172}
   - component: {fileID: 1398376475418413843}
   m_Layer: 0
-  m_Name: GroundEnemy
+  m_Name: GroundEnemyPREFAB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
