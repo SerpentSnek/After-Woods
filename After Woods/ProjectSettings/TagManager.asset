@@ -8,6 +8,7 @@ TagManager:
   - Food
   - Radiation
   - Enemy
+  - Beast
   layers:
   - Default
   - TransparentFX
