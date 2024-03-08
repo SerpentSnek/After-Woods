@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using IInput.Command;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private Collider2D coll;
     private Rigidbody2D rb;
