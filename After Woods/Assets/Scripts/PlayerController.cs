@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(BoxCollider2D))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IReset
 {
     [SerializeField] private int foodAmount;
     [SerializeField] private float totalHp;
@@ -150,5 +150,11 @@ public class PlayerController : MonoBehaviour
         {
             OnRadiationCollide2D();
         }
+    }
+
+    public void Reset()
+    {
+        CurrentHp = TotalHp;
+        TotalRadiation = 0;
     }
 }

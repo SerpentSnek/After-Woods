@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 // Timer class's sole purpose is to provide methods for the Beast class
-public class Timer : MonoBehaviour, Reset
+public class Timer : MonoBehaviour, IReset
 {
     [SerializeField] private float totalTime;
     private bool isTimesUp;
@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour, Reset
     {
         this.totalTime += timeRestored;
     }
-    public void ResetStats(GameObject obj = null)
+    public void Reset()
     {
         this.totalTime = 20f;
     }

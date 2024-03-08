@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour, Reset
+public class GameManager : MonoBehaviour, IReset
 {
     private static GameManager _instance;
     private GameObject player;
     //private bool isNewGame;
-    public Timer TimerObject;
-
+    private Timer timer;
 
     public static GameManager Instance
     {
@@ -17,18 +16,13 @@ public class GameManager : MonoBehaviour, Reset
             {
                 Debug.LogError("null game manager");
             }
-
             return _instance;
         }
     }
 
-    public GameObject Player
-    {
-        get
-        {
-            return player;
-        }
-    }
+    public GameObject Player { get; private set; }
+
+    public Timer Timer { get; private set; }
 
     // https://learn.unity.com/tutorial/implement-data-persistence-between-scenes
     private void Awake()
@@ -36,6 +30,7 @@ public class GameManager : MonoBehaviour, Reset
         if (_instance != null)
         {
             Destroy(gameObject);
+            // why is this here?
         }
         else
         {
@@ -47,21 +42,19 @@ public class GameManager : MonoBehaviour, Reset
         //isNewGame = false;
         player = GameObject.FindWithTag("Player"); ;
 
-        if (TimerObject == null)
+        if (timer == null)
         {
-            TimerObject = new Timer(20f);
+            gameObject.AddComponent<Timer>();
         }
 
-        this.ResetStats();
-
+        this.Reset();
     }
 
-    public void ResetStats(GameObject obj = null) // have this with a Reset interface instead (done)
+    public void Reset() // have this with a Reset interface instead (done)
     {
         var playerController = player.GetComponent<PlayerController>();
-        playerController.CurrentHp = playerController.TotalHp;
-        playerController.TotalRadiation = 0;
-        TimerObject.ResetStats();
+        playerController.Reset();
+        timer.Reset();
     }
 
     // Main menu is just a placeholder to test scene switching;
@@ -86,7 +79,7 @@ public class GameManager : MonoBehaviour, Reset
         var playerController = player.GetComponent<PlayerController>();
         playerController.FoodAmount = 0;
 
-        this.ResetStats();
+        this.Reset();
 
         // SceneManager.LoadSceneAsync("whatever game over scene is named");
     }
@@ -97,7 +90,7 @@ public class GameManager : MonoBehaviour, Reset
         //this.isNewGame = false;
         //playerController = FindObjectOfType<PlayerController>();
         var playerController = player.GetComponent<PlayerController>();
-        this.ResetStats();
+        this.Reset();
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(player);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);

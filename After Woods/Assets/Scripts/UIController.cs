@@ -36,6 +36,7 @@ public class UIController : MonoBehaviour
         this.foodCounter.text = playerController.FoodAmount.ToString();
         healthBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentHp);
         radiationBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentHp);
+        Debug.LogWarning("radiation bar is broken");
 
         // change timer text using beast reference
 

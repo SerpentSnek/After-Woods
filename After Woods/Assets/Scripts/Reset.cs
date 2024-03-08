@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public interface Reset
+public interface IReset
 {
     // Have game object parameter be optional (primarily for Timer)
-    void ResetStats(GameObject obj = null);
+    public void Reset();
 }
