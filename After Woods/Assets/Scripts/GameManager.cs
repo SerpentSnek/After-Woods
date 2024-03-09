@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour, Reset
         {
             Instance.Player.GetComponent<PlayerController>().CurrentHp = Instance.Player.GetComponent<PlayerController>().TotalHp;
             Instance.Player.GetComponent<PlayerController>().TotalRadiation = 0;
+            Instance.Player.transform.position = new Vector2(0, 0);
             TimerObject.ResetStats();
         }
         else
