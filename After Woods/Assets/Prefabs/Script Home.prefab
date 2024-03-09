@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 613920714972887639}
   - component: {fileID: 1324121731514256932}
   - component: {fileID: 552321639096938298}
+  - component: {fileID: 5304383320349224727}
   m_Layer: 0
   m_Name: Script Home
   m_TagString: Untagged
@@ -59,3 +60,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialTime: 5
   isActive: 0
+--- !u!114 &5304383320349224727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9023780828855982482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165d6ed7f6584594a85df919fd0cd91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  radiationBar: {fileID: 0}
+  active: 0

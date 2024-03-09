@@ -5,10 +5,6 @@ using UnityEngine;
 public class DebugController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject healthBar;
-    [SerializeField]
-    private GameObject radiationBar;
-    [SerializeField]
     private bool active;
 
     void Update()
