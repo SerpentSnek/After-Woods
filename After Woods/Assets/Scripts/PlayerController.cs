@@ -55,24 +55,24 @@ public class PlayerController : MonoBehaviour, IReset
             Die();
         }
 
-        if (Input.GetAxis("Horizontal") > 0.01)
-        {
-            var rigidBody = gameObject.GetComponent<Rigidbody2D>();
-            if (rigidBody != null)
-            {
-                rigidBody.velocity = new Vector2(5f, rigidBody.velocity.y);
-                gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            }
-        }
-        if (Input.GetAxis("Horizontal") < -0.01)
-        {
-            var rigidBody = gameObject.GetComponent<Rigidbody2D>();
-            if (rigidBody != null)
-            {
-                rigidBody.velocity = new Vector2(-5f, rigidBody.velocity.y);
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            }
-        }
+        // if (Input.GetAxis("Horizontal") > 0.01)
+        // {
+        //     var rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        //     if (rigidBody != null)
+        //     {
+        //         rigidBody.velocity = new Vector2(5f, rigidBody.velocity.y);
+        //         gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        //     }
+        // }
+        // if (Input.GetAxis("Horizontal") < -0.01)
+        // {
+        //     var rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        //     if (rigidBody != null)
+        //     {
+        //         rigidBody.velocity = new Vector2(-5f, rigidBody.velocity.y);
+        //         gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        //     }
+        // }
     }
 
     void OnCollisionEnter2D(Collision2D collision)

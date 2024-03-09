@@ -8,6 +8,7 @@ TagManager:
   - Food
   - Ladder
   - Enemy
+  - Beast
   layers:
   - Default
   - TransparentFX

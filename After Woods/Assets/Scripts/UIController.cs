@@ -41,7 +41,5 @@ public class UIController : MonoBehaviour
         healthBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentHp);
         // RP
         radiationBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentRadiation);
-        // Debug.LogWarning("radiation bar is broken");
-
     }
 }
