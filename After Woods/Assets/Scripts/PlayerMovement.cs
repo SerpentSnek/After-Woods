@@ -104,7 +104,18 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(rb.velocity.y);
         }
 
+        if (isOnGround && Input.GetButton("Jump"))
+        {
+            this.jump.Execute(this.gameObject);
+            Debug.Log(rb.velocity.y);
+        }
+
         if (isSprinting && Input.GetButtonDown("Fire1"))
+        {
+            this.fire1.Execute(this.gameObject);
+        }
+
+        if (isSprinting && Input.GetButton("Fire1"))
         {
             this.fire1.Execute(this.gameObject);
         }

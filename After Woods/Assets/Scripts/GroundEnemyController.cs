@@ -1,38 +1,64 @@
 using UnityEngine;
 
-public class GroundEnemyController: MonoBehaviour
+public class GroundEnemyController: MonoBehaviour, IDamage
 {
-    public GameObject target;
-    private float chaseRange= 5f; 
-    private float chaseSpeed = 2f;
-    private Rigidbody2D rb;
+    [SerializeField] private float chaseRange;
+    [SerializeField] private float chaseSpeed;
+    [SerializeField] private float damage;
+    [SerializeField] private GameObject target;
+
+    public float Damage()
+    {
+        return damage;
+    }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        // target = GameManager.Instance.Player;
     }
 
     void Update()
     {
-        Check_Chase();
-    }
-
-    void Check_Chase()
-    {
-        float distanceTotarget = Vector2.Distance(this.gameObject.transform.position, target.transform.position);
-        if (distanceTotarget <= chaseRange)
+        if (IsInRange())
         {
-            Chasetarget();
+            Chase();
         }
         else
         {
-            rb.velocity  = new Vector2(0, rb.velocity.y);
+            var rb = gameObject.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+            else
+            {
+                Debug.LogError("null rigidbody on enemy");
+            }
+            
         }
     }
 
-    void Chasetarget()
+    private bool IsInRange()
+    {
+        float distanceToTarget = Vector2.Distance(this.gameObject.transform.position, target.transform.position);
+        if (distanceToTarget <= chaseRange)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void Chase()
     {
         Vector2 direction = (target.transform.position - transform.position).normalized;
-        rb.velocity = new Vector2(direction.x * chaseSpeed, rb.velocity.y);
+        var rb = gameObject.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = new Vector2(direction.x * chaseSpeed, rb.velocity.y);
+        }
+        else
+        {
+            Debug.LogError("null rigidbody on enemy");
+        }
     }
 }

@@ -143,10 +143,11 @@ public class PlayerController : MonoBehaviour, IReset
 
     private void OnEnemyCollideEnter2D(Collision2D collision)
     {
-        var enemyController = collision.gameObject.GetComponent<EnemyController>();
+        var enemyController = collision.gameObject.GetComponent<IDamage>();
         if (enemyController != null)
         {
-            currentHp -= enemyController.Damage;
+            currentHp -= enemyController.Damage();
+            Debug.Log(currentHp);
         }
         else
         {
@@ -156,7 +157,7 @@ public class PlayerController : MonoBehaviour, IReset
 
     private void OnBunkerTriggerEnter2D(Collider2D collider)
     {
-        GameManager.Instance.LoadNextStage();
+        // GameManager.Instance.LoadNextStage();
     }
 
 
@@ -179,7 +180,7 @@ public class PlayerController : MonoBehaviour, IReset
     private void Die()
     {
         // Get the game manager to load the game over screen
-        GameManager.Instance.LoadGameOverScreen();
+        // GameManager.Instance.LoadGameOverScreen();
     }
 
     private void DieFromRadiation()

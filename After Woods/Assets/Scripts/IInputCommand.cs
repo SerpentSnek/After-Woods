@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IInputCommand
 {
-    void Execute(GameObject gameObject);
+    public void Execute(GameObject gameObject);
 }
