@@ -1,12 +1,28 @@
 ﻿using UnityEngine;
-public class BeastBehavior : MonoBehaviour
+
+// currently just a copy of flying enemy but with timer logic
+public class BeastController : MonoBehaviour
 {
-    // Use GameManager.Instance.TimerObject.IsTimesUp to trigger Beast's action
-    private void Start()
+    [SerializeField] private float chaseSpeed;
+    [SerializeField] private GameObject target;
+    
+    void Start()
     {
-        Debug.Log(GameManager.Instance.Timer.IsTimeUp);
+        // target = GameManager.Instance.Player;
     }
-    public BeastBehavior()
+
+    void Update()
     {
+        var timer = GameManager.Instance.Timer;
+        if (timer.IsTimeUp)
+        {
+            Chase();
+        }
+    }
+
+    private void Chase()
+    {
+        Vector2 direction = (target.transform.position - transform.position);
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, chaseSpeed * Time.deltaTime);
     }
 }

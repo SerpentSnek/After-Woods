@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class FlyingEnemyController: MonoBehaviour, IDamage
 {
-    
     [SerializeField] private float chaseRange;
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float damage;
