@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour, IReset
     private void OnBeastCollideEnter2D()
     {
         currentHp = 0;
+        // Debug.Log("beast hit");
     }
 
     private void OnEnemyCollideEnter2D(Collision2D collision)
@@ -181,6 +182,7 @@ public class PlayerController : MonoBehaviour, IReset
     {
         // Get the game manager to load the game over screen
         // GameManager.Instance.LoadGameOverScreen();
+        // Debug.Log("died");
     }
 
     private void DieFromRadiation()
