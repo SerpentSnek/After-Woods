@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isMovingRight;
     private bool isMovingLeft;
     private bool isJump;
-    
+
     void Start()
     {
         this.fire3 = ScriptableObject.CreateInstance<PlayerSprint>();
@@ -66,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isOnGroundCheck();
-        isSprintingCheck();
         if (isLadder && Input.GetAxis("Vertical") > 0.01)
         {
             isClimbup = true;
@@ -81,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             isClimbdown = false;
         }
 
-        if (rb.velocity.x < 5.0f && Input.GetAxis("Horizontal") > 0.01)
+        if (Input.GetAxis("Horizontal") > 0.01)
         {
             isMovingRight = true;
         }
@@ -90,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
             isMovingRight = false;
         }
 
-        if (rb.velocity.x > -5.0f && Input.GetAxis("Horizontal") < -0.01)
+        if (Input.GetAxis("Horizontal") < -0.01)
         {
             isMovingLeft = true;
         }
@@ -102,24 +101,26 @@ public class PlayerMovement : MonoBehaviour
         if (isOnGround && Input.GetButtonDown("Jump"))
         {
             this.jump.Execute(this.gameObject);
-            Debug.Log(rb.velocity.y);
+            // Debug.Log(rb.velocity.y);
         }
 
         if (isOnGround && Input.GetButton("Jump"))
         {
             this.jump.Execute(this.gameObject);
-            Debug.Log(rb.velocity.y);
+            // Debug.Log(rb.velocity.y);
         }
 
-        if (isSprinting && Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire3"))
         {
             this.fire3.Execute(this.gameObject);
         }
 
-        if (isSprinting && Input.GetButton("Fire3"))
+        if (Input.GetButton("Fire3"))
         {
             this.fire3.Execute(this.gameObject);
         }
+
+        // Debug.Log(rb.velocity.x);
     }
     void isOnGroundCheck()
     {
@@ -132,17 +133,7 @@ public class PlayerMovement : MonoBehaviour
             isOnGround = false;
         }
     }
-    void isSprintingCheck()
-    {
-        if (Mathf.Abs(rb.velocity.x) < 5.1f)
-        {
-            isSprinting = true;
-        }
-        else
-        {
-            isSprinting = false;
-        }
-    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ladder"))

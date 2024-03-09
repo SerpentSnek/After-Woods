@@ -174,6 +174,7 @@ public class PlayerController : MonoBehaviour, IReset
     private void OnBunkerTriggerEnter2D(Collider2D collider)
     {
         // GameManager.Instance.LoadNextStage();
+        Debug.Log("entered bunker");
     }
 
 
@@ -186,6 +187,7 @@ public class PlayerController : MonoBehaviour, IReset
     private void OnRadiationTriggerEnter2D()
     {
         isDamagedByRadiation = true;
+        Debug.Log("hi");
     }
 
     private void OnRadiationTriggerExit2D()
@@ -203,5 +205,6 @@ public class PlayerController : MonoBehaviour, IReset
     private void DieFromRadiation()
     {
         Die();
+        Debug.Log("died from radiation");
     }
 }

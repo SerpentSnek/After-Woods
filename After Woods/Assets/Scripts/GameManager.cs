@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour, IReset
     {
         //this.isNewGame = false;
         //playerController = FindObjectOfType<PlayerController>();
-        var playerController = player.GetComponent<PlayerController>();
+        // var playerController = player.GetComponent<PlayerController>();
         DontDestroyOnLoad(player);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
