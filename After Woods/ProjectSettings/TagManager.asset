@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bunker
   - Food
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Ladder
   - 
   - 
   - 
