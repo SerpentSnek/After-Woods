@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour, IReset
     [SerializeField] private float radiationDamage;
     private bool isDamagedByRadiation;
 
+    private IInputCommand fire1;
+    private IInputCommand fire2;
+
     public int FoodAmount { get => foodAmount; set => foodAmount = value; }
     public float TotalHp { get => totalHp; }
     public float CurrentHp
@@ -37,6 +40,8 @@ public class PlayerController : MonoBehaviour, IReset
     void Start()
     {
         Reset();
+        this.fire1 = ScriptableObject.CreateInstance<BaitFoodCommand>();
+        this.fire2 = ScriptableObject.CreateInstance<EatFoodCommand>();
     }
 
     void Update()
@@ -53,6 +58,16 @@ public class PlayerController : MonoBehaviour, IReset
         if (currentHp <= 0)
         {
             Die();
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            this.fire1.Execute(gameObject);
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            this.fire2.Execute(gameObject);
         }
 
         // if (Input.GetAxis("Horizontal") > 0.01)

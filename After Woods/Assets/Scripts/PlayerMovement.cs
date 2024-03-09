@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Collider2D coll;
     private Rigidbody2D rb;
-    private IInputCommand fire1;
+    private IInputCommand fire3;
     private IInputCommand jump;
     private IInputCommand right;
     private IInputCommand left;
@@ -24,9 +24,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isMovingRight;
     private bool isMovingLeft;
     private bool isJump;
+    
     void Start()
     {
-        this.fire1 = ScriptableObject.CreateInstance<PlayerSprint>();
+        this.fire3 = ScriptableObject.CreateInstance<PlayerSprint>();
         this.climbup = ScriptableObject.CreateInstance<PlayerClimbUp>();
         this.climbdown = ScriptableObject.CreateInstance<PlayerClimbDown>();
         this.jump = ScriptableObject.CreateInstance<PlayerJump>();
@@ -110,14 +111,14 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(rb.velocity.y);
         }
 
-        if (isSprinting && Input.GetButtonDown("Fire1"))
+        if (isSprinting && Input.GetButtonDown("Fire3"))
         {
-            this.fire1.Execute(this.gameObject);
+            this.fire3.Execute(this.gameObject);
         }
 
-        if (isSprinting && Input.GetButton("Fire1"))
+        if (isSprinting && Input.GetButton("Fire3"))
         {
-            this.fire1.Execute(this.gameObject);
+            this.fire3.Execute(this.gameObject);
         }
     }
     void isOnGroundCheck()

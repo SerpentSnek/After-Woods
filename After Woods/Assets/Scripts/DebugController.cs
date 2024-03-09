@@ -8,18 +8,20 @@ public class DebugController : MonoBehaviour
     private GameObject healthBar;
     [SerializeField]
     private GameObject radiationBar;
+    [SerializeField]
+    private bool active;
 
     void Update()
     {
         var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && active)
         {
             playerController.CurrentHp = playerController.CurrentHp - .1f * playerController.TotalHp;
             playerController.CurrentRadiation = playerController.CurrentRadiation + .1f * playerController.TotalRadiation;
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && active)
         {
             playerController.CurrentHp = playerController.CurrentHp + .1f * playerController.TotalHp;
             playerController.CurrentRadiation = playerController.CurrentRadiation - .1f * playerController.TotalRadiation;

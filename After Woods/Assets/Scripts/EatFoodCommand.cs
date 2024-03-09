@@ -8,7 +8,7 @@ public class EatFoodCommand : ScriptableObject, IInputCommand
     {
         if (gameObject.GetComponent<PlayerController>().FoodAmount > 0)
         {
-            gameObject.GetComponent<PlayerController>().CurrentHp += HpRestored;
+            gameObject.GetComponent<PlayerController>().CurrentHp += hpRestored;
             gameObject.GetComponent<PlayerController>().FoodAmount -= 1;
         }
     }
