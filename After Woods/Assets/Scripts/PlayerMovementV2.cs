@@ -46,6 +46,14 @@ public class PlayerMovementV2 : MonoBehaviour
         var movement = move.action.ReadValue<Vector2>();
         horizontal = movement.x;
         vertical = movement.y;
+        if (horizontal > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        if (horizontal < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     void FixedUpdate()

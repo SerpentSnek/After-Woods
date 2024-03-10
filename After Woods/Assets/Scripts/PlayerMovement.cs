@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire3"))
         {
             this.fire3.Execute(this.gameObject);
+            Debug.Log(rb.velocity.x);
         }
 
         if (Input.GetButton("Fire3"))
