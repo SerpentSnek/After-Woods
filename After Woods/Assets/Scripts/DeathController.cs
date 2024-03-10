@@ -5,5 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class DeathController : MonoBehaviour
 {
-    
+    public void RestartGame()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
+    public void LoadCheckpoint()
+    {
+        Debug.Log("Load");
+    }
 }
