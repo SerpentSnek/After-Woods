@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
-    
+    public void StartGame()
+    {
+
+    }
+
+    public void StartTutorial()
+    {
+        
+    }
 }
