@@ -16,24 +16,36 @@ public class PlayerController : MonoBehaviour, IReset
     private IInputCommand fire1;
     private IInputCommand fire2;
 
-    public int FoodAmount { get => foodAmount; set => foodAmount = value; }
-    public float TotalHp { get => totalHp; }
+    public int FoodAmount
+    {
+        get => foodAmount; set => foodAmount = value;
+    }
+    public float TotalHp
+    {
+        get => totalHp;
+    }
     public float CurrentHp
     {
         get => currentHp;
         set => currentHp = Mathf.Clamp(value, 0.0f, totalHp);
     }
-    public float TotalRadiation { get => totalRadiation; }
+    public float TotalRadiation
+    {
+        get => totalRadiation;
+    }
     // public float CurrentRadiation { get => currentRadiation; }
     // for debugging
-    public float CurrentRadiation { get => currentRadiation; set => currentRadiation = value; }
+    public float CurrentRadiation
+    {
+        get => currentRadiation; set => currentRadiation = value;
+    }
     // public float RadiationDamage { get; private set; }
     // public bool IsDamagedByRadiation { get; private set; }
 
     public void Reset()
     {
         currentHp = totalHp;
-        currentRadiation = 0;
+        //currentRadiation = 0;
         foodAmount = 0;
     }
 
