@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &55926470
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2101,6 +2101,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2955011764053456332, guid: a7003aafcce590c4cab8b19747727389, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 74.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955011764053456332, guid: a7003aafcce590c4cab8b19747727389, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 29.857
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955011764053456332, guid: a7003aafcce590c4cab8b19747727389, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 57.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955011764053456332, guid: a7003aafcce590c4cab8b19747727389, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -66.943
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791469985753653888, guid: a7003aafcce590c4cab8b19747727389, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8755740923657194107, guid: a7003aafcce590c4cab8b19747727389, type: 3}
       propertyPath: healthBar
       value: 
@@ -2109,6 +2129,14 @@ PrefabInstance:
       propertyPath: radiationBar
       value: 
       objectReference: {fileID: 993543679}
+    - target: {fileID: 8885280240574816716, guid: a7003aafcce590c4cab8b19747727389, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 57.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885280240574816716, guid: a7003aafcce590c4cab8b19747727389, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -24.296
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7794694196887638873, guid: a7003aafcce590c4cab8b19747727389, type: 3}
