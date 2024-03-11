@@ -71,8 +71,8 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     void Update()
     {
-        // if (isDamagedByRadiation)
-        if (Physics2D.OverlapCircle(gameObject.transform.position, 0.5f, radiationLayer))
+        if (isDamagedByRadiation)
+        // if (Physics2D.OverlapCircle(gameObject.transform.position, 0.5f, radiationLayer))
         {
             currentRadiation += radiationDamage * Time.deltaTime;
             if (currentRadiation >= totalRadiation)
@@ -109,8 +109,10 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        Debug.Log(collider.gameObject.tag);
         if (collider.gameObject != null)
         {
+            
             switch (collider.gameObject.tag)
             {
                 case "Bunker":
@@ -119,9 +121,9 @@ public class PlayerLogicController : MonoBehaviour, IReset
                 case "Food":
                     OnFoodTriggerEnter2D(collider);
                     break;
-                // case "Radiation":
-                //     OnRadiationTriggerEnter2D();
-                //     break;
+                case "Radiation":
+                    OnRadiationTriggerEnter2D();
+                    break;
             }
         }
         else
@@ -136,9 +138,9 @@ public class PlayerLogicController : MonoBehaviour, IReset
         {
             switch (collider.gameObject.tag)
             {
-                // case "Radiation":
-                //     OnRadiationTriggerExit2D();
-                //     break;
+                case "Radiation":
+                    OnRadiationTriggerExit2D();
+                    break;
             }
         }
         else
@@ -181,16 +183,16 @@ public class PlayerLogicController : MonoBehaviour, IReset
         Destroy(collider.gameObject);
     }
 
-    // private void OnRadiationTriggerEnter2D()
-    // {
-    //     isDamagedByRadiation = true;
-    //     Debug.Log("hi");
-    // }
+    private void OnRadiationTriggerEnter2D()
+    {
+        isDamagedByRadiation = true;
+        Debug.Log("hi");
+    }
 
-    // private void OnRadiationTriggerExit2D()
-    // {
-    //     isDamagedByRadiation = false;
-    // }
+    private void OnRadiationTriggerExit2D()
+    {
+        isDamagedByRadiation = false;
+    }
 
     private void Die()
     {
