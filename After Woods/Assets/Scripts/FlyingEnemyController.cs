@@ -5,7 +5,7 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
     [SerializeField] private float chaseRange;
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float damage;
-    private GameObject target;
+    [SerializeField] private GameObject target;
 
     public float Damage()
     {
@@ -14,7 +14,7 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
 
     void Start()
     {
-        target = GameManager.Instance.Player;
+        // target = GameManager.Instance.Player;
     }
 
     void Update()

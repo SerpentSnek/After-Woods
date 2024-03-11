@@ -50,7 +50,7 @@ MonoBehaviour:
   chaseRange: 10
   chaseSpeed: 7
   damage: 10
-  target: {fileID: 0}
+  target: {fileID: 6214276302770305210, guid: 48201565aa49017469bc32892cf96964, type: 3}
 --- !u!212 &9115342358147560641
 SpriteRenderer:
   m_ObjectHideFlags: 0

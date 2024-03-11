@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseSpeed: 1
-  target: {fileID: 0}
+  target: {fileID: 6214276302770305210, guid: 48201565aa49017469bc32892cf96964, type: 3}
 --- !u!212 &7066481594290135929
 SpriteRenderer:
   m_ObjectHideFlags: 0
