@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class PlayerLogicController : MonoBehaviour, IReset
@@ -11,9 +12,11 @@ public class PlayerLogicController : MonoBehaviour, IReset
     private float currentRadiation;
     [SerializeField] private float radiationDamage;
     private bool isDamagedByRadiation;
+    [SerializeField] private float baitTime;
+    [SerializeField] private float foodHealingValue;
 
-    private IInputCommand fire1;
-    private IInputCommand fire2;
+
+    [SerializeField] private InputActionReference bait, eat;
 
     public int FoodAmount { get => foodAmount; set => foodAmount = value; }
     public float TotalHp { get => totalHp; }
@@ -36,11 +39,21 @@ public class PlayerLogicController : MonoBehaviour, IReset
         foodAmount = 0;
     }
 
+    void OnEnable()
+    {
+        bait.action.performed += OnBaitPress;
+        eat.action.performed += OnEatPress;
+    }
+
+    void OnDisable()
+    {
+        bait.action.performed -= OnBaitPress;
+        eat.action.performed -= OnEatPress;
+    }
+
     void Start()
     {
         Reset();
-        this.fire1 = ScriptableObject.CreateInstance<BaitFoodCommand>();
-        this.fire2 = ScriptableObject.CreateInstance<EatFoodCommand>();
     }
 
     void Update()
@@ -58,35 +71,6 @@ public class PlayerLogicController : MonoBehaviour, IReset
         {
             Die();
         }
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            this.fire1.Execute(gameObject);
-        }
-
-        if (Input.GetButtonDown("Fire2"))
-        {
-            this.fire2.Execute(gameObject);
-        }
-
-        // if (Input.GetAxis("Horizontal") > 0.01)
-        // {
-        //     var rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        //     if (rigidBody != null)
-        //     {
-        //         rigidBody.velocity = new Vector2(5f, rigidBody.velocity.y);
-        //         gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        //     }
-        // }
-        // if (Input.GetAxis("Horizontal") < -0.01)
-        // {
-        //     var rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        //     if (rigidBody != null)
-        //     {
-        //         rigidBody.velocity = new Vector2(-5f, rigidBody.velocity.y);
-        //         gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        //     }
-        // }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -205,5 +189,23 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         Die();
         Debug.Log("died from radiation");
+    }
+
+    private void OnBaitPress(InputAction.CallbackContext obj)
+    {
+        if (foodAmount > 0)
+        {
+            foodAmount -= 1;
+            GameManager.Instance.Timer.AddTime(baitTime);
+        }
+    }
+
+    private void OnEatPress(InputAction.CallbackContext obj)
+    {
+        if (foodAmount > 0 && currentHp < totalHp)
+        {
+            CurrentHp += foodHealingValue;
+            foodAmount -= 1;
+        }
     }
 }

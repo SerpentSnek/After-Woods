@@ -329,7 +329,6 @@ MonoBehaviour:
   jumpSpeed: 16
   climbingSpeed: 5
   sprintSpeedFactor: 1.5
-  rb: {fileID: 878128507}
   groundCheck: {fileID: 602360856}
   groundLayer:
     serializedVersion: 2
@@ -340,11 +339,6 @@ MonoBehaviour:
   move: {fileID: -1286271534729520082, guid: 8e712e63c458e9e488ed90ffc5fe484a, type: 3}
   jump: {fileID: -7249505410577697037, guid: 8e712e63c458e9e488ed90ffc5fe484a, type: 3}
   sprint: {fileID: -5438968541465711184, guid: 8e712e63c458e9e488ed90ffc5fe484a, type: 3}
---- !u!50 &878128507 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 3077832047608770315, guid: 48201565aa49017469bc32892cf96964, type: 3}
-  m_PrefabInstance: {fileID: 588501333842864608}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &878128512 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3783708940642648933, guid: 48201565aa49017469bc32892cf96964, type: 3}
@@ -872,6 +866,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7950029623831168698, guid: 48201565aa49017469bc32892cf96964, type: 3}
+      propertyPath: eat
+      value: 
+      objectReference: {fileID: 7482116847284668238, guid: 8e712e63c458e9e488ed90ffc5fe484a, type: 3}
+    - target: {fileID: 7950029623831168698, guid: 48201565aa49017469bc32892cf96964, type: 3}
+      propertyPath: bait
+      value: 
+      objectReference: {fileID: -2397629643006541732, guid: 8e712e63c458e9e488ed90ffc5fe484a, type: 3}
+    - target: {fileID: 7950029623831168698, guid: 48201565aa49017469bc32892cf96964, type: 3}
+      propertyPath: baitTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950029623831168698, guid: 48201565aa49017469bc32892cf96964, type: 3}
+      propertyPath: foodHealingValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8688642469790123158, guid: 48201565aa49017469bc32892cf96964, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -893,7 +903,7 @@ PrefabInstance:
       addedObject: {fileID: 602360856}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6214276302770305210, guid: 48201565aa49017469bc32892cf96964, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 878128506}
     - targetCorrespondingSourceObject: {fileID: 6214276302770305210, guid: 48201565aa49017469bc32892cf96964, type: 3}
       insertIndex: -1
