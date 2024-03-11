@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovementV2 : MonoBehaviour
 {
-
     private float horizontal;
     private float vertical;
     private float gravityScale;
@@ -17,7 +16,7 @@ public class PlayerMovementV2 : MonoBehaviour
     private bool isClimbing;
     private bool isSprinting;
 
-    [SerializeField] private Rigidbody2D rb;
+    private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask ladderLayer;
@@ -30,7 +29,6 @@ public class PlayerMovementV2 : MonoBehaviour
         jump.action.canceled += OnJumpRelease;
         sprint.action.performed += OnSprintPress;
         sprint.action.canceled += OnSprintRelease;
-        gravityScale = rb.gravityScale;
     }
 
     void OnDisable()
@@ -41,16 +39,23 @@ public class PlayerMovementV2 : MonoBehaviour
         sprint.action.canceled -= OnSprintRelease;
     }
 
+    void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        gravityScale = rb.gravityScale;
+    }
+
     void Update()
     {
         var movement = move.action.ReadValue<Vector2>();
         horizontal = movement.x;
         vertical = movement.y;
+
         if (horizontal > 0)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
-        if (horizontal < 0)
+        else if (horizontal < 0)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }

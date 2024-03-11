@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-
-public class PlayerController : MonoBehaviour, IReset
+public class PlayerLogicController : MonoBehaviour, IReset
 {
     [SerializeField] private int foodAmount;
     [SerializeField] private float totalHp;
