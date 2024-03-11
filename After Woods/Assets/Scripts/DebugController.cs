@@ -9,7 +9,7 @@ public class DebugController : MonoBehaviour
 
     void Update()
     {
-        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+        var playerController = GameManager.Instance.Player.GetComponent<PlayerLogicController>();
 
         if (Input.GetButtonDown("Fire1") && active)
         {

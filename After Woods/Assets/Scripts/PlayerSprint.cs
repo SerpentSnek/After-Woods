@@ -16,7 +16,6 @@ namespace IInput.Command
             if (rigidBody != null)
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x*speedfactor, rigidBody.velocity.y);
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
         }
     }

@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cff58ba137d5d8498721c50cabfd2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 6214276302770305210, guid: 48201565aa49017469bc32892cf96964, type: 3}
   offset: {x: 0, y: 2}
 --- !u!81 &5475445107550842787
 AudioListener:

@@ -5,9 +5,14 @@ using UnityEngine;
 // just position lock for now, can change later
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
+    private GameObject target;
     [SerializeField] private Vector2 offset;
     
+    void Start()
+    {
+        target = GameManager.Instance.Player;
+    }
+
     void LateUpdate()
     {
         var newPosition = target.transform.position;

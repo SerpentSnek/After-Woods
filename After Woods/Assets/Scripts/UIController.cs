@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+        var playerController = GameManager.Instance.Player.GetComponent<PlayerLogicController>();
         healthBar.GetComponent<HealthBarController>().SetMaxValue(playerController.TotalHp);
         radiationBar.GetComponent<HealthBarController>().SetMaxValue(playerController.TotalRadiation);
     }
@@ -33,7 +33,7 @@ public class UIController : MonoBehaviour
         // Timer
         timerText.text = GameManager.Instance.Timer.CurrentTime.ToString();
 
-        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+        var playerController = GameManager.Instance.Player.GetComponent<PlayerLogicController>();
 
         // Food
         this.foodCounter.text = playerController.FoodAmount.ToString();

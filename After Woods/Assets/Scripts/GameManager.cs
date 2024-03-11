@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour, IReset
 
     public void Reset() // have this with a Reset interface instead (done)
     {
-        var playerController = player.GetComponent<PlayerController>();
+        var playerController = player.GetComponent<PlayerLogicController>();
         playerController.Reset();
         timer.Reset();
     }
