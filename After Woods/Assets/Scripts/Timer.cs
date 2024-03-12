@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour, IReset
     public void Reset()
     {
         isTimeUp = false;
-        isActive = false;
+        // isActive = false;
         currentTime = initialTime;
     }
 

@@ -6,6 +6,7 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float damage;
     private GameObject target;
+    private Rigidbody2D rb;
 
     public float Damage()
     {
@@ -15,6 +16,7 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
     void Start()
     {
         target = GameManager.Instance.Player;
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -38,6 +40,7 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
     private void Chase()
     {
         Vector2 direction = (target.transform.position - transform.position);
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, chaseSpeed * Time.deltaTime);
+        // transform.position = Vector2.MoveTowards(transform.position, target.transform.position, chaseSpeed * Time.deltaTime);
+        rb.velocity = direction * chaseSpeed;
     }
 }

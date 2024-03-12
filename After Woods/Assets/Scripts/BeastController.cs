@@ -4,11 +4,13 @@
 public class BeastController : MonoBehaviour
 {
     [SerializeField] private float chaseSpeed;
-    [SerializeField] private GameObject target;
-    
+    private GameObject target;
+    private Rigidbody2D rb;
+
     void Start()
     {
-        // target = GameManager.Instance.Player;
+        target = GameManager.Instance.Player;
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -23,6 +25,7 @@ public class BeastController : MonoBehaviour
     private void Chase()
     {
         Vector2 direction = (target.transform.position - transform.position);
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, chaseSpeed * Time.deltaTime);
+        // transform.position = Vector2.MoveTowards(transform.position, target.transform.position, chaseSpeed * Time.deltaTime);
+        rb.velocity = direction * chaseSpeed;
     }
 }
