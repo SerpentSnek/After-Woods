@@ -5,6 +5,8 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [SerializeField]
+    private Transform damageIndicator;
+    [SerializeField]
     private UnityEngine.UI.Text foodCounter;
     [SerializeField]
     private UnityEngine.UI.Text timerText;

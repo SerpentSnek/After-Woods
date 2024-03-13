@@ -2385,6 +2385,10 @@ PrefabInstance:
       propertyPath: radiationBar
       value: 
       objectReference: {fileID: 993543679}
+    - target: {fileID: 8755740923657194107, guid: a7003aafcce590c4cab8b19747727389, type: 3}
+      propertyPath: damageIndicator
+      value: 
+      objectReference: {fileID: 1857352553}
     - target: {fileID: 8885280240574816716, guid: a7003aafcce590c4cab8b19747727389, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 39.99994
