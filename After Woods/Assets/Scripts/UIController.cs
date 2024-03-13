@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     private GameObject healthBar;
     [SerializeField] 
     private GameObject radiationBar;
+    private bool coroutineFlag = true;
     private bool firstUpdate = true;
 
     // TODO add variables for food components
@@ -39,5 +40,37 @@ public class UIController : MonoBehaviour
         
         // change timer text using beast reference
 
+        if (coroutineFlag)
+        {
+            StartCoroutine("StartPulsing");
+        }
+
+    }
+
+    private IEnumerator StartPulsing()
+    {
+        coroutineFlag = false;
+        
+        for(float i = 0.0f; i <= 1.0f; i += 0.1f)
+        {
+            this.timerText.transform.localScale = new Vector3(
+                (Mathf.Lerp(this.timerText.transform.localScale.x, this.timerText.transform.localScale.x + 0.025f, Mathf.SmoothStep(0.0f, 1.0f, i))),
+                (Mathf.Lerp(this.timerText.transform.localScale.y, this.timerText.transform.localScale.y + 0.025f, Mathf.SmoothStep(0.0f, 1.0f, i))),
+                (Mathf.Lerp(this.timerText.transform.localScale.z, this.timerText.transform.localScale.z + 0.025f, Mathf.SmoothStep(0.0f, 1.0f, i)))
+            );
+            yield return new WaitForSeconds(0.015f);
+        }
+
+        for(float i = 0.0f; i <= 1.0f; i += 0.1f)
+        {
+            this.timerText.transform.localScale = new Vector3(
+                (Mathf.Lerp(this.timerText.transform.localScale.x, this.timerText.transform.localScale.x - 0.025f, Mathf.SmoothStep(0.0f, 1.0f, i))),
+                (Mathf.Lerp(this.timerText.transform.localScale.y, this.timerText.transform.localScale.y - 0.025f, Mathf.SmoothStep(0.0f, 1.0f, i))),
+                (Mathf.Lerp(this.timerText.transform.localScale.z, this.timerText.transform.localScale.z - 0.025f, Mathf.SmoothStep(0.0f, 1.0f, i)))
+            );
+            yield return new WaitForSeconds(0.015f);
+        }
+
+        coroutineFlag = true;
     }
 }
