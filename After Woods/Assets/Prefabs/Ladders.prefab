@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4518607879344132981}
   - component: {fileID: 946947181776773072}
   m_Layer: 0
-  m_Name: LadderPREFAB
+  m_Name: Ladders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
