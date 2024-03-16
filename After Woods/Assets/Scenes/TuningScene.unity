@@ -188,10 +188,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4123797463361844100, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4342506590989212829, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.06
@@ -235,10 +231,6 @@ PrefabInstance:
     - target: {fileID: 6904975199152874241, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_Name
       value: Beast
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904975199152874241, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -369,10 +361,6 @@ PrefabInstance:
     - target: {fileID: 4445676411755381693, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4445676411755381693, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5472,6 +5460,10 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[1].Array.data[3].Y
       value: -60000000
       objectReference: {fileID: 0}
+    - target: {fileID: 7955131846907162902, guid: 467c1c6f04b05fe4ba36dd08fd89071b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8711111258940083769, guid: 467c1c6f04b05fe4ba36dd08fd89071b, type: 3}
       propertyPath: m_Name
       value: Grid
@@ -5491,11 +5483,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3783708940642648933, guid: 48201565aa49017469bc32892cf96964, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.09
+      value: -2.06
       objectReference: {fileID: 0}
     - target: {fileID: 3783708940642648933, guid: 48201565aa49017469bc32892cf96964, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.29
+      value: -3.57
       objectReference: {fileID: 0}
     - target: {fileID: 3783708940642648933, guid: 48201565aa49017469bc32892cf96964, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5532,14 +5524,6 @@ PrefabInstance:
     - target: {fileID: 6214276302770305210, guid: 48201565aa49017469bc32892cf96964, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7950029623831168698, guid: 48201565aa49017469bc32892cf96964, type: 3}
-      propertyPath: totalRadiation
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7950029623831168698, guid: 48201565aa49017469bc32892cf96964, type: 3}
-      propertyPath: radiationDamage
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5597,14 +5581,6 @@ PrefabInstance:
     - target: {fileID: 9191117796165302111, guid: 9e53d1280d629554fa628b07c807298e, type: 3}
       propertyPath: m_Name
       value: GroundEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 9191117796165302111, guid: 9e53d1280d629554fa628b07c807298e, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9191117796165302111, guid: 9e53d1280d629554fa628b07c807298e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
