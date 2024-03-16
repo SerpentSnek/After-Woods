@@ -48,5 +48,13 @@ public class FlyingEnemyController : MonoBehaviour, IDamage
         Vector2 direction = (target.transform.position - transform.position);
         // transform.position = Vector2.MoveTowards(transform.position, target.transform.position, chaseSpeed * Time.deltaTime);
         rb.velocity = direction.normalized * chaseSpeed;
+        if (direction.x > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (direction.x < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 }

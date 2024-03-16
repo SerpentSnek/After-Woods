@@ -43,10 +43,10 @@ public class GroundEnemyController : MonoBehaviour, IDamage
         float distanceToTarget = Vector2.Distance(this.gameObject.transform.position, target.transform.position);
         if (distanceToTarget <= chaseRange)
         {
-            this.gameObject.GetComponent<Animator>().Play("Ground_Aggro");
+            this.gameObject.GetComponent<Animator>().Play("GroundAggro");
             return true;
         }
-        this.gameObject.GetComponent<Animator>().Play("Ground_Idle");
+        this.gameObject.GetComponent<Animator>().Play("GroundIdle");
         return false;
     }
 
@@ -57,6 +57,14 @@ public class GroundEnemyController : MonoBehaviour, IDamage
         if (rb != null)
         {
             rb.velocity = new Vector2(direction.x * chaseSpeed, rb.velocity.y);
+            if (direction.x > 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else if (direction.x < 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
         else
         {
