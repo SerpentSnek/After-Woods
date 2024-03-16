@@ -41,6 +41,7 @@ public class Timer : MonoBehaviour, IReset
             else
             {
                 isTimeUp = true;
+                currentTime = 0;
             }
         }
     }
