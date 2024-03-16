@@ -965,8 +965,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Timer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3b97f93f675d2244ba4c6c809c7f295f, type: 2}
-  m_sharedMaterial: {fileID: 655949590175619294, guid: 3b97f93f675d2244ba4c6c809c7f295f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b8c22e7f1dbc6f4d9088b2da6a0a247, type: 2}
+  m_sharedMaterial: {fileID: 583775357404572005, guid: 4b8c22e7f1dbc6f4d9088b2da6a0a247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1962,8 +1962,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Food
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3b97f93f675d2244ba4c6c809c7f295f, type: 2}
-  m_sharedMaterial: {fileID: 655949590175619294, guid: 3b97f93f675d2244ba4c6c809c7f295f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b8c22e7f1dbc6f4d9088b2da6a0a247, type: 2}
+  m_sharedMaterial: {fileID: 583775357404572005, guid: 4b8c22e7f1dbc6f4d9088b2da6a0a247, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
