@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GroundEnemyController: MonoBehaviour, IDamage
+public class GroundEnemyController : MonoBehaviour, IDamage
 {
     [SerializeField] private float chaseRange;
     [SerializeField] private float chaseSpeed;
@@ -34,7 +34,7 @@ public class GroundEnemyController: MonoBehaviour, IDamage
             {
                 Debug.LogError("null rigidbody on enemy");
             }
-            
+
         }
     }
 
@@ -43,8 +43,10 @@ public class GroundEnemyController: MonoBehaviour, IDamage
         float distanceToTarget = Vector2.Distance(this.gameObject.transform.position, target.transform.position);
         if (distanceToTarget <= chaseRange)
         {
+            this.gameObject.GetComponent<Animator>().Play("Ground_Aggro");
             return true;
         }
+        this.gameObject.GetComponent<Animator>().Play("Ground_Idle");
         return false;
     }
 

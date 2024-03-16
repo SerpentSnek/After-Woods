@@ -8,9 +8,18 @@ public class Timer : MonoBehaviour, IReset
     private bool isTimeUp = false;
     [SerializeField] private bool isActive = false;
 
-    public float CurrentTime { get => currentTime; }
-    public bool IsTimeUp { get => isTimeUp; }
-    public bool IsActive { get => isActive; set => isActive = value; }
+    public float CurrentTime
+    {
+        get => currentTime;
+    }
+    public bool IsTimeUp
+    {
+        get => isTimeUp;
+    }
+    public bool IsActive
+    {
+        get => isActive; set => isActive = value;
+    }
 
     public void AddTime(float timeRestored)
     {
@@ -20,7 +29,7 @@ public class Timer : MonoBehaviour, IReset
 
     public void Reset()
     {
-        isTimeUp = false;
+        this.isTimeUp = false;
         // isActive = false;
         currentTime = initialTime;
     }
@@ -37,10 +46,11 @@ public class Timer : MonoBehaviour, IReset
             if (this.currentTime > 0f)
             {
                 this.currentTime -= Time.deltaTime;
+                this.isTimeUp = false;
             }
             else
             {
-                isTimeUp = true;
+                this.isTimeUp = true;
                 currentTime = 0;
             }
         }

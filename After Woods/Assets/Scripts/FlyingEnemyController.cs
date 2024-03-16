@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FlyingEnemyController: MonoBehaviour, IDamage
+public class FlyingEnemyController : MonoBehaviour, IDamage
 {
     [SerializeField] private float chaseRange;
     [SerializeField] private float chaseSpeed;
@@ -27,7 +27,7 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
         }
         else
         {
-            rb.velocity = new Vector2(0,0);
+            rb.velocity = new Vector2(0, 0);
         }
     }
 
@@ -36,8 +36,10 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
         float distanceToTarget = Vector2.Distance(this.gameObject.transform.position, target.transform.position);
         if (distanceToTarget <= chaseRange)
         {
+            this.gameObject.GetComponent<Animator>().Play("Flying_Aggro");
             return true;
         }
+        this.gameObject.GetComponent<Animator>().Play("Flying_Idle");
         return false;
     }
 
