@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1912284072726593522}
   - component: {fileID: 1080349861954654779}
   - component: {fileID: 8075407916573802883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlyingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRange: 7
-  chaseSpeed: 1
-  damage: 1
+  chaseSpeed: 6
+  damage: 5
 --- !u!212 &1912284072726593522
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.25}
+  m_Size: {x: 0.75, y: 0.25}
   m_EdgeRadius: 0
 --- !u!50 &8075407916573802883
 Rigidbody2D:

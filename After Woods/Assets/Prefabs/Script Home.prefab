@@ -58,8 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d13f02745a1b64d935ac3d69e4b47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialTime: 5
-  isActive: 0
+  initialTime: 10
+  isActive: 1
 --- !u!114 &5304383320349224727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +72,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165d6ed7f6584594a85df919fd0cd91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  radiationBar: {fileID: 0}
   active: 0

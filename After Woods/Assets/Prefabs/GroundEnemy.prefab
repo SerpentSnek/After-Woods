@@ -47,10 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3963644f3f294f4d84ed503a861f941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRange: 10
-  chaseSpeed: 7
-  damage: 10
-  target: {fileID: 0}
+  chaseRange: 15
+  chaseSpeed: 10
+  damage: 20
 --- !u!212 &9115342358147560641
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -162,7 +161,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08, y: 0}
+  m_Offset: {x: -0.10173762, y: -0.006100729}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -173,5 +172,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.32}
+  m_Size: {x: 0.6711146, y: 0.3138992}
   m_EdgeRadius: 0

@@ -118,6 +118,9 @@ public class PlayerLogicController : MonoBehaviour, IReset
                 case "Bunker":
                     OnBunkerTriggerEnter2D(collider);
                     break;
+                case "Enemy":
+                    OnEnemyTriggerEnter2D(collider);
+                    break;
                 case "Food":
                     OnFoodTriggerEnter2D(collider);
                     break;
@@ -176,6 +179,19 @@ public class PlayerLogicController : MonoBehaviour, IReset
         Debug.Log("entered bunker");
     }
 
+    private void OnEnemyTriggerEnter2D(Collider2D collider)
+    {
+        var enemyController = collider.gameObject.GetComponent<IDamage>();
+        if (enemyController != null)
+        {
+            currentHp -= enemyController.Damage();
+            Debug.Log(currentHp);
+        }
+        else
+        {
+            Debug.LogError("missing enemy controller");
+        }
+    }
 
     private void OnFoodTriggerEnter2D(Collider2D collider)
     {

@@ -25,6 +25,10 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
         {
             Chase();
         }
+        else
+        {
+            rb.velocity = new Vector2(0,0);
+        }
     }
 
     private bool IsInRange()
@@ -41,6 +45,6 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
     {
         Vector2 direction = (target.transform.position - transform.position);
         // transform.position = Vector2.MoveTowards(transform.position, target.transform.position, chaseSpeed * Time.deltaTime);
-        rb.velocity = direction * chaseSpeed;
+        rb.velocity = direction.normalized * chaseSpeed;
     }
 }

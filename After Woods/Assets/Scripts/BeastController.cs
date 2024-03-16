@@ -26,6 +26,6 @@ public class BeastController : MonoBehaviour
     {
         Vector2 direction = (target.transform.position - transform.position);
         // transform.position = Vector2.MoveTowards(transform.position, target.transform.position, chaseSpeed * Time.deltaTime);
-        rb.velocity = direction * chaseSpeed;
+        rb.velocity = direction.normalized * chaseSpeed;
     }
 }
