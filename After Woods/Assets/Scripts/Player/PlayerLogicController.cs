@@ -57,6 +57,9 @@ public class PlayerLogicController : MonoBehaviour, IReset
         currentHp = totalHp;
         currentRadiation = 0;
         foodAmount = 0;
+        var rb = gameObject.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.zero;
+        gameObject.transform.position = Vector2.zero;
         //isFinished = false;
     }
 

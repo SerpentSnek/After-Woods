@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour, IReset
     private Timer timer;
     private int currentStage;
     private GameObject ui;
+    [SerializeField] private GameObject playerPrefab;
 
     public static GameManager Instance
     {
@@ -48,18 +49,23 @@ public class GameManager : MonoBehaviour, IReset
         {
             _instance = this;
             //DontDestroyOnLoad(gameObject);
-
             //this.LoadStartStage();
         }
 
         //isNewGame = false;
-        player = GameObject.FindWithTag("Player");
-        ui = GameObject.Find("UI v2");
-
-        if (timer == null)
+        //player = GameObject.FindWithTag("Player");
+        if (player == null)
         {
-            timer = gameObject.GetComponent<Timer>();
+            player = Instantiate(playerPrefab, new Vector3(0, 0, -1), Quaternion.identity, gameObject.transform);
         }
+        //else
+        //{
+        //    DontDestroyOnLoad(player);
+        //}
+        //ui = GameObject.Find("UI v2");
+        timer = gameObject.GetComponent<Timer>();
+        //timer = GameObject.Find("Timer").GetComponent<Timer>();
+        Debug.Log(timer);
 
         //currentStage = SceneManager.GetSceneByName("MainMenu");
 
@@ -85,6 +91,7 @@ public class GameManager : MonoBehaviour, IReset
     public void LoadMainMenu()
     {
         // for all Load methods just use SceneManager.LoadScene(scene_name)
+        DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainMenu"));
     }
@@ -94,14 +101,19 @@ public class GameManager : MonoBehaviour, IReset
         if (timer != null)
         {
             timer.Reset();
+            timer.IsActive = true;
         }
         if (player != null)
         {
+            //DontDestroyOnLoad(player);
             //player.transform.position = new Vector2(0, 0);
-            DontDestroyOnLoad(player);
-            //    Destroy(this.player);
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            player.transform.position = Vector2.zero;
+            //Destroy(this.player);
             //    Destroy(this.gameObject);
         }
+        //DontDestroyOnLoad(gameObject);
+
         //else
         //{
         //DontDestroyOnLoad(player);
@@ -116,21 +128,21 @@ public class GameManager : MonoBehaviour, IReset
     public void LoadGameOverScreen()
     {
         this.Reset();
-        this.player.transform.position = Vector2.zero;
-        //DontDestroyOnLoad(player);
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(player);
+        DontDestroyOnLoad(gameObject);
         //currentStage = SceneManager.GetSceneByName("GameOver").buildIndex;
         SceneManager.LoadSceneAsync("GameOver");
     }
 
     public void LoadCurrentStage()
     {
-        this.player.transform.position = Vector2.zero;
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.transform.position = Vector2.zero;
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
         //currentStage = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadSceneAsync(currentStage);
-        Debug.Log("stage from load: " + currentStage);
+        SceneManager.LoadSceneAsync(currentStage + 1);
+        Debug.Log("stage from load: " + currentStage + 1);
         //currentStage = SceneManager.GetActiveScene().buildIndex;
     }
 
@@ -140,9 +152,11 @@ public class GameManager : MonoBehaviour, IReset
         // Only reset HP upon advancing to next stage and set player to starting position
         player.GetComponent<PlayerLogicController>().CurrentHp = player.GetComponent<PlayerLogicController>().TotalHp;
         timer.Reset();
-        player.transform.position = Vector2.zero;
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.transform.position = Vector2.zero;
+
         //currentStage += 1;
         currentStage = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadSceneAsync(currentStage + 1);
