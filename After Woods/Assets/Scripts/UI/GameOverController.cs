@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,9 +25,10 @@ public class GameOverController : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
+    // Go back to main menu and restart the whole game from there.
     public void RestartGame()
     {
         SceneManager.LoadSceneAsync(0);
@@ -37,6 +36,9 @@ public class GameOverController : MonoBehaviour
 
     public void LoadCheckpoint()
     {
+        //GameObject manager = GameObject.Find("GameManager");
+        //manager.GetComponent<GameManager>().LoadCurrentStage();
+        GameManager.Instance.LoadCurrentStage();
         Debug.Log("Load");
     }
 }

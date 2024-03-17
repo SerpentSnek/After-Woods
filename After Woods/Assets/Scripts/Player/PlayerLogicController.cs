@@ -12,6 +12,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     private float currentRadiation;
     [SerializeField] private float radiationDamage;
     private bool isDamagedByRadiation;
+    //private bool isFinished;
     [SerializeField] private float baitTime;
     [SerializeField] private float foodHealingValue;
     [SerializeField] private LayerMask radiationLayer;
@@ -42,14 +43,21 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         get => currentRadiation; set => currentRadiation = value;
     }
+    //public bool IsFinished
+    //{
+    //    get => isFinished;
+    //    set => isFinished = value;
+    //}
+
     // public float RadiationDamage { get; private set; }
     // public bool IsDamagedByRadiation { get; private set; }
 
     public void Reset()
     {
         currentHp = totalHp;
-        //currentRadiation = 0;
+        currentRadiation = 0;
         foodAmount = 0;
+        //isFinished = false;
     }
 
     void OnEnable()
@@ -112,7 +120,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
         Debug.Log(collider.gameObject.tag);
         if (collider.gameObject != null)
         {
-            
+
             switch (collider.gameObject.tag)
             {
                 case "Bunker":
@@ -175,7 +183,8 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     private void OnBunkerTriggerEnter2D(Collider2D collider)
     {
-        // GameManager.Instance.LoadNextStage();
+        GameManager.Instance.LoadNextStage();
+        //isFinished = true;
         Debug.Log("entered bunker");
     }
 
@@ -213,8 +222,8 @@ public class PlayerLogicController : MonoBehaviour, IReset
     private void Die()
     {
         // Get the game manager to load the game over screen
-        // GameManager.Instance.LoadGameOverScreen();
-        // Debug.Log("died");
+        GameManager.Instance.LoadGameOverScreen();
+        Debug.Log("died");
     }
 
     private void DieFromRadiation()

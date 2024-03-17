@@ -207,7 +207,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 856770073}
-        m_TargetAssemblyTypeName: DeathController, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameOverController, Assembly-CSharp
         m_MethodName: LoadCheckpoint
         m_Mode: 1
         m_Arguments:
@@ -482,6 +482,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468556666}
   m_CullTransparentMesh: 1
+--- !u!1 &832128940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832128942}
+  - component: {fileID: 832128941}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &832128941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832128940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97162bf1f5945e43a141421943d1b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &832128942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832128940}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &856770069
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,11 +632,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd81e708f31f4388b43a5fad6a0de2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runTime: {fileID: 0}
-  hpLeft: {fileID: 0}
-  rpPercentage: {fileID: 0}
-  foodLeft: {fileID: 0}
-  distanceToHome: {fileID: 0}
+  runTime: {fileID: 1879822955}
+  hpLeft: {fileID: 1038969263}
+  rpPercentage: {fileID: 1074245816}
+  foodLeft: {fileID: 2077183986}
+  distanceToHome: {fileID: 405343871}
 --- !u!114 &856770074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,3 +1480,4 @@ SceneRoots:
   - {fileID: 856770072}
   - {fileID: 1474104959}
   - {fileID: 204153871}
+  - {fileID: 832128942}
