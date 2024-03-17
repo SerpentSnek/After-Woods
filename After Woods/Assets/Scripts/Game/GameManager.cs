@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour, IReset
         //}
         //ui = GameObject.Find("UI v2");
         timer = gameObject.GetComponent<Timer>();
+        //currentStage = SceneManager.GetActiveScene().buildIndex;
         //timer = GameObject.Find("Timer").GetComponent<Timer>();
         Debug.Log(timer);
 
@@ -141,8 +142,8 @@ public class GameManager : MonoBehaviour, IReset
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
         //currentStage = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadSceneAsync(currentStage + 1);
-        Debug.Log("stage from load: " + currentStage + 1);
+        SceneManager.LoadSceneAsync(currentStage);
+        Debug.Log("stage from load: " + currentStage);
         //currentStage = SceneManager.GetActiveScene().buildIndex;
     }
 
@@ -158,9 +159,10 @@ public class GameManager : MonoBehaviour, IReset
         player.transform.position = Vector2.zero;
 
         //currentStage += 1;
-        currentStage = SceneManager.GetActiveScene().buildIndex;
+        //currentStage = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadSceneAsync(currentStage + 1);
-        currentStage = SceneManager.GetActiveScene().buildIndex;
+        currentStage++;
+        //currentStage = SceneManager.GetActiveScene().buildIndex;
         Debug.Log("next stage: " + currentStage);
 
     }
