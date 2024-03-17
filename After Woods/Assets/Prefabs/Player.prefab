@@ -105,9 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f72d31714056b948a2ddb92843d5d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 16
+  speed: 12
   jumpSpeed: 16
-  climbingSpeed: 20
+  climbingSpeed: 12
   sprintSpeedFactor: 1.5
   groundCheck: {fileID: 2374354366436353252}
   groundLayer:
@@ -231,7 +231,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 4.5
   m_Material: {fileID: 6200000, guid: c81b214dee9cca34bb693f83ab42d96b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
