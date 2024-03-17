@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,7 +19,7 @@ public class PlayerMovementV2 : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask ladderLayer;
 
-    [SerializeField] private InputActionReference move, jump, sprint; 
+    [SerializeField] private InputActionReference move, jump, sprint;
 
     void OnEnable()
     {
@@ -65,6 +63,7 @@ public class PlayerMovementV2 : MonoBehaviour
     {
         if (isSprinting)
         {
+            this.gameObject.GetComponent<Animator>().Play("Player_Run");
             rb.velocity = new Vector2(horizontal * speed * sprintSpeedFactor, rb.velocity.y);
         }
         else
@@ -73,8 +72,13 @@ public class PlayerMovementV2 : MonoBehaviour
         }
         if (isClimbing && rb.velocity.y < climbingSpeed)
         {
+            this.gameObject.GetComponent<Animator>().Play("Player_LadderClimb");
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * climbingSpeed);
+        }
+        else if (isClimbing && rb.velocity.magnitude <= 0.01f)
+        {
+            this.gameObject.GetComponent<Animator>().Play("Player_LadderIdle");
         }
         else
         {
@@ -95,7 +99,7 @@ public class PlayerMovementV2 : MonoBehaviour
         if (collider.CompareTag("Ladder"))
         {
             isClimbing = false;
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y/2);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2);
         }
     }
 
@@ -113,6 +117,7 @@ public class PlayerMovementV2 : MonoBehaviour
     {
         if (IsGrounded() || isClimbing)
         {
+            this.gameObject.GetComponent<Animator>().Play("Player_Jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
         }
     }
@@ -121,6 +126,7 @@ public class PlayerMovementV2 : MonoBehaviour
     {
         if (rb.velocity.y > 0f)
         {
+            this.gameObject.GetComponent<Animator>().Play("Player_Fall");
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
     }
