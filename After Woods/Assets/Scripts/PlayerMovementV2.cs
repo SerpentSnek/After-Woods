@@ -13,6 +13,7 @@ public class PlayerMovementV2 : MonoBehaviour
     [SerializeField] private float sprintSpeedFactor;
     private bool isClimbing;
     private bool isSprinting;
+    private bool isWalking;
 
     private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -27,6 +28,8 @@ public class PlayerMovementV2 : MonoBehaviour
         jump.action.canceled += OnJumpRelease;
         sprint.action.performed += OnSprintPress;
         sprint.action.canceled += OnSprintRelease;
+        move.action.performed += OnMovePress;
+        move.action.canceled += OnMoveRelease;
     }
 
     void OnDisable()
@@ -35,6 +38,8 @@ public class PlayerMovementV2 : MonoBehaviour
         jump.action.canceled -= OnJumpRelease;
         sprint.action.performed -= OnSprintPress;
         sprint.action.canceled -= OnSprintRelease;
+        move.action.performed -= OnMovePress;
+        move.action.performed -= OnMoveRelease;
     }
 
     void Start()
@@ -48,7 +53,10 @@ public class PlayerMovementV2 : MonoBehaviour
         var movement = move.action.ReadValue<Vector2>();
         horizontal = movement.x;
         vertical = movement.y;
-
+        //if (rb.velocity.magnitude > 0.01f && !isSprinting && IsGrounded() && !isClimbing)
+        //{
+        //    this.gameObject.GetComponent<Animator>().Play("Player_Walk");
+        //}
         if (horizontal > 0)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
@@ -61,7 +69,20 @@ public class PlayerMovementV2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isSprinting)
+        if (isWalking && IsGrounded() && !isSprinting)
+        {
+            this.gameObject.GetComponent<Animator>().Play("Player_Walk");
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
+        else if (!IsGrounded() && !isClimbing)
+        {
+            this.gameObject.GetComponent<Animator>().Play("Player_Fall");
+        }
+        //else if (isClimbing && rb.velocity.magnitude <= 0.01f)
+        //{
+        //    this.gameObject.GetComponent<Animator>().Play("Player_LadderIdle");
+        //}
+        if (isSprinting && IsGrounded())
         {
             this.gameObject.GetComponent<Animator>().Play("Player_Run");
             rb.velocity = new Vector2(horizontal * speed * sprintSpeedFactor, rb.velocity.y);
@@ -75,10 +96,6 @@ public class PlayerMovementV2 : MonoBehaviour
             this.gameObject.GetComponent<Animator>().Play("Player_LadderClimb");
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * climbingSpeed);
-        }
-        else if (isClimbing && rb.velocity.magnitude <= 0.01f)
-        {
-            this.gameObject.GetComponent<Animator>().Play("Player_LadderIdle");
         }
         else
         {
@@ -139,5 +156,14 @@ public class PlayerMovementV2 : MonoBehaviour
     private void OnSprintRelease(InputAction.CallbackContext obj)
     {
         isSprinting = false;
+    }
+
+    private void OnMovePress(InputAction.CallbackContext obj)
+    {
+        isWalking = true;
+    }
+    private void OnMoveRelease(InputAction.CallbackContext obj)
+    {
+        isWalking = false;
     }
 }
