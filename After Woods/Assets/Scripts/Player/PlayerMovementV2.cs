@@ -64,9 +64,11 @@ public class PlayerMovementV2 : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        a.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
+        a.SetFloat("xSpeed", Math.Abs(rb.velocity.x));
+        a.SetFloat("ySpeed", Math.Abs(rb.velocity.y));
         a.SetFloat("yVelocity", rb.velocity.y);
         a.SetBool("Grounded", IsGrounded());
+        a.SetBool("Climbing", isClimbing);
     }
 
     void FixedUpdate()
