@@ -1,4 +1,5 @@
 ﻿using Pathfinding;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,20 +7,21 @@ public class BeastAI : MonoBehaviour
 {
     [Header("Pathfinding")]
     public Transform target;
-    public float activateDistance = 50f;
-    public float pathUpdateSeconds = 0.5f;
+    public float activateDistance;
+    public float pathUpdateSeconds;
 
     [Header("Physics")]
-    public float speed = 200f, jumpForce = 100f;
-    public float nextWaypointDistance = 3f;
-    public float jumpNodeHeightRequirement = 1f;
-    public float jumpModifier = 0.3f;
-    public float jumpCheckOffset = 0.1f;
+    public float speed, jumpForce;
+    public float nextWaypointDistance;
+    public float jumpNodeHeightRequirement;
+    public float jumpModifier;
+    public float jumpCheckOffset;
 
     [Header("Custom Behavior")]
-    public bool followEnabled = true;
-    public bool jumpEnabled = true, isJumping, isInAir;
-    public bool directionLookEnabled = true;
+    public bool followEnabled;
+    public bool jumpEnabled, isJumping, isInAir;
+    public bool directionLookEnabled;
+    [SerializeField] private float attackRange;
 
     [SerializeField] Vector3 startOffset;
 
@@ -34,11 +36,14 @@ public class BeastAI : MonoBehaviour
 
     private Vector2 lastPos;
     private float pollTime = 0f;
+    private Animator a;
+    private bool cachedActivated;
 
-    public void Start()
+    void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        a = gameObject.GetComponent<Animator>();
         isJumping = false;
         isInAir = false;
         isOnCoolDown = false; 
@@ -47,7 +52,7 @@ public class BeastAI : MonoBehaviour
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
 
-    private void Update()
+    void Update()
     {
         pollTime += Time.deltaTime;
         if (pollTime > 1f && followEnabled && isGrounded && !isInAir && !isOnCoolDown)
@@ -55,12 +60,18 @@ public class BeastAI : MonoBehaviour
             pollTime = 0f;
             if (Vector2.Distance(rb.position, lastPos) < 1f)
             {
-                rb.AddForce(new Vector2(Random.Range(200, 500), Random.Range(700, 1200)));
+                rb.AddForce(new Vector2(UnityEngine.Random.Range(200, 500), UnityEngine.Random.Range(700, 1200)));
             }
             lastPos = rb.position;
         }
         var timer = GameManager.Instance.Timer;
         followEnabled = timer.IsTimeUp;
+
+        a.SetFloat("xSpeed", Math.Abs(rb.velocity.x));
+        a.SetBool("Activated", cachedActivated == false && followEnabled);
+        cachedActivated = followEnabled;
+        a.SetBool("Attack", Vector2.Distance(this.gameObject.transform.position, target.position) < attackRange);
+
         // Debug.Log(isGrounded);
     }
     private void FixedUpdate()

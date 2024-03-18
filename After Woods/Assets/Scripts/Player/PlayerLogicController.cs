@@ -17,6 +17,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     [SerializeField] private float baitTime;
     [SerializeField] private float foodHealingValue;
     [SerializeField] private LayerMask radiationLayer;
+    [SerializeField] private bool invulnerable;
 
 
     [SerializeField] private InputActionReference bait, eat;
@@ -141,7 +142,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.gameObject.tag);
+        // Debug.Log(collider.gameObject.tag);
         if (collider.gameObject != null)
         {
 
@@ -245,15 +246,19 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     private void Die()
     {
-        // Get the game manager to load the game over screen
-        GameManager.Instance.LoadGameOverScreen();
-        Debug.Log("died");
+        if (!invulnerable)
+        {
+            // Get the game manager to load the game over screen
+            GameManager.Instance.LoadGameOverScreen();
+        }
+        
+        // Debug.Log("died");
     }
 
     private void DieFromRadiation()
     {
         Die();
-        Debug.Log("died from radiation");
+        // Debug.Log("died from radiation");
     }
 
     private void OnBaitPress(InputAction.CallbackContext obj)

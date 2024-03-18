@@ -335,6 +335,7 @@ MonoBehaviour:
   isJumping: 0
   isInAir: 0
   directionLookEnabled: 1
+  attackRange: 5
   startOffset: {x: 0, y: 0, z: 0}
   groundCheck: {fileID: 8261279454533424920}
   isGrounded: 0
