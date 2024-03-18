@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,8 @@ public class PlayerMovementV2 : MonoBehaviour
 
     [SerializeField] private InputActionReference move, jump, sprint;
 
+    private Animator a;
+
     void OnEnable()
     {
         jump.action.performed += OnJumpPress;
@@ -41,6 +44,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     void Start()
     {
+        a = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         gravityScale = rb.gravityScale;
     }
@@ -59,6 +63,8 @@ public class PlayerMovementV2 : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
+
+        a.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
     }
 
     void FixedUpdate()
