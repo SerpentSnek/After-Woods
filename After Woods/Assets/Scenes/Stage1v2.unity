@@ -224,7 +224,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -239,11 +239,43 @@ MonoBehaviour:
     _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
     _AreaColors:
     - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:
@@ -560,17 +592,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4123797463361844100, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4342506590989212829, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.38
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: 4342506590989212829, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.07
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 4342506590989212829, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_LocalPosition.z
@@ -611,13 +639,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6904975199152874241, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 902126745}
-    - targetCorrespondingSourceObject: {fileID: 6904975199152874241, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 902126744}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
 --- !u!1001 &706163741
 PrefabInstance:
@@ -6987,71 +7009,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea637d724195eb245a98f1b1749f2c0f, type: 3}
---- !u!1 &902126737 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6904975199152874241, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-  m_PrefabInstance: {fileID: 679571782}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &902126744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902126737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eecb98aa5ed018d46829f401705987ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  activateDistance: 50
-  pathUpdateSeconds: 0.5
-  speed: 200
-  jumpForce: 100
-  nextWaypointDistance: 3
-  jumpNodeHeightRequirement: 1
-  jumpModifier: 0.3
-  jumpCheckOffset: 0.1
-  followEnabled: 1
-  jumpEnabled: 1
-  isJumping: 0
-  isInAir: 0
-  directionLookEnabled: 1
-  startOffset: {x: 0, y: 0, z: 0}
-  groundCheck: {fileID: 0}
-  isGrounded: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!114 &902126745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902126737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
 --- !u!1001 &1031403059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7164,6 +7121,10 @@ PrefabInstance:
     - target: {fileID: 3517988586338526462, guid: 3f473526580003f44a10854e5513aa6b, type: 3}
       propertyPath: m_Name
       value: Main Camera (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945075926595098740, guid: 3f473526580003f44a10854e5513aa6b, type: 3}
+      propertyPath: orthographic size
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

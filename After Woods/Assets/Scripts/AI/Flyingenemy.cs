@@ -13,15 +13,16 @@ public class FlyingEnemyAI: MonoBehaviour
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
+    private bool UseOldAI = false;
 
     Seeker seeker;
     Rigidbody2D rb;
 
-    void start()
+    void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-
+        target = GameManager.Instance.Player.transform;
         InvokeRepeating("UpdatePath", 0f, 0.5f);
         
     }
@@ -42,9 +43,18 @@ public class FlyingEnemyAI: MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (TargetInDistance())
+        if (TargetInDistance() && Vector2.Distance(rb.position, target.position) > 1.75f)
         {
             pathfollow();
+        }
+        else if (Vector2.Distance(rb.position, target.position) <= 1.75f)
+        {
+            Vector2 direction = (target.position - transform.position);
+            rb.velocity = direction.normalized * 6f;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -52,6 +62,7 @@ public class FlyingEnemyAI: MonoBehaviour
     {
         if(path == null)
         {
+            // Debug.Log("null path");
             return;
         }
 
@@ -78,7 +89,6 @@ public class FlyingEnemyAI: MonoBehaviour
 
     private bool TargetInDistance()
     {
-        return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
+        return Vector2.Distance(transform.position, target.position) < activateDistance;
     }
-
 }
