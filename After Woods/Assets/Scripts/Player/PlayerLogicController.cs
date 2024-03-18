@@ -214,7 +214,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     private void OnRadiationTriggerEnter2D()
     {
         isDamagedByRadiation = true;
-        Debug.Log("hi");
+        // Debug.Log("hi");
     }
 
     private void OnRadiationTriggerExit2D()
