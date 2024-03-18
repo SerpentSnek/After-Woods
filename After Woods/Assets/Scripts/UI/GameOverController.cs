@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour
 {
@@ -31,7 +30,7 @@ public class GameOverController : MonoBehaviour
     // Go back to main menu and restart the whole game from there.
     public void RestartGame()
     {
-        SceneManager.LoadSceneAsync(0);
+        GameManager.Instance.LoadMainMenu();
     }
 
     public void LoadCheckpoint()
