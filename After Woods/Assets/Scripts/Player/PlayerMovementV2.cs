@@ -95,7 +95,7 @@ public class PlayerMovementV2 : MonoBehaviour
         if (collider.CompareTag("Ladder"))
         {
             isClimbing = false;
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 1.5f);
         }
     }
 
