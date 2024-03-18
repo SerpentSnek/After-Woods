@@ -3,28 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class FlyingEnemyAI: MonoBehaviour
+public class FlyingEnemyControllerV2: MonoBehaviour, IDamage
 {
-    public Transform target;
-    public float activateDistance = 50f;
-    public float speed = 200f;
-    public float nextWaypointDistance = 3f;
+    private Transform target;
+    [SerializeField] private float activateDistance;
+    [SerializeField] private float speed;
+    [SerializeField] private float nextWaypointDistance;
+    [SerializeField] private float damage;
 
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
-    private bool UseOldAI = false;
+    private Animator a;
 
     Seeker seeker;
     Rigidbody2D rb;
+
+    public float Damage()
+    {
+        return damage;
+    }
 
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        a = gameObject.GetComponent<Animator>();
         target = GameManager.Instance.Player.transform;
-        InvokeRepeating("UpdatePath", 0f, 0.5f);
-        
+        InvokeRepeating("UpdatePath", 0f, 0.25f);
     }
 
     void UpdatePath()
@@ -41,21 +47,33 @@ public class FlyingEnemyAI: MonoBehaviour
             currentWaypoint = 0;
         }
     }
-    void FixedUpdate()
+    void Update()
     {
+        Vector2 direction = (target.position - transform.position);
         if (TargetInDistance() && Vector2.Distance(rb.position, target.position) > 1.75f)
         {
             pathfollow();
         }
         else if (Vector2.Distance(rb.position, target.position) <= 1.75f)
         {
-            Vector2 direction = (target.position - transform.position);
+            direction = (target.position - transform.position);
             rb.velocity = direction.normalized * 6f;
         }
         else
         {
             rb.velocity = Vector2.zero;
         }
+
+        if (direction.x > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (direction.x < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+        a.SetBool("Aggro", rb.velocity != Vector2.zero);
     }
 
     private void pathfollow()
@@ -89,6 +107,6 @@ public class FlyingEnemyAI: MonoBehaviour
 
     private bool TargetInDistance()
     {
-        return Vector2.Distance(transform.position, target.position) < activateDistance;
+        return Vector2.Distance(transform.position, target.position) <= activateDistance;
     }
 }

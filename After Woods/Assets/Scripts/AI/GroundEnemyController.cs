@@ -7,7 +7,6 @@ public class GroundEnemyController : MonoBehaviour, IDamage
     [SerializeField] private float chaseRange;
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float damage;
-    private float currentTime = 0f;
     private GameObject target;
     private Animator a;
 
@@ -27,18 +26,14 @@ public class GroundEnemyController : MonoBehaviour, IDamage
     void Update()
     {
         var rb = gameObject.GetComponent<Rigidbody2D>();
-        if (rb.velocity.y == 0f)
-        {
-            a.SetBool("Aggro", false);
-        }
+        a.SetBool("Aggro", rb.velocity.y != 0f);
         if (IsInRange())
         {
             Chase();
-            a.SetBool("Aggro", true);
         }
         else
         {
-            rb.velocity = new Vector2(rb.velocity.x/4f, rb.velocity.y);
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
