@@ -59,7 +59,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
         foodAmount = 0;
         var rb = gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
-        gameObject.transform.position = Vector2.zero;
+        gameObject.transform.position = new Vector3(0, 0, -1);
         //isFinished = false;
     }
 
@@ -89,6 +89,26 @@ public class PlayerLogicController : MonoBehaviour, IReset
             if (currentRadiation >= totalRadiation)
             {
                 DieFromRadiation();
+            }
+        }
+
+        // Only have radiation sap health when not actively inside a radiation cloud
+        if (!isDamagedByRadiation && currentRadiation > 0)
+        {
+            switch (GetRadiationStatus())
+            {
+                case 1:
+                    currentHp -= (0.5f * Time.deltaTime);
+                    break;
+                case 2:
+                    currentHp -= (1f * Time.deltaTime);
+                    break;
+                case 3:
+                    currentHp -= (2f * Time.deltaTime);
+                    break;
+                case 4:
+                    currentHp -= (25f * Time.deltaTime);
+                    break;
             }
         }
 
@@ -250,6 +270,26 @@ public class PlayerLogicController : MonoBehaviour, IReset
         {
             CurrentHp += foodHealingValue;
             foodAmount -= 1;
+        }
+    }
+
+    private int GetRadiationStatus()
+    {
+        if (currentRadiation > 0 && currentRadiation <= 33)
+        {
+            return 1;
+        }
+        else if (currentRadiation > 33 && currentRadiation <= 66)
+        {
+            return 2;
+        }
+        else if (currentRadiation > 66 && currentRadiation <= 99)
+        {
+            return 3;
+        }
+        else
+        {
+            return 4;
         }
     }
 }
