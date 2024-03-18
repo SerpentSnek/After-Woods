@@ -7,6 +7,14 @@ public class GameManager : MonoBehaviour, IReset
     private GameObject player;
     private Timer timer;
     private int currentStage;
+    private PlayerData checkpointInfo;
+
+    class PlayerData
+    {
+        public float hp, radiation;
+        public int food;
+    }
+
     //private GameObject[] allFoods;
     [SerializeField] private GameObject playerPrefab;
 
@@ -53,6 +61,8 @@ public class GameManager : MonoBehaviour, IReset
             player = Instantiate(playerPrefab, new Vector3(0, 0, -1), Quaternion.identity, gameObject.transform);
         }
         timer = gameObject.GetComponent<Timer>();
+        checkpointInfo = new PlayerData();
+        checkpointInfo.hp = player.GetComponent<PlayerLogicController>().TotalHp;
     }
 
 
@@ -100,7 +110,7 @@ public class GameManager : MonoBehaviour, IReset
     public void LoadGameOverScreen()
     {
         // Don't destroy the player just yet in case they want to start from a checkpoint.
-        player.GetComponent<PlayerLogicController>().CurrentHp = player.GetComponent<PlayerLogicController>().TotalHp;
+        // player.GetComponent<PlayerLogicController>().CurrentHp = player.GetComponent<PlayerLogicController>().TotalHp;
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
         SceneManager.LoadSceneAsync("GameOver");
@@ -108,9 +118,11 @@ public class GameManager : MonoBehaviour, IReset
 
     public void LoadCurrentStage()
     {
+        player.GetComponent<PlayerLogicController>().Reset();
+        player.GetComponent<PlayerLogicController>().CurrentHp = checkpointInfo.hp;
+        player.GetComponent<PlayerLogicController>().CurrentRadiation = checkpointInfo.radiation;
+        player.GetComponent<PlayerLogicController>().FoodAmount = checkpointInfo.food;
         timer.Reset();
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.transform.position = new Vector3(0, 0, -1);
         SceneManager.LoadSceneAsync(currentStage);
         Debug.Log("stage from load: " + currentStage);
         //currentStage = SceneManager.GetActiveScene().buildIndex;
@@ -120,14 +132,17 @@ public class GameManager : MonoBehaviour, IReset
     public void LoadNextStage()
     {
         // Only reset HP upon advancing to next stage and set player to starting position
-        player.GetComponent<PlayerLogicController>().CurrentHp = player.GetComponent<PlayerLogicController>().TotalHp;
+        player.GetComponent<PlayerLogicController>().CurrentHp += 20f;
         timer.Reset();
         DontDestroyOnLoad(gameObject);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.transform.position = new Vector3(0, 0, -1);
+
+        checkpointInfo.hp = player.GetComponent<PlayerLogicController>().CurrentHp;
+        checkpointInfo.radiation = player.GetComponent<PlayerLogicController>().CurrentRadiation;
+        checkpointInfo.food = player.GetComponent<PlayerLogicController>().FoodAmount;
         SceneManager.LoadSceneAsync(currentStage + 1);
         currentStage++;
         Debug.Log("next stage: " + currentStage);
-
     }
 }

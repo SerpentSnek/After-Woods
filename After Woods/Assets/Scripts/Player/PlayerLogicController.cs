@@ -18,6 +18,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     [SerializeField] private float foodHealingValue;
     [SerializeField] private LayerMask radiationLayer;
     [SerializeField] private bool invulnerable;
+    private bool dead = false;
 
 
     [SerializeField] private InputActionReference bait, eat;
@@ -62,6 +63,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
         var rb = gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
         gameObject.transform.position = new Vector3(0, 0, -1);
+        dead = false;
         //isFinished = false;
     }
 
@@ -100,21 +102,21 @@ public class PlayerLogicController : MonoBehaviour, IReset
             switch (GetRadiationStatus())
             {
                 case 1:
-                    currentHp -= (0.5f * Time.deltaTime);
-                    break;
-                case 2:
-                    currentHp -= (1f * Time.deltaTime);
-                    break;
-                case 3:
                     currentHp -= (2f * Time.deltaTime);
                     break;
+                case 2:
+                    currentHp -= (4f * Time.deltaTime);
+                    break;
+                case 3:
+                    currentHp -= (8f * Time.deltaTime);
+                    break;
                 case 4:
-                    currentHp -= (25f * Time.deltaTime);
+                    currentHp -= (50f * Time.deltaTime);
                     break;
             }
         }
 
-        if (currentHp <= 0)
+        if (currentHp <= 0 && !dead)
         {
             Die();
         }
@@ -249,6 +251,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
         if (!invulnerable)
         {
             // Get the game manager to load the game over screen
+            dead = true;
             GameManager.Instance.LoadGameOverScreen();
         }
         
