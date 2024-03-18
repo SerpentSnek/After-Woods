@@ -65,6 +65,8 @@ public class PlayerMovementV2 : MonoBehaviour
         }
 
         a.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
+        a.SetFloat("yVelocity", rb.velocity.y);
+        a.SetBool("Grounded", IsGrounded());
     }
 
     void FixedUpdate()
