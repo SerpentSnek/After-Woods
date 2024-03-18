@@ -1,42 +1,55 @@
+﻿using Pathfinding;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 public class BeastAI : MonoBehaviour
 {
     [Header("Pathfinding")]
     public Transform target;
-    public float activateDistance = 500f;
+    public float activateDistance = 50f;
     public float pathUpdateSeconds = 0.5f;
+
     [Header("Physics")]
-    public float speed = 200f;
-    public float nextWaypointDistance = 1f;
-    public float jumpModifier = 1f;
+    public float speed = 200f, jumpForce = 100f;
+    public float nextWaypointDistance = 3f;
+    public float jumpNodeHeightRequirement = 1f;
+    public float jumpModifier = 0.3f;
     public float jumpCheckOffset = 0.1f;
-    private float jumpNodeHeightRequirement = 0.8f;
 
     [Header("Custom Behavior")]
     public bool followEnabled = true;
-    public bool jumpEnabled = true;
-    public bool changeDirection = true;
+    public bool jumpEnabled = true, isJumping, isInAir;
+    public bool directionLookEnabled = true;
+
+    [SerializeField] Vector3 startOffset;
+
     private Path path;
     private int currentWaypoint = 0;
-    private bool isGrounded = false;
-    private bool isJumping = false;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] public bool isGrounded;
+    [SerializeField] private LayerMask groundLayer;
     Seeker seeker;
     Rigidbody2D rb;
-    // Start is called before the first frame update
-    void Start()
+    private bool isOnCoolDown;
+
+    public void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
+        isJumping = false;
+        isInAir = false;
+        isOnCoolDown = false; 
 
+        InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
-    void FixedUpdate()
+
+    private void Update()
     {
-        if(TargetInDistance() && followEnabled)
+        Debug.Log(isGrounded);
+    }
+    private void FixedUpdate()
+    {
+        if (TargetInDistance() && followEnabled)
         {
             PathFollow();
         }
@@ -44,54 +57,77 @@ public class BeastAI : MonoBehaviour
 
     private void UpdatePath()
     {
-        if(followEnabled && TargetInDistance() && seeker.IsDone())
+        if (followEnabled && TargetInDistance() && seeker.IsDone())
         {
             seeker.StartPath(rb.position, target.position, OnPathComplete);
-        } 
+        }
     }
 
     private void PathFollow()
     {
-        if(path == null)
-        {
-            return;
-        }
-        
-        if(currentWaypoint >= path.vectorPath.Count)
+        if (path == null)
         {
             return;
         }
 
-        isGrounded = Physics2D.Raycast(transform.position, -Vector3.up, GetComponent<Collider2D>().bounds.extents.y+jumpCheckOffset);
+        // Reached end of path
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            return;
+        }
 
+        // See if colliding with anything
+        startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset, transform.position.z);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 2.64f, groundLayer);
 
+        // Direction Calculation
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
+        float heightDifference = Mathf.Log(target.position.y - rb.position.y+1)+1;
 
-        if (jumpEnabled && isGrounded)
+    // Adjust jump force based on height difference
+        float modifiedJumpForce = jumpForce + heightDifference * jumpModifier;
+
+        // Jump
+        if (jumpEnabled && isGrounded && !isInAir && !isOnCoolDown)
         {
             if (direction.y > jumpNodeHeightRequirement)
             {
-                rb.AddForce(Vector2.up * speed * jumpModifier);
+                if (isInAir) return; 
+                isJumping = true;
+                rb.AddForce(Vector2.up * modifiedJumpForce);
+                StartCoroutine(JumpCoolDown());
+
             }
         }
+        if (isGrounded)
+        {
+            isJumping = false;
+            isInAir = false; 
+        }
+        else
+        {
+            isInAir = true;
+        }
 
-
+        // Movement
         rb.AddForce(force);
 
+        // Next Waypoint
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
 
-        if(changeDirection)
+        // Direction Graphics Handling
+        if (directionLookEnabled)
         {
-            if(rb.velocity.x > 0.01f)
+            if (rb.velocity.x > 0.01f)
             {
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
-            else if(rb.velocity.y < -0.01f)
+            else if (rb.velocity.x < -0.01f)
             {
                 transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
@@ -102,12 +138,20 @@ public class BeastAI : MonoBehaviour
     {
         return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
     }
+
     private void OnPathComplete(Path p)
     {
-        if(!p.error)
+        if (!p.error)
         {
             path = p;
             currentWaypoint = 0;
         }
+    }
+
+    IEnumerator JumpCoolDown()
+    {
+        isOnCoolDown = true; 
+        yield return new WaitForSeconds(1f);
+        isOnCoolDown = false;
     }
 }
