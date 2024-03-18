@@ -17,6 +17,8 @@ public class FlyingEnemyController : MonoBehaviour, IDamage
     {
         target = GameManager.Instance.Player;
         rb = gameObject.GetComponent<Rigidbody2D>();
+        var beast = GameObject.FindWithTag("Beast");
+        Physics2D.IgnoreCollision(beast.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     void Update()

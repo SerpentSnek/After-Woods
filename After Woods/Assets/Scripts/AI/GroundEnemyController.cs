@@ -15,6 +15,8 @@ public class GroundEnemyController : MonoBehaviour, IDamage
     void Start()
     {
         target = GameManager.Instance.Player;
+        var beast = GameObject.FindWithTag("Beast");
+        Physics2D.IgnoreCollision(beast.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     void Update()
