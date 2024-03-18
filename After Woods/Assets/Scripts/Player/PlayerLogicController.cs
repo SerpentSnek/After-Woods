@@ -7,6 +7,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     [SerializeField] private int foodAmount;
     [SerializeField] private float totalHp;
     private float currentHp;
+    private bool isDead;
     // How much radiation player can take before it starts to damage the player
     [SerializeField] private float totalRadiation;
     private float currentRadiation;

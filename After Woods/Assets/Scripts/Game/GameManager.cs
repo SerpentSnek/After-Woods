@@ -5,10 +5,11 @@ public class GameManager : MonoBehaviour, IReset
 {
     private static GameManager _instance;
     private GameObject player;
+    private GameObject savedPlayer;
     //private bool isNewGame;
     private Timer timer;
     private int currentStage;
-    private GameObject ui;
+    private GameObject[] allFoods;
     [SerializeField] private GameObject playerPrefab;
 
     public static GameManager Instance
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour, IReset
         if (player == null)
         {
             player = Instantiate(playerPrefab, new Vector3(0, 0, -1), Quaternion.identity, gameObject.transform);
+            //savedPlayer = player;
         }
         //else
         //{
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour, IReset
         //this.Reset();
     }
 
+
     public void Reset() // have this with a Reset interface instead (done)
     {
         try
@@ -87,12 +90,12 @@ public class GameManager : MonoBehaviour, IReset
         }
     }
 
-    // Main menu is just a placeholder to test scene switching;
-    // may turn into pause screen or something 
+    // Return to title (reset all player stats i.e. destroy the player object)
     public void LoadMainMenu()
     {
+        this.Reset();
+        Destroy(this.player);
         // for all Load methods just use SceneManager.LoadScene(scene_name)
-        DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainMenu"));
     }
@@ -109,7 +112,7 @@ public class GameManager : MonoBehaviour, IReset
             //DontDestroyOnLoad(player);
             //player.transform.position = new Vector2(0, 0);
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            player.transform.position = Vector2.zero;
+            player.transform.position = new Vector3(0, 0, -1);
             //Destroy(this.player);
             //    Destroy(this.gameObject);
         }
@@ -128,7 +131,9 @@ public class GameManager : MonoBehaviour, IReset
 
     public void LoadGameOverScreen()
     {
-        this.Reset();
+        // Send the player elsewhere. Do not fully reset player here.
+        player.GetComponent<PlayerLogicController>().CurrentHp = player.GetComponent<PlayerLogicController>().TotalHp;
+        //player.transform.position = new Vector2(0, 500);
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
         //currentStage = SceneManager.GetSceneByName("GameOver").buildIndex;
@@ -137,10 +142,12 @@ public class GameManager : MonoBehaviour, IReset
 
     public void LoadCurrentStage()
     {
+        timer.Reset();
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.transform.position = Vector2.zero;
-        DontDestroyOnLoad(player);
-        DontDestroyOnLoad(gameObject);
+        player.transform.position = new Vector3(0, 0, -1);
+        //Destroy(this.player);
+        //DontDestroyOnLoad(player);
+        //DontDestroyOnLoad(gameObject);
         //currentStage = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadSceneAsync(currentStage);
         Debug.Log("stage from load: " + currentStage);
@@ -153,10 +160,11 @@ public class GameManager : MonoBehaviour, IReset
         // Only reset HP upon advancing to next stage and set player to starting position
         player.GetComponent<PlayerLogicController>().CurrentHp = player.GetComponent<PlayerLogicController>().TotalHp;
         timer.Reset();
-        DontDestroyOnLoad(player);
+        //DontDestroyOnLoad(player);
+        //player = savedPlayer;
         DontDestroyOnLoad(gameObject);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.transform.position = Vector2.zero;
+        player.transform.position = new Vector3(0, 0, -1);
 
         //currentStage += 1;
         //currentStage = SceneManager.GetActiveScene().buildIndex;
@@ -166,22 +174,4 @@ public class GameManager : MonoBehaviour, IReset
         Debug.Log("next stage: " + currentStage);
 
     }
-    //void Update()
-    //{
-    //    try
-    //    {
-    //        if (player.GetComponent<PlayerLogicController>().CurrentHp <= 0)
-    //        {
-    //            LoadGameOverScreen();
-    //        }
-    //        if (player.GetComponent<PlayerLogicController>().IsFinished)
-    //        {
-    //            LoadNextStage();
-    //        }
-    //    }
-    //    catch
-    //    {
-    //        Debug.Log("null player controller");
-    //    }
-    //}
 }
