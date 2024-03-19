@@ -701,14 +701,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2108970398200607996, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2108970398200607996, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      propertyPath: attackRange
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4342506590989212829, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.38
@@ -752,10 +744,6 @@ PrefabInstance:
     - target: {fileID: 6904975199152874241, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_Name
       value: Beast
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904975199152874241, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

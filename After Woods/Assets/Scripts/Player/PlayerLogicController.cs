@@ -100,14 +100,16 @@ public class PlayerLogicController : MonoBehaviour, IReset
         {
             switch (GetRadiationStatus())
             {
+                case 0:
+                    break;
                 case 1:
-                    currentHp -= (2f * Time.deltaTime);
+                    currentHp -= (1.5f * Time.deltaTime);
                     break;
                 case 2:
-                    currentHp -= (4f * Time.deltaTime);
+                    currentHp -= (3f * Time.deltaTime);
                     break;
                 case 3:
-                    currentHp -= (8f * Time.deltaTime);
+                    currentHp -= (6f * Time.deltaTime);
                     break;
                 case 4:
                     currentHp -= (50f * Time.deltaTime);
@@ -297,7 +299,11 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     private int GetRadiationStatus()
     {
-        if (currentRadiation > 0 && currentRadiation <= 33)
+        if (currentRadiation > 0 && currentRadiation <= 5)
+        {
+            return 0;
+        }
+        else if (currentRadiation > 5 && currentRadiation <= 33)
         {
             return 1;
         }
