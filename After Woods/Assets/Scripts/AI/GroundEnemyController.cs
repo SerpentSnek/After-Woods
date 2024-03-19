@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -6,9 +7,17 @@ public class GroundEnemyController : MonoBehaviour, IDamage
 {
     [SerializeField] private float chaseRange;
     [SerializeField] private float chaseSpeed;
+    [SerializeField] private float patrolSpeed;
+    [SerializeField] private float patrolEdgeDistance;
     [SerializeField] private float damage;
     private GameObject target;
     private Animator a;
+    private Rigidbody2D rb;
+
+    private int dir;
+    private float initialXPosition;
+    private bool isUpdatedInitialXPosition;
+    private float dirChangeCooldown;
 
     public float Damage()
     {
@@ -21,19 +30,37 @@ public class GroundEnemyController : MonoBehaviour, IDamage
         a = gameObject.GetComponent<Animator>();
         var beast = GameObject.FindWithTag("Beast");
         Physics2D.IgnoreCollision(beast.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        initialXPosition = gameObject.transform.position.x;
+        isUpdatedInitialXPosition = true;
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        dir = UnityEngine.Random.Range(0, 2);
+
+        if (dir == 0)
+        {
+            dir = -1;
+        }
     }
 
     void Update()
     {
-        var rb = gameObject.GetComponent<Rigidbody2D>();
-        a.SetBool("Aggro", rb.velocity.y != 0f);
         if (IsInRange())
         {
+            a.SetBool("Aggro", true);
+            isUpdatedInitialXPosition = false;
             Chase();
         }
         else
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            a.SetBool("Aggro", false);
+            Patrol();
+        }
+        if (rb.velocity.x > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (rb.velocity.x < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 
@@ -46,16 +73,29 @@ public class GroundEnemyController : MonoBehaviour, IDamage
     private void Chase()
     {
         Vector2 direction = (target.transform.position - transform.position).normalized;
-        if (direction.x > 0)
+        rb.velocity = new Vector2(direction.x * chaseSpeed, rb.velocity.y); 
+    }
+
+    private void Patrol()
+    {
+        if (!isUpdatedInitialXPosition)
         {
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if (direction.x < 0)
-        {
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            initialXPosition = gameObject.transform.position.x;
+            isUpdatedInitialXPosition = true;
         }
 
-        var rb = gameObject.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(direction.x * chaseSpeed, rb.velocity.y); 
+        if (Math.Abs(initialXPosition - transform.position.x) > patrolEdgeDistance)
+        {
+            var newPosition = transform.position;
+            newPosition.x = initialXPosition + (patrolEdgeDistance - 0.01f) * dir;
+            transform.position = newPosition;
+
+            dir *= -1;
+        } else if (rb.velocity.x == 0)
+        {
+            dir *= -1;
+        }
+
+        rb.velocity = new Vector2(patrolSpeed * dir, rb.velocity.y);
     }
 }
