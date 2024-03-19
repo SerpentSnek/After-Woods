@@ -48,10 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3963644f3f294f4d84ed503a861f941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseRange: 12
+  chaseRange: 10
   chaseSpeed: 10
+  patrolSpeed: 5
+  patrolEdgeDistance: 2
   damage: 20
-  pollingRate: 0.25
 --- !u!212 &9115342358147560641
 SpriteRenderer:
   m_ObjectHideFlags: 0
