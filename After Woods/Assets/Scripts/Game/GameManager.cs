@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour, IReset
 {
@@ -15,7 +16,6 @@ public class GameManager : MonoBehaviour, IReset
         public int food;
     }
 
-    //private GameObject[] allFoods;
     [SerializeField] private GameObject playerPrefab;
 
     public static GameManager Instance
@@ -113,7 +113,21 @@ public class GameManager : MonoBehaviour, IReset
         // player.GetComponent<PlayerLogicController>().CurrentHp = player.GetComponent<PlayerLogicController>().TotalHp;
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
-        SceneManager.LoadSceneAsync("GameOver");
+        AsyncOperation sceneLoading = SceneManager.LoadSceneAsync("GameOver");
+        if (sceneLoading.isDone)
+        {
+            var ui = GameObject.Find("Canvas").transform.Find("Score");
+            var runTime = ui.transform.GetChild(0).GetComponent<Text>();
+            runTime.text += Mathf.Round(Time.time);
+            var hpLeft = ui.transform.GetChild(1).GetComponent<Text>();
+            hpLeft.text += checkpointInfo.hp;
+            var rppPercentage = ui.transform.GetChild(2).GetComponent<Text>();
+            rppPercentage.text += checkpointInfo.radiation;
+            var foodLeft = ui.transform.GetChild(3).GetComponent<Text>();
+            foodLeft.text += checkpointInfo.food;
+            var distanceToHome = ui.transform.GetChild(4).GetComponent<Text>();
+            distanceToHome.text += Mathf.Round((currentStage - 1) / 3);
+        }
     }
 
     public void LoadCurrentStage()
@@ -135,14 +149,23 @@ public class GameManager : MonoBehaviour, IReset
         player.GetComponent<PlayerLogicController>().CurrentHp += 20f;
         timer.Reset();
         DontDestroyOnLoad(gameObject);
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.transform.position = new Vector3(0, 0, -1);
 
         checkpointInfo.hp = player.GetComponent<PlayerLogicController>().CurrentHp;
         checkpointInfo.radiation = player.GetComponent<PlayerLogicController>().CurrentRadiation;
         checkpointInfo.food = player.GetComponent<PlayerLogicController>().FoodAmount;
-        SceneManager.LoadSceneAsync(currentStage + 1);
+        SceneManager.LoadScene(currentStage + 1);
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.transform.position = new Vector3(0, 0, -1);
+        //LoadLevel(player.transform, currentStage + 1);
+
         currentStage++;
         Debug.Log("next stage: " + currentStage);
     }
+    //IEnumerator LoadLevel(Transform playerTransform, int scene)
+    //{
+    //    SceneManager.LoadScene(scene);
+    //    player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    //    playerTransform.position = new Vector3(0, 0, -1);
+    //    yield return new WaitForSeconds(1);
+    //}
 }
