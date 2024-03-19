@@ -96,8 +96,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
             }
         }
 
-        // Only have radiation sap health when not actively inside a radiation cloud
-        if (!isDamagedByRadiation && currentRadiation > 0)
+        if (currentRadiation > 0)
         {
             switch (GetRadiationStatus())
             {
