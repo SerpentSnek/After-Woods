@@ -19,6 +19,10 @@ public class PlayerLogicController : MonoBehaviour, IReset
     [SerializeField] private LayerMask radiationLayer;
     [SerializeField] private bool invulnerable;
     private bool dead = false;
+    [SerializeField] private float timeBonusWindow;
+    private float currentTime;
+    private int baitPressCount;
+    private float firstBaitPressTime;
 
 
     [SerializeField] private InputActionReference bait, eat;
@@ -46,11 +50,6 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         get => currentRadiation; set => currentRadiation = value;
     }
-    //public bool IsFinished
-    //{
-    //    get => isFinished;
-    //    set => isFinished = value;
-    //}
 
     // public float RadiationDamage { get; private set; }
     // public bool IsDamagedByRadiation { get; private set; }
@@ -64,7 +63,6 @@ public class PlayerLogicController : MonoBehaviour, IReset
         rb.velocity = Vector2.zero;
         gameObject.transform.position = new Vector3(0, 0, -1);
         dead = false;
-        //isFinished = false;
     }
 
     void OnEnable()
@@ -81,6 +79,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     void Start()
     {
+        baitPressCount = 0;
         Reset();
     }
 
@@ -254,7 +253,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
             dead = true;
             GameManager.Instance.LoadGameOverScreen();
         }
-        
+
         // Debug.Log("died");
     }
 
@@ -268,8 +267,22 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         if (foodAmount > 0)
         {
+            currentTime = Time.time;
+            if (baitPressCount == 0)
+            {
+                firstBaitPressTime = Time.time;
+            }
+            baitPressCount++;
             foodAmount -= 1;
-            GameManager.Instance.Timer.AddTime(baitTime);
+            if (currentTime - firstBaitPressTime > timeBonusWindow)
+            {
+                baitPressCount = 0;
+                GameManager.Instance.Timer.AddTime(baitTime);
+            }
+            else
+            {
+                GameManager.Instance.Timer.AddTime(Mathf.Pow(baitPressCount * baitTime, 1.5f));
+            }
         }
     }
 
