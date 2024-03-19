@@ -92,6 +92,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   invulnerable: 0
+  timeBonusWindow: 0.2
+  bonusTimeMultiplier: 1.5
   bait: {fileID: -2397629643006541732, guid: 8e712e63c458e9e488ed90ffc5fe484a, type: 3}
   eat: {fileID: 7482116847284668238, guid: 8e712e63c458e9e488ed90ffc5fe484a, type: 3}
 --- !u!114 &6736352071498806679
