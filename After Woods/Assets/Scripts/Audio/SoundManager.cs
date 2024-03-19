@@ -50,6 +50,11 @@ public class SoundManager : MonoBehaviour
             clip.audioSource.loop = clip.loop;
             clip.audioSource.outputAudioMixerGroup = this.sfxMixerGroup;
         }
+
+        for (int i = 0; i < musicTracks.Count; i++)
+        {
+            this.PlayMusicTrack(musicTracks[i].title);
+        }
     }
 
     public void PlayMusicTrack(string title)
