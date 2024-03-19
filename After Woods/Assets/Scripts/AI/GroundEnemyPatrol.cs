@@ -15,7 +15,14 @@ public class GroundEnemyPatrol : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentpoint = pointA.transform;
+        int random = Random.Range(1,3);
+        if(random == 1)
+        {
+            currentpoint = pointA.transform;
+        }else
+        {
+            currentpoint = pointB.transform;
+        }
     }
 
     // Update is called once per frame
