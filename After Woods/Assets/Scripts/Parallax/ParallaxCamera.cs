@@ -3,27 +3,28 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ParallaxCamera : MonoBehaviour
 {
-    public delegate void ParallaxCameraDelegate(float deltaMovement);
+    public delegate void ParallaxCameraDelegate(Vector2 deltaMovement);
     public ParallaxCameraDelegate onCameraTranslate;
 
-    private float oldPosition;
+    private Vector2 oldPosition;
 
     void Start()
     {
-        oldPosition = transform.position.x;
+        oldPosition = transform.position;
     }
 
     void Update()
     {
-        if (transform.position.x != oldPosition)
+        Vector2 temp = transform.position;
+        if (temp != oldPosition)
         {
             if (onCameraTranslate != null)
             {
-                float delta = oldPosition - transform.position.x;
+                Vector2 delta = oldPosition - temp;
                 onCameraTranslate(delta);
             }
 
-            oldPosition = transform.position.x;
+            oldPosition = temp;
         }
     }
 }
