@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
+    private string musicTrack = "MainMenuOST";
+
     public void StartGame()
     {
         // TODO load the start scene
@@ -11,5 +13,10 @@ public class MainMenuController : MonoBehaviour
     public void StartTutorial()
     {
         // TODO load the tutorial scene
+    }
+
+    void Update()
+    {
+        FindObjectOfType<SoundManager>().PlayMusicTrack(this.musicTrack);
     }
 }
