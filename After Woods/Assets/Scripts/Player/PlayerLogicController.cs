@@ -20,6 +20,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     [SerializeField] private bool invulnerable;
     private bool dead = false;
     [SerializeField] private float timeBonusWindow;
+    [SerializeField] private float bonusTimeMultiplier;
     private float currentTime;
     private int baitPressCount;
     private float firstBaitPressTime;
@@ -281,7 +282,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
             }
             else
             {
-                GameManager.Instance.Timer.AddTime(Mathf.Pow(baitPressCount * baitTime, 1.5f));
+                GameManager.Instance.Timer.AddTime(Mathf.Pow(baitTime * baitPressCount, bonusTimeMultiplier));
             }
         }
     }
