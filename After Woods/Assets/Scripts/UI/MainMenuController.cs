@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
-    private string musicTrack = "MainMenuOST";
+    private string musicTrack = "MainMenu";
 
     public void StartGame()
     {
