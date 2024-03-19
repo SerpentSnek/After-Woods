@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour, IReset
 {
@@ -42,11 +41,23 @@ public class GameManager : MonoBehaviour, IReset
     {
         get => currentStage; set => currentStage = value;
     }
+    public float GetCheckpointHp()
+    {
+        return checkpointInfo.hp;
+    }
+    public float GetCheckpointRadiation()
+    {
+        return checkpointInfo.radiation;
+    }
+    public float GetCheckpointFood()
+    {
+        return checkpointInfo.food;
+    }
 
     // https://learn.unity.com/tutorial/implement-data-persistence-between-scenes
     void Awake()
     {
-        currentStage = SceneManager.GetActiveScene().buildIndex;
+        currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
         if (_instance != null)
         {
             Destroy(gameObject);
@@ -114,20 +125,20 @@ public class GameManager : MonoBehaviour, IReset
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
         AsyncOperation sceneLoading = SceneManager.LoadSceneAsync("GameOver");
-        if (sceneLoading.isDone)
-        {
-            var ui = GameObject.Find("Canvas").transform.Find("Score");
-            var runTime = ui.transform.GetChild(0).GetComponent<Text>();
-            runTime.text += Mathf.Round(Time.time);
-            var hpLeft = ui.transform.GetChild(1).GetComponent<Text>();
-            hpLeft.text += checkpointInfo.hp;
-            var rppPercentage = ui.transform.GetChild(2).GetComponent<Text>();
-            rppPercentage.text += checkpointInfo.radiation;
-            var foodLeft = ui.transform.GetChild(3).GetComponent<Text>();
-            foodLeft.text += checkpointInfo.food;
-            var distanceToHome = ui.transform.GetChild(4).GetComponent<Text>();
-            distanceToHome.text += Mathf.Round((currentStage - 1) / 3);
-        }
+        //if (sceneLoading.isDone)
+        //{
+        //    var ui = GameObject.Find("Canvas").transform.Find("Score");
+        //    var runTime = ui.transform.GetChild(0).GetComponent<Text>();
+        //    runTime.text += Mathf.Round(Time.time);
+        //    var hpLeft = ui.transform.GetChild(1).GetComponent<Text>();
+        //    hpLeft.text += checkpointInfo.hp;
+        //    var rppPercentage = ui.transform.GetChild(2).GetComponent<Text>();
+        //    rppPercentage.text += checkpointInfo.radiation;
+        //    var foodLeft = ui.transform.GetChild(3).GetComponent<Text>();
+        //    foodLeft.text += checkpointInfo.food;
+        //    var distanceToHome = ui.transform.GetChild(4).GetComponent<Text>();
+        //    distanceToHome.text += Mathf.Round((currentStage - 1) / 3);
+        //}
     }
 
     public void LoadCurrentStage()

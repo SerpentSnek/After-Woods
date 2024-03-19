@@ -15,16 +15,15 @@ public class GameOverController : MonoBehaviour
 
     void Awake()
     {
-        this.runTime.text = "Runtime: ";
-        this.hpLeft.text = "Remaining Health: ";
-        this.rpPercentage.text = "Radiation Percentage Full: ";
-        this.foodLeft.text = "Food Remaining: ";
-        this.distanceToHome.text = "Distance to Home; ";
-    }
-
-    void Update()
-    {
-
+        this.runTime.text = "Runtime: " + Mathf.Round(Time.time) + " seconds";
+        this.hpLeft.text = "Health at checkpoint: "
+            + Mathf.Round(GameManager.Instance.GetCheckpointHp());
+        this.rpPercentage.text = "Radiation Percentage Full: "
+            + Mathf.Round(GameManager.Instance.GetCheckpointRadiation()) + "%";
+        this.foodLeft.text = "Food Remaining: "
+            + GameManager.Instance.GetCheckpointFood();
+        //this.distanceToHome.text = "Distance completed: "
+        //    + ((GameManager.Instance.CurrentStage - 1) / 3) + "%";
     }
 
     // Go back to main menu and restart the whole game from there.
