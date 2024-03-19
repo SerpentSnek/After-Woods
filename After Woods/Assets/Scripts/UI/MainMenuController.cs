@@ -14,9 +14,4 @@ public class MainMenuController : MonoBehaviour
     {
         // TODO load the tutorial scene
     }
-
-    void Update()
-    {
-        FindObjectOfType<SoundManager>().PlayMusicTrack(this.musicTrack);
-    }
 }
