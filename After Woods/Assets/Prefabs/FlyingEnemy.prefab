@@ -9,13 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1256127441194709690}
-  - component: {fileID: 657800603862916635}
   - component: {fileID: 1912284072726593522}
   - component: {fileID: 1080349861954654779}
   - component: {fileID: 8075407916573802883}
   - component: {fileID: 3884660464137592163}
-  - component: {fileID: 4136984584008766605}
   - component: {fileID: 279771568705022714}
+  - component: {fileID: 4424270944154711185}
   m_Layer: 6
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -38,21 +37,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &657800603862916635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4445676411755381693}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc1d992eeb1be19478e702c3d311ad67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseRange: 7
-  chaseSpeed: 6
-  damage: 5
 --- !u!212 &1912284072726593522
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -198,22 +182,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4136984584008766605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4445676411755381693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2624184374cb5ca4db399913ae455e70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activateDistance: 7
-  speed: 400
-  nextWaypointDistance: 3
-  damage: 5
 --- !u!114 &279771568705022714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,3 +210,23 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &4424270944154711185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445676411755381693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39245a5b186de0a478300a10219f3151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseRange: 7
+  speed: 400
+  nextWaypointDistance: 3
+  damage: 5
+  basicChaseThreshold: 1.75
+  basicChaseSpeed: 6
+  patrolRadius: 1
+  patrolSpeed: 1

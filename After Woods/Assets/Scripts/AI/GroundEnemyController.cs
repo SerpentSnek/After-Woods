@@ -17,7 +17,6 @@ public class GroundEnemyController : MonoBehaviour, IDamage
     private int dir;
     private float initialXPosition;
     private bool isUpdatedInitialXPosition;
-    private float dirChangeCooldown;
 
     public float Damage()
     {

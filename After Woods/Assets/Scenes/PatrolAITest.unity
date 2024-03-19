@@ -701,6 +701,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2108970398200607996, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108970398200607996, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
+      propertyPath: attackRange
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4342506590989212829, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.38
@@ -829,11 +837,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1256127441194709690, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.04
+      value: 6.58
       objectReference: {fileID: 0}
     - target: {fileID: 1256127441194709690, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.75
+      value: 4.64
       objectReference: {fileID: 0}
     - target: {fileID: 1256127441194709690, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -867,10 +875,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4136984584008766605, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4445676411755381693, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
@@ -878,10 +882,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4445676411755381693, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 900206774}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
 --- !u!1001 &750103148
 PrefabInstance:
@@ -11867,31 +11868,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea637d724195eb245a98f1b1749f2c0f, type: 3}
---- !u!1 &900206764 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4445676411755381693, guid: 7a5c3d2528d7ff2449afafe2f19f09bd, type: 3}
-  m_PrefabInstance: {fileID: 721701582}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &900206774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900206764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e55815352aa29438db1e28f65db025, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 3783708940642648933, guid: 48201565aa49017469bc32892cf96964, type: 3}
-  activateDistance: 10
-  speed: 3
-  minX: 26
-  maxX: 36
-  minY: 6.5
-  maxY: 1
-  currentpoint: {fileID: 1291430533}
 --- !u!1001 &994540954
 PrefabInstance:
   m_ObjectHideFlags: 0
