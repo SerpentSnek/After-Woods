@@ -23,6 +23,7 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
     private int currentWaypoint = 0;
     private bool reachedEndOfPath = false;
     private Animator a;
+    private MobSoundManager sm;
 
     private Seeker seeker;
     private Rigidbody2D rb;
@@ -37,6 +38,7 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         a = gameObject.GetComponent<Animator>();
+        sm = gameObject.GetComponent<MobSoundManager>();
         target = GameManager.Instance.Player;
         patrolTarget = GenerateRandomPointInRadius();
         initialPatrolPosition = transform.position;
@@ -77,10 +79,12 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
             }
             isUpdatedInitialPatrolPosition = false;
             a.SetBool("Aggro", true);
+            sm.PlayAggroSound();
         }
         else
         {
             a.SetBool("Aggro", false);
+            sm.StopAggroSound();
             Patrol();
         }
 
