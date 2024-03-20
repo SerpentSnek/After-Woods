@@ -66,34 +66,34 @@ For the soundtrack of the game, since I don't have much experience with making m
 
 **Main Menu**
 
-[Lost Memories by Ghostrifter](https://youtu.be/GTxsbUzHgcA?si=vsM2N83MzWeuuMj7) is the song I chose for the main menu because the track not only fits the lo-fi, electronic sound we were looking for but it has the right amount of excitement and tenseness to keep the player on the edge of their seat when they're waiting to start the game.
+[`Lost Memories by Ghostrifter`](https://youtu.be/GTxsbUzHgcA?si=vsM2N83MzWeuuMj7) is the song I chose for the main menu because the track not only fits the lo-fi, electronic sound we were looking for but it has the right amount of excitement and tenseness to keep the player on the edge of their seat when they're waiting to start the game.
 
 **Overall Game**
 
 The following tracks were picked to play over each of the stages:
 
-[Solitude by Ghostrifter](http://bit.ly/ghostrifter-yt)
+[`Solitude by Ghostrifter`](http://bit.ly/ghostrifter-yt)
 
 Creative Commons — Attribution-NoDerivs 3.0 Unported — CC BY-ND 3.0
 
 Free Download: https://hypeddit.com/hbqndr
 
 
-[Neon Drive by Ghostrifter](http://bit.ly/ghostrifter-yt)
+[`Neon Drive by Ghostrifter`](http://bit.ly/ghostrifter-yt)
 
 Creative Commons — Attribution-NoDerivs 3.0 Unported — CC BY-ND 3.0
 
 Free Download: https://hypeddit.com/pto3rz
 
 
-[Soon We'll Fly by Ghostrifter](http://bit.ly/ghostrifter-yt)
+[`Soon We'll Fly by Ghostrifter`](http://bit.ly/ghostrifter-yt)
 
 Creative Commons — Attribution-NoDerivs 3.0 Unported — CC BY-ND 3.0
 
 Free Download: https://hypeddit.com/r6dqhh
 
 
-[Twilight Voyage by Ghostrifter](http://bit.ly/ghostrifter-yt)
+[`Twilight Voyage by Ghostrifter`](http://bit.ly/ghostrifter-yt)
 
 Creative Commons — Attribution-NoDerivs 3.0 Unported — CC BY-ND 3.0
 
