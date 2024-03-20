@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8261279454533424920}
   - component: {fileID: 5923467960992850742}
   m_Layer: 0
-  m_Name: Square
+  m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -442,7 +442,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -5514887378846270790, guid: 20c2fc25cc8a72d439ece44caa80010d, type: 2}
   m_audioClip: {fileID: 8300000, guid: adbe9cf4851d2dc48a9e31f13f0d8678, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -538,7 +538,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -5514887378846270790, guid: 20c2fc25cc8a72d439ece44caa80010d, type: 2}
   m_audioClip: {fileID: 8300000, guid: 260794ea26b239a4e9143c1180086ed3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
