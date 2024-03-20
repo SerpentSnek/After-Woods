@@ -37,13 +37,16 @@ public class BeastAI : MonoBehaviour
     private Vector2 lastPos;
     private float pollTime = 0f;
     private Animator a;
+    private BeastSoundManager sm;
     private bool cachedActivated;
+    private float jumpTimer;
 
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         a = gameObject.GetComponent<Animator>();
+        sm = gameObject.GetComponent<BeastSoundManager>();
         isJumping = false;
         isInAir = false;
         isOnCoolDown = false; 
@@ -54,6 +57,11 @@ public class BeastAI : MonoBehaviour
 
     void Update()
     {
+        if (TargetInDistance() && followEnabled)
+        {
+            PathFollow();
+        }
+
         pollTime += Time.deltaTime;
         if (pollTime > 1f && followEnabled && isGrounded && !isInAir && !isOnCoolDown)
         {
@@ -69,17 +77,36 @@ public class BeastAI : MonoBehaviour
 
         a.SetFloat("xSpeed", Math.Abs(rb.velocity.x));
         a.SetBool("Activated", cachedActivated == false && followEnabled);
+
+        if (followEnabled)
+        {
+            if (cachedActivated == false)
+            {
+                sm.PlaySound("roar");
+            }
+            
+            if (!isJumping)
+            {
+                sm.PlaySound("stomp");
+            }
+            else
+            {
+                sm.StopSound("stomp");
+            }
+        }
+        else
+        {
+            sm.StopSound("roar");
+        }
+        
         cachedActivated = followEnabled;
         a.SetBool("Attack", Vector2.Distance(this.gameObject.transform.position, target.position) < attackRange);
+        if (Vector2.Distance(this.gameObject.transform.position, target.position) < attackRange)
+        {
+            sm.PlaySound("roar");;
+        }
 
         // Debug.Log(isGrounded);
-    }
-    private void FixedUpdate()
-    {
-        if (TargetInDistance() && followEnabled)
-        {
-            PathFollow();
-        }
     }
 
     private void UpdatePath()
@@ -115,6 +142,8 @@ public class BeastAI : MonoBehaviour
 
     // Adjust jump force based on height difference
         float modifiedJumpForce = jumpForce + heightDifference * jumpModifier;
+        jumpTimer += Time.deltaTime;
+        isOnCoolDown = jumpTimer < 0.75f;
 
         // Jump
         if (jumpEnabled && isGrounded && !isInAir && !isOnCoolDown)
@@ -124,7 +153,7 @@ public class BeastAI : MonoBehaviour
                 if (isInAir) return; 
                 isJumping = true;
                 rb.AddForce(Vector2.up * modifiedJumpForce);
-                StartCoroutine(JumpCoolDown());
+                jumpTimer = 0f;
                 // Debug.Log("jumped");
             }
         }
@@ -174,12 +203,5 @@ public class BeastAI : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
-    }
-
-    IEnumerator JumpCoolDown()
-    {
-        isOnCoolDown = true; 
-        yield return new WaitForSeconds(1f);
-        isOnCoolDown = false;
     }
 }

@@ -16,7 +16,7 @@ public class DarkMaskOpacityController : MonoBehaviour
         SetOpacity(target.position.y >= thresholdYValue ? maxOpacity : 0f);
     }
 
-    void Update()
+    void LateUpdate()
     {
         // Check if the target crosses above the threshold
         if (target.position.y >= thresholdYValue && !isAboveThreshold)
