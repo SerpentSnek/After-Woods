@@ -17,11 +17,15 @@ public class PauseMenuController : MonoBehaviour
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0.0f;
+        GameManager.Instance.Player.GetComponent<PlayerMovementV2>().enabled = false;
+        AudioListener.pause = true;
     }
 
     public void Resume()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1.0f;
+        GameManager.Instance.Player.GetComponent<PlayerMovementV2>().enabled = true;
+        AudioListener.pause = false;
     }
 }
