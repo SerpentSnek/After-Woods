@@ -66,4 +66,13 @@ public class PlayerSoundManager : MonoBehaviour
 
         sound.Stop();
     }
+
+    public void StopAllSounds()
+    {
+        climbingSound.Stop();
+        deathSound.Stop();
+        jumpingSound.Stop();
+        pickupSound.Stop();
+        walkingSound.Stop();
+    }
 }

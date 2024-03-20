@@ -57,56 +57,64 @@ public class BeastAI : MonoBehaviour
 
     void Update()
     {
-        if (TargetInDistance() && followEnabled)
+        if (!GameManager.Instance.Player.GetComponent<PlayerLogicController>().IsDead)
         {
-            PathFollow();
-        }
-
-        pollTime += Time.deltaTime;
-        if (pollTime > 1f && followEnabled && isGrounded && !isInAir && !isOnCoolDown)
-        {
-            pollTime = 0f;
-            if (Vector2.Distance(rb.position, lastPos) < 1f)
+            if (TargetInDistance() && followEnabled)
             {
-                rb.AddForce(new Vector2(UnityEngine.Random.Range(200, 500), UnityEngine.Random.Range(700, 1200)));
+                PathFollow();
             }
-            lastPos = rb.position;
-        }
-        var timer = GameManager.Instance.Timer;
-        followEnabled = timer.IsTimeUp;
 
-        a.SetFloat("xSpeed", Math.Abs(rb.velocity.x));
-        a.SetBool("Activated", cachedActivated == false && followEnabled);
-
-        if (followEnabled)
-        {
-            if (cachedActivated == false)
+            pollTime += Time.deltaTime;
+            if (pollTime > 1f && followEnabled && isGrounded && !isInAir && !isOnCoolDown)
             {
-                sm.PlaySound("roar");
+                pollTime = 0f;
+                if (Vector2.Distance(rb.position, lastPos) < 1f)
+                {
+                    rb.AddForce(new Vector2(UnityEngine.Random.Range(200, 500), UnityEngine.Random.Range(700, 1200)));
+                }
+                lastPos = rb.position;
             }
-            
-            if (!isJumping)
+            var timer = GameManager.Instance.Timer;
+            followEnabled = timer.IsTimeUp;
+
+            a.SetFloat("xSpeed", Math.Abs(rb.velocity.x));
+            a.SetBool("Activated", cachedActivated == false && followEnabled);
+
+            if (followEnabled)
             {
-                sm.PlaySound("stomp");
+                if (cachedActivated == false)
+                {
+                    sm.PlaySound("roar");
+                }
+
+                if (!isJumping)
+                {
+                    sm.PlaySound("stomp");
+                }
+                else
+                {
+                    sm.StopSound("stomp");
+                }
             }
             else
             {
-                sm.StopSound("stomp");
+                sm.StopSound("roar");
             }
+
+            cachedActivated = followEnabled;
+            a.SetBool("Attack", Vector2.Distance(this.gameObject.transform.position, target.position) < attackRange && followEnabled);
+            if (Vector2.Distance(this.gameObject.transform.position, target.position) < attackRange)
+            {
+                sm.PlaySound("roar"); ;
+            }
+
+            // Debug.Log(isGrounded);
         }
         else
         {
-            sm.StopSound("roar");
-        }
-        
-        cachedActivated = followEnabled;
-        a.SetBool("Attack", Vector2.Distance(this.gameObject.transform.position, target.position) < attackRange);
-        if (Vector2.Distance(this.gameObject.transform.position, target.position) < attackRange)
-        {
-            sm.PlaySound("roar");;
+            sm.StopSound("stomp");
         }
 
-        // Debug.Log(isGrounded);
     }
 
     private void UpdatePath()

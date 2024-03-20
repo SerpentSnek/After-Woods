@@ -17759,23 +17759,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 122302369643852666, guid: 3f473526580003f44a10854e5513aa6b, type: 3}
   m_PrefabInstance: {fileID: 1165715394}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &872058108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872058096}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 823a67c3375acaf4a9e4eedc1bf9ee87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  darkMaskRenderer: {fileID: 0}
-  thresholdYValue: 15
-  maxOpacity: 0.8
-  fadeDuration: 2
 --- !u!114 &872058110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24575,9 +24558,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3517988586338526462, guid: 3f473526580003f44a10854e5513aa6b, type: 3}
       insertIndex: 2
       addedObject: {fileID: 872058102}
-    - targetCorrespondingSourceObject: {fileID: 3517988586338526462, guid: 3f473526580003f44a10854e5513aa6b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 872058108}
   m_SourcePrefab: {fileID: 100100000, guid: 3f473526580003f44a10854e5513aa6b, type: 3}
 --- !u!4 &1168036096 stripped
 Transform:
@@ -33127,6 +33107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageBGMSoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4496072702427649268, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
+      propertyPath: m_TagString
+      value: StageBGM
+      objectReference: {fileID: 0}
     - target: {fileID: 4739145184141483107, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -34948,37 +34932,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1793887337
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1793887338}
-  m_Layer: 0
-  m_Name: SFXSoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1793887338
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793887337}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.67796, y: 6.215784, z: -3.3675349}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1801351680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37020,22 +36973,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1197375322994488605, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 35.2342
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197375322994488605, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 34.392
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197375322994488605, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -42
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197375322994488605, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -34.029
-      objectReference: {fileID: 0}
     - target: {fileID: 1481456437335616614, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
       propertyPath: m_Name
       value: UI v2
@@ -37055,10 +36992,6 @@ PrefabInstance:
     - target: {fileID: 2125285304792954927, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2430730156614643294, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 340.19
       objectReference: {fileID: 0}
     - target: {fileID: 5109980086911641607, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
       propertyPath: m_LocalPosition.x
@@ -38262,22 +38195,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7736496419127353906, guid: e06451fb52b9f28469cb79e142898467, type: 3}
-      propertyPath: orthographic size
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736496419127353906, guid: e06451fb52b9f28469cb79e142898467, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736496419127353906, guid: e06451fb52b9f28469cb79e142898467, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736496419127353906, guid: e06451fb52b9f28469cb79e142898467, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8095616716283219114, guid: e06451fb52b9f28469cb79e142898467, type: 3}
       propertyPath: m_Name
       value: Minimap Camera
@@ -38375,4 +38292,3 @@ SceneRoots:
   - {fileID: 547368469}
   - {fileID: 4613430609031878084}
   - {fileID: 1488238418}
-  - {fileID: 1793887338}

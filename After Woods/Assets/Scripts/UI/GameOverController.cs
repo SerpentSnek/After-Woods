@@ -18,7 +18,7 @@ public class GameOverController : MonoBehaviour
         this.runTime.text = "Runtime: " + Mathf.Round(Time.time) + " seconds";
         this.hpLeft.text = "Health at checkpoint: "
             + Mathf.Round(GameManager.Instance.GetCheckpointHp());
-        this.rpPercentage.text = "Radiation Percentage Full: "
+        this.rpPercentage.text = "Radiation: "
             + Mathf.Round(GameManager.Instance.GetCheckpointRadiation()) + "%";
         this.foodLeft.text = "Food Remaining: "
             + GameManager.Instance.GetCheckpointFood();

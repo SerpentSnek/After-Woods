@@ -25,6 +25,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     private int baitPressCount;
     private float firstBaitPressTime;
 
+    private Animator a;
     private PlayerSoundManager sm;
 
 
@@ -53,6 +54,10 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         get => currentRadiation; set => currentRadiation = value;
     }
+    public bool IsDead
+    {
+        get => dead;
+    }
 
     // public float RadiationDamage { get; private set; }
     // public bool IsDamagedByRadiation { get; private set; }
@@ -66,6 +71,9 @@ public class PlayerLogicController : MonoBehaviour, IReset
         rb.velocity = Vector2.zero;
         gameObject.transform.position = new Vector3(0, 0, -1);
         dead = false;
+        a.SetBool("Dead", false);
+        Time.timeScale = 1;
+        GameManager.Instance.Player.GetComponent<PlayerMovementV2>().enabled = true;
     }
 
     void OnEnable()
@@ -83,6 +91,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     void Start()
     {
         baitPressCount = 0;
+        a = gameObject.GetComponent<Animator>();
         sm = gameObject.GetComponent<PlayerSoundManager>();
         Reset();
     }
@@ -204,7 +213,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
         if (enemyController != null)
         {
             currentHp -= enemyController.Damage();
-            Debug.Log(currentHp);
+            // Debug.Log(currentHp);
         }
         else
         {
@@ -225,7 +234,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
         if (enemyController != null)
         {
             currentHp -= enemyController.Damage();
-            Debug.Log(currentHp);
+            // Debug.Log(currentHp);
         }
         else
         {
@@ -255,10 +264,17 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         if (!invulnerable)
         {
+            Debug.Log("called");
             // Get the game manager to load the game over screen
             dead = true;
+            GameManager.Instance.Player.GetComponent<PlayerMovementV2>().enabled = false;
+            GameObject.FindWithTag("StageBGM").SetActive(false);
+            sm.StopAllSounds();
             sm.PlaySound("death");
-            GameManager.Instance.LoadGameOverScreen();
+            Time.timeScale = 0.02f;
+            a.SetBool("Dead", true);
+            a.Play("Player_Death");
+            // GameManager.Instance.LoadGameOverScreen();
         }
 
         // Debug.Log("died");

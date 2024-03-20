@@ -62,57 +62,64 @@ public class FlyingEnemyController: MonoBehaviour, IDamage
     }
     void Update()
     {
-        // 3 cases
-        // 1: player out of range: patrol
-        // 2: player in range, outside of basic chase threshold
-        // 3: in range, in basic chase threshold
-        if (IsInRange())
+        if (!GameManager.Instance.Player.GetComponent<PlayerLogicController>().IsDead)
         {
-            if (UseBasicChase())
+            // 3 cases
+            // 1: player out of range: patrol
+            // 2: player in range, outside of basic chase threshold
+            // 3: in range, in basic chase threshold
+            if (IsInRange())
             {
-                var direction = target.transform.position - transform.position;
-                rb.velocity = direction.normalized * basicChaseSpeed;
+                if (UseBasicChase())
+                {
+                    var direction = target.transform.position - transform.position;
+                    rb.velocity = direction.normalized * basicChaseSpeed;
+                }
+                else
+                {
+                    pathfollow();
+                }
+                isUpdatedInitialPatrolPosition = false;
+                a.SetBool("Aggro", true);
+                sm.PlayAggroSound();
             }
             else
             {
-                pathfollow();
+                a.SetBool("Aggro", false);
+                sm.StopAggroSound();
+                Patrol();
             }
-            isUpdatedInitialPatrolPosition = false;
-            a.SetBool("Aggro", true);
-            sm.PlayAggroSound();
+
+            // Vector2 direction = (target.position - transform.position);
+            // if (IsInRange() && Vector2.Distance(rb.position, target.position) > 1.75f)
+            // {
+            //     pathfollow();
+            // }
+            // else if (Vector2.Distance(rb.position, target.position) <= 1.75f)
+            // {
+            //     direction = (target.position - transform.position);
+            //     rb.velocity = direction.normalized * 6f;
+            // }
+            // else
+            // {
+            //     rb.velocity = Vector2.zero;
+            // }
+
+            if (rb.velocity.x > 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else if (rb.velocity.x < 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+
+            // a.SetBool("Aggro", rb.velocity != Vector2.zero);
         }
         else
         {
-            a.SetBool("Aggro", false);
             sm.StopAggroSound();
-            Patrol();
         }
-
-        // Vector2 direction = (target.position - transform.position);
-        // if (IsInRange() && Vector2.Distance(rb.position, target.position) > 1.75f)
-        // {
-        //     pathfollow();
-        // }
-        // else if (Vector2.Distance(rb.position, target.position) <= 1.75f)
-        // {
-        //     direction = (target.position - transform.position);
-        //     rb.velocity = direction.normalized * 6f;
-        // }
-        // else
-        // {
-        //     rb.velocity = Vector2.zero;
-        // }
-
-        if (rb.velocity.x > 0)
-        {
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if (rb.velocity.x < 0)
-        {
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        }
-
-        // a.SetBool("Aggro", rb.velocity != Vector2.zero);
     }
 
     private void pathfollow()

@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Beast
   - Radiation
+  - StageBGM
   layers:
   - Default
   - TransparentFX

@@ -45,26 +45,33 @@ public class GroundEnemyController : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (IsInRange())
+        if (!GameManager.Instance.Player.GetComponent<PlayerLogicController>().IsDead)
         {
-            a.SetBool("Aggro", true);
-            sm.PlayAggroSound();
-            isUpdatedInitialXPosition = false;
-            Chase();
+            if (IsInRange())
+            {
+                a.SetBool("Aggro", true);
+                sm.PlayAggroSound();
+                isUpdatedInitialXPosition = false;
+                Chase();
+            }
+            else
+            {
+                a.SetBool("Aggro", false);
+                sm.StopAggroSound();
+                Patrol();
+            }
+            if (rb.velocity.x > 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else if (rb.velocity.x < 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
         else
         {
-            a.SetBool("Aggro", false);
             sm.StopAggroSound();
-            Patrol();
-        }
-        if (rb.velocity.x > 0)
-        {
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if (rb.velocity.x < 0)
-        {
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 

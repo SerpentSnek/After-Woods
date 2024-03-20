@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIController : MonoBehaviour
@@ -15,6 +16,10 @@ public class UIController : MonoBehaviour
     [SerializeField] 
     private GameObject radiationBar;
     private bool isTimerPulsing = false;
+
+    private float elapsedTime;
+    [SerializeField] private float fadeDuration;
+    [SerializeField] private Image darkMaskRenderer;
 
     public bool IsTimerPulsing { get => isTimerPulsing; set => isTimerPulsing = value; }
 
@@ -63,6 +68,11 @@ public class UIController : MonoBehaviour
         healthBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentHp);
         // RP
         radiationBar.GetComponent<HealthBarController>().UpdateValue(playerController.CurrentRadiation);
+
+        if (GameManager.Instance.Player.GetComponent<PlayerLogicController>().IsDead)
+        {
+            FadeToBlack();
+        }
     }
 
     private IEnumerator Pulse()
@@ -87,5 +97,23 @@ public class UIController : MonoBehaviour
             yield return new WaitForSeconds(0.04f);
         }
         isTimerPulsing = false;
+    }
+
+    private void FadeToBlack()
+    {
+        elapsedTime += Time.deltaTime;
+        float newOpacity = Mathf.Lerp(0, 1, elapsedTime / fadeDuration);
+        SetOpacity(newOpacity);
+        if (elapsedTime >= fadeDuration)
+        {
+            GameManager.Instance.LoadGameOverScreen();
+        }
+    }
+
+    private void SetOpacity(float opacity)
+    {
+        Color newColor = darkMaskRenderer.color;
+        newColor.a = opacity;
+        darkMaskRenderer.color = newColor;
     }
 }
