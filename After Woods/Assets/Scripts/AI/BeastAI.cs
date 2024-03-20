@@ -143,7 +143,7 @@ public class BeastAI : MonoBehaviour
     // Adjust jump force based on height difference
         float modifiedJumpForce = jumpForce + heightDifference * jumpModifier;
         jumpTimer += Time.deltaTime;
-        isOnCoolDown = jumpTimer < 0.75f;
+        isOnCoolDown = jumpTimer < 1f;
 
         // Jump
         if (jumpEnabled && isGrounded && !isInAir && !isOnCoolDown)

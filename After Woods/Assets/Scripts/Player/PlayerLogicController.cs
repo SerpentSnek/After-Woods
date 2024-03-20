@@ -25,6 +25,8 @@ public class PlayerLogicController : MonoBehaviour, IReset
     private int baitPressCount;
     private float firstBaitPressTime;
 
+    private PlayerSoundManager sm;
+
 
     [SerializeField] private InputActionReference bait, eat;
 
@@ -81,6 +83,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     void Start()
     {
         baitPressCount = 0;
+        sm = gameObject.GetComponent<PlayerSoundManager>();
         Reset();
     }
 
@@ -233,6 +236,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     private void OnFoodTriggerEnter2D(Collider2D collider)
     {
         foodAmount += 1;
+        sm.PlaySound("pickup");
         Destroy(collider.gameObject);
     }
 
@@ -253,6 +257,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
         {
             // Get the game manager to load the game over screen
             dead = true;
+            sm.PlaySound("death");
             GameManager.Instance.LoadGameOverScreen();
         }
 

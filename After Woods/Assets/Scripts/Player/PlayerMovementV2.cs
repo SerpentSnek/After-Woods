@@ -26,6 +26,7 @@ public class PlayerMovementV2 : MonoBehaviour
     [SerializeField] private InputActionReference move, jump, sprint;
 
     private Animator a;
+    private PlayerSoundManager sm;
 
     void OnEnable()
     {
@@ -46,6 +47,7 @@ public class PlayerMovementV2 : MonoBehaviour
     void Start()
     {
         a = gameObject.GetComponent<Animator>();
+        sm = gameObject.GetComponent<PlayerSoundManager>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         gravityScale = rb.gravityScale;
     }
@@ -70,6 +72,24 @@ public class PlayerMovementV2 : MonoBehaviour
         a.SetFloat("yVelocity", rb.velocity.y);
         a.SetBool("Grounded", IsGrounded());
         a.SetBool("Climbing", isClimbing);
+
+        if (isClimbing)
+        {
+            sm.PlaySound("climbing");
+        }
+        else
+        {
+            sm.StopSound("climbing");
+        }
+
+        if (IsGrounded() && horizontal != 0)
+        {
+            sm.PlaySound("walking");
+        }
+        else
+        {
+            sm.StopSound("walking");
+        }
     }
 
     void FixedUpdate()
@@ -125,7 +145,9 @@ public class PlayerMovementV2 : MonoBehaviour
         if (IsGrounded() || isClimbing)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            sm.PlaySound("jumping");
         }
+        
     }
 
     private void OnJumpRelease(InputAction.CallbackContext obj)
