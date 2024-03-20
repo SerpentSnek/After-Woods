@@ -2,6 +2,8 @@
 
 ## Summary ##
 
+After Woods is a 2D side-view platformer focused around exploration and survival. Set in a post-apocalyptic wasteland, After Woods follows the journey of [PLACEHOLDER] trying to find their way home. While on a routine supply run by traveling through the underground caverns, [PLACEHOLDER] feels like they are being watched. Suddenly, they hear footsteps approaching them at an alarming rate, belonging to a mysterious, threatening beast. Panicking, [PLACEHOLDER] runs as fast as they can away from the beast and after a long chase, finally evades it by escaping to the surface. But [PLACEHOLDER] cannot stay there because soon, the radiation poisoning will overtake them. Even worse, looking around, [PLACEHOLDER] realizes that they have never seen this place before. Can you guide [PLACEHOLDER] home, avoiding the beast, mutated creatures, and death from radiation?
+
 ## Project Resources
 
 [Web-playable version of your game.](https://itch.io/)  
