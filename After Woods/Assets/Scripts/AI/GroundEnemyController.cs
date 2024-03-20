@@ -13,6 +13,7 @@ public class GroundEnemyController : MonoBehaviour, IDamage
     private GameObject target;
     private Animator a;
     private Rigidbody2D rb;
+    private MobSoundManager sm;
 
     private int dir;
     private float initialXPosition;
@@ -27,6 +28,8 @@ public class GroundEnemyController : MonoBehaviour, IDamage
     {
         target = GameManager.Instance.Player;
         a = gameObject.GetComponent<Animator>();
+        sm = gameObject.GetComponent<MobSoundManager>();
+
         var beast = GameObject.FindWithTag("Beast");
         Physics2D.IgnoreCollision(beast.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         initialXPosition = gameObject.transform.position.x;
@@ -45,12 +48,14 @@ public class GroundEnemyController : MonoBehaviour, IDamage
         if (IsInRange())
         {
             a.SetBool("Aggro", true);
+            sm.PlayAggroSound();
             isUpdatedInitialXPosition = false;
             Chase();
         }
         else
         {
             a.SetBool("Aggro", false);
+            sm.StopAggroSound();
             Patrol();
         }
         if (rb.velocity.x > 0)
