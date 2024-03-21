@@ -4,6 +4,8 @@ public class BeastSoundManager : MonoBehaviour
 {
     [SerializeField] private AudioSource roarSound;
     [SerializeField] private AudioSource stompSound;
+    [SerializeField] private GameObject stageBGM;
+    [SerializeField] private AudioSource beastSound;
 
     public void PlaySound(string soundName)
     {
@@ -43,6 +45,22 @@ public class BeastSoundManager : MonoBehaviour
                 break;
         }
 
+        sound.Stop();
+    }
+
+    public void StartChaseBGM()
+    {
+        var sound = beastSound;
+        if (!sound.isPlaying)
+        {
+            sound.Play();
+            GameObject.FindWithTag("StageBGM").SetActive(false);
+        }
+    }
+
+    public void StopChaseBGM()
+    {
+        var sound = beastSound;
         sound.Stop();
     }
 }

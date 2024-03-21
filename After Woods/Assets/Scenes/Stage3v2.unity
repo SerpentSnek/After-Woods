@@ -2308,6 +2308,10 @@ PrefabInstance:
       value: StageBGMSoundManager
       objectReference: {fileID: 0}
     - target: {fileID: 4496072702427649268, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496072702427649268, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
       propertyPath: m_TagString
       value: StageBGM
       objectReference: {fileID: 0}
@@ -2327,7 +2331,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9030575818139293426, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
+    - {fileID: 8124455813212635697, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
+    - {fileID: 3442358523814210291, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -268,7 +268,12 @@ public class PlayerLogicController : MonoBehaviour, IReset
             // Get the game manager to load the game over screen
             dead = true;
             GameManager.Instance.Player.GetComponent<PlayerMovementV2>().enabled = false;
-            GameObject.FindWithTag("StageBGM").SetActive(false);
+            var bgm = GameObject.FindWithTag("StageBGM");
+            if (bgm)
+            {
+                bgm.SetActive(false);
+            }
+            
             sm.StopAllSounds();
             sm.PlaySound("death");
             Time.timeScale = 0.02f;
@@ -288,7 +293,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     private void OnBaitPress(InputAction.CallbackContext obj)
     {
-        if (foodAmount > 0)
+        if (foodAmount > 0 && !dead)
         {
             sm.PlaySound("baiting");
             currentTime = Time.time;
@@ -312,7 +317,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     private void OnEatPress(InputAction.CallbackContext obj)
     {
-        if (foodAmount > 0 && currentHp < totalHp)
+        if (foodAmount > 0 && currentHp < totalHp && !dead)
         {
             sm.PlaySound("eating");
             CurrentHp += foodHealingValue;

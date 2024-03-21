@@ -82,6 +82,7 @@ public class BeastAI : MonoBehaviour
 
             if (followEnabled)
             {
+                sm.StartChaseBGM();
                 if (cachedActivated == false)
                 {
                     sm.PlaySound("roar");
@@ -113,6 +114,7 @@ public class BeastAI : MonoBehaviour
         else
         {
             sm.StopSound("stomp");
+            sm.StopChaseBGM();
         }
 
     }

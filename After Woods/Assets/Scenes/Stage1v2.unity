@@ -4863,13 +4863,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2108970398200607996, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2951825752008657472, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1376648385346096543, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
+      propertyPath: beastBGM
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4342506590989212829, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4914,10 +4910,6 @@ PrefabInstance:
     - target: {fileID: 6904975199152874241, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
       propertyPath: m_Name
       value: Beast
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904975199152874241, guid: 43e29c47cfccfdd489b4c2e2296bff95, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33108,6 +33100,10 @@ PrefabInstance:
       value: StageBGMSoundManager
       objectReference: {fileID: 0}
     - target: {fileID: 4496072702427649268, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496072702427649268, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
       propertyPath: m_TagString
       value: StageBGM
       objectReference: {fileID: 0}
@@ -33131,7 +33127,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4739145184141483107, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
+    - {fileID: 8124455813212635697, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
+    - {fileID: 3442358523814210291, guid: 2bcacb06778a94a04b494d3f1f2c0d59, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

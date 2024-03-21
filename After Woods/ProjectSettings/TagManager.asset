@@ -11,6 +11,7 @@ TagManager:
   - Beast
   - Radiation
   - StageBGM
+  - BeastBGM
   layers:
   - Default
   - TransparentFX
