@@ -50,10 +50,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 ### Assets
 
-Underground Background from SlashDashGamesStudio:
-https://slashdashgamesstudio.itch.io/cave-background-assets
-Contains layers to add parallax to
-Licensed under Creative Commons Attribution v4.0 International 
+[Cave Background Assets](https://slashdashgamesstudio.itch.io/cave-background-assets) from SlashDashGamesStudio licensed under [Creative Commons Attribution v4.0 International](https://creativecommons.org/licenses/by/4.0/deed.en)
 
 *All other assets made by me.
 
