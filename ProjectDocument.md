@@ -168,9 +168,11 @@ The world is hostile, and the player notably cannot fight any of the mutated cre
 
 ## Press Kit and Trailer
 
-**Include links to your presskit materials and trailer.**
+[**Include links to your presskit materials and trailer.**](https://jolly-boba-3dd847.netlify.app/)
 
-**Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
+I first showed the art and a part of the map design of our game in the trailer. Then I show how the player is trying to find a way to escape. When the player is getting close to the bunk which is the checkpoint in the game, the beast starts to awake and start to hunt the player. I am trying to tell the background and show most gameplays in my trailer so the audience can know how to play the game and how the story is going on based on my trailer.
+
+I choose these screenshots in our press kit because they can show different areas of our game map. They can also show the basic UI and one of our key designs: the beast.
 
 ## Game Feel and Polish
 
