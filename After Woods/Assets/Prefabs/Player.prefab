@@ -48,9 +48,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5514887378846270790, guid: 20c2fc25cc8a72d439ece44caa80010d, type: 2}
-  m_audioClip: {fileID: 8300000, guid: dc4c41bc95f284435a39fdc1ca4b54d7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1853502ea40d59b4cbf0a6fb47917778, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -336,9 +336,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5514887378846270790, guid: 20c2fc25cc8a72d439ece44caa80010d, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 8724140f7555249d6acc78d357e16815, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 04f02ff262f345a45aeb187fe64cf5b2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   baitingSound: {fileID: 5566910735414858391}
   climbingSound: {fileID: 4228703280030696254}
   deathSound: {fileID: 7003667490081129213}
-  eatingSound: {fileID: 5566910735414858391}
+  eatingSound: {fileID: 4159948114456879257}
   jumpingSound: {fileID: 7433771381224995783}
   pickupSound: {fileID: 437335819208604553}
   walkingSound: {fileID: 8114241600245756201}

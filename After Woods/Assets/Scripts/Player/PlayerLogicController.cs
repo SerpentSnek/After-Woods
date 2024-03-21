@@ -290,6 +290,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         if (foodAmount > 0)
         {
+            sm.PlaySound("baiting");
             currentTime = Time.time;
             if (baitPressCount == 0)
             {
@@ -313,6 +314,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         if (foodAmount > 0 && currentHp < totalHp)
         {
+            sm.PlaySound("eating");
             CurrentHp += foodHealingValue;
             foodAmount -= 1;
         }
