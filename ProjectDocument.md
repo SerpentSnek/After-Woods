@@ -2,7 +2,7 @@
 
 ## Summary ##
 
-After Woods is a 2D side-view platformer focused around exploration and survival. Set in a post-apocalyptic wasteland, After Woods follows the journey of [PLACEHOLDER] trying to find their way home. While on a routine supply run by traveling through the underground caverns, [PLACEHOLDER] feels like they are being watched. Suddenly, they hear footsteps approaching them at an alarming rate, belonging to a mysterious, threatening beast. Panicking, [PLACEHOLDER] runs as fast as they can away from the beast and after a long chase, finally evades it by escaping to the surface. But [PLACEHOLDER] cannot stay there because soon, the radiation poisoning will overtake them. Even worse, looking around, [PLACEHOLDER] realizes that they have never seen this place before. Can you guide [PLACEHOLDER] home, avoiding the beast, mutated creatures, and death from radiation?
+After Woods is a 2D side-view platformer focused around exploration and survival. Set in a post-apocalyptic wasteland, After Woods follows the journey of an adventurer trying to find their way home. While on a routine supply run by traveling through the underground caverns, the adventurer feels like they are being watched. Suddenly, they hear footsteps approaching them at an alarming rate, belonging to a mysterious, threatening beast. Panicking, they run as fast as they can away from the beast and after a long chase, finally evades it by escaping to the surface. But the adventurer cannot stay there because soon, the radiation poisoning will overtake them. Even worse, looking around, they realizes that they have never seen this place before. Can you guide the adventurer home, avoiding the beast, mutated creatures, and death from radiation?
 
 ## Project Resources
 
@@ -141,7 +141,9 @@ The sound implementation mostly consisted of sorting sounds into 5 categories: m
 
 ## Narrative Design
 
-**Document how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
+While narrative design occupies a smaller aspect of this game, the design is primarily expressed through the art assets and gameplay to create a form of environmental storytelling. The setting is a post-apocalyptic world, where radiation is ubiquitous. The surface world is decorated with nothing but dead trees and radiation, and the bones of monsters litter the grounds. Players may be able to see the piles of bones surrounding the beast somewhere in the level. 
+
+The world is hostile, and the player notably cannot fight any of the mutated creatures he encounters. Thus, the only option is to flee. If the player plays well enough, they may be able to use food to bait the beast and buy some time. Additionally, we wanted to induce a sense of anxiety of not knowing exactly which direction to go while being pressured by the presence of the beast, who can catch up to the player at blinding speeds. The only grace a player is given is a 10 second headstart. To hammer home the feeling of an unforgiving world, your progress will not be saved until you reach the bunker somewhere in the level. This aspect takes inspiration from the games `Rain World` and `Dredge`, the former having a timer before the titular rain crushes the player and the latter having various creatures of the night hunting the player until sunrise. 
 
 ## Press Kit and Trailer
 
