@@ -137,7 +137,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(1f, 0.5f), 0, groundLayer);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.75f, 0.5f), 0, groundLayer);
     }
 
     private void OnJumpPress(InputAction.CallbackContext obj)
