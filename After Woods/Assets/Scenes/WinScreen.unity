@@ -205,8 +205,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+      - m_Target: {fileID: 330074207}
+        m_TargetAssemblyTypeName: WinController, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
