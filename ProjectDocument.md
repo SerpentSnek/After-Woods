@@ -1,8 +1,8 @@
-# The title of your game #
+# After Woods #
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+After Woods is a 2D side-view platformer focused around exploration and survival. Set in a post-apocalyptic wasteland, After Woods follows the journey of [PLACEHOLDER] trying to find their way home. While on a routine supply run by traveling through the underground caverns, [PLACEHOLDER] feels like they are being watched. Suddenly, they hear footsteps approaching them at an alarming rate, belonging to a mysterious, threatening beast. Panicking, [PLACEHOLDER] runs as fast as they can away from the beast and after a long chase, finally evades it by escaping to the surface. But [PLACEHOLDER] cannot stay there because soon, the radiation poisoning will overtake them. Even worse, looking around, [PLACEHOLDER] realizes that they have never seen this place before. Can you guide [PLACEHOLDER] home, avoiding the beast, mutated creatures, and death from radiation?
 
 ## Project Resources
 
@@ -58,13 +58,58 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 # Sub-Roles
 
-## Audio
+## Audio - Esther Cheng
 
-**List your assets, including their sources and licenses.**
+### Background Music
 
-**Describe the implementation of your audio system.**
+For the soundtrack of the game, since I don't have much experience with making my own music and don't have the creativity to do so, I relied on finding copyright free songs on YouTube. When trying to figure out what the general direction for music was for the game, I asked for feedback from my group members and we decided on a more atmospheric, melachnoic vibe of the game. The main inspiration for the soundtrack was the soundtrack for `Rain World` as it fit perfectly with the type of survival game we were going for. 
 
-**Document the sound style.** 
+**Main Menu**
+
+[`Lost Memories by Ghostrifter`](https://youtu.be/GTxsbUzHgcA?si=vsM2N83MzWeuuMj7) is the song I chose for the main menu because the track not only fits the lo-fi, electronic sound we were looking for but it has the right amount of excitement and tenseness to keep the player on the edge of their seat when they're waiting to start the game.
+
+**Overall Game**
+
+The following tracks were picked to play over each of the stages:
+
+[`Solitude by Ghostrifter`](http://bit.ly/ghostrifter-yt)
+
+Creative Commons — Attribution-NoDerivs 3.0 Unported — CC BY-ND 3.0
+
+Free Download: https://hypeddit.com/hbqndr
+
+
+[`Neon Drive by Ghostrifter`](http://bit.ly/ghostrifter-yt)
+
+Creative Commons — Attribution-NoDerivs 3.0 Unported — CC BY-ND 3.0
+
+Free Download: https://hypeddit.com/pto3rz
+
+
+[`Soon We'll Fly by Ghostrifter`](http://bit.ly/ghostrifter-yt)
+
+Creative Commons — Attribution-NoDerivs 3.0 Unported — CC BY-ND 3.0
+
+Free Download: https://hypeddit.com/r6dqhh
+
+
+[`Twilight Voyage by Ghostrifter`](http://bit.ly/ghostrifter-yt)
+
+Creative Commons — Attribution-NoDerivs 3.0 Unported — CC BY-ND 3.0
+
+Free Download: https://hypeddit.com/ahl2eq
+
+After discovering the artist, Ghostrifter, I found that their sound fit perfectly with the game as most of what they dabble in is either lo-fi or synthwave, which is the main reason why I chose to revolve the soundtrack around their songs. Since we envisioned the game to be something that a player would want to cozy up to, the tracks had the right amount of calmness to them as well as a lot of suspense to match the survival aspect.
+
+### Sound Effects
+
+[`Monster Footsteps Sound effects | No Copyright`](https://youtu.be/UM7VjF_FIwM?si=xR0REuBLpwTAibt7) by *Film Masters* - Stomping for the beast
+
+The rest of the sound effects in the game were found on [Pixabay](https://pixabay.com/), a site with royalty-free sound effects usable in projects. Here is the [content license summary](https://pixabay.com/service/license-summary/).
+
+I made sure to find sounds that were realistic and could be easily envisioned with the animation of the game.
+
+The sound implementation mostly consisted of sorting sounds into 5 categories: main menu background music, background music for the stages, player sounds, mob sounds, and beast sounds. Then I created a SoundManager prefab for each category and assigning all sounds under the category as a sound component. Depending on what sound it was adding, I would locate and proceed to call the sound through playing the corresponding sound's array index in its sound manager. This gave the me an easier way to find and add in audio, since I would not have to spend time counting Audio Source components to find the indexing of each sound. The exceptions were sounds that were always played upon use, where I opted to directly add the SoundManager prefab to the particular scene as the Audio Source componenets are set to "Play on Awake."
 
 ## Gameplay Testing
 
