@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, IReset
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour, IReset
     private Timer timer;
     private int currentStage;
     private PlayerData checkpointInfo;
+    private GameObject loading;
 
     class PlayerData
     {
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour, IReset
     }
 
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject LoadingScreen;
 
     public static GameManager Instance
     {
@@ -57,6 +60,12 @@ public class GameManager : MonoBehaviour, IReset
     // https://learn.unity.com/tutorial/implement-data-persistence-between-scenes
     void Awake()
     {
+        //LoadingScreen = GameObject.Find("LoadingScreen");
+        if (loading == null)
+        {
+            loading = Instantiate(LoadingScreen, new Vector2(0, 0), Quaternion.identity, gameObject.transform);
+        }
+        loading.SetActive(false);
         currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
         if (_instance != null)
         {
@@ -164,19 +173,29 @@ public class GameManager : MonoBehaviour, IReset
         checkpointInfo.hp = player.GetComponent<PlayerLogicController>().CurrentHp;
         checkpointInfo.radiation = player.GetComponent<PlayerLogicController>().CurrentRadiation;
         checkpointInfo.food = player.GetComponent<PlayerLogicController>().FoodAmount;
-        SceneManager.LoadScene(currentStage + 1);
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.transform.position = new Vector3(0, 0, -1);
+        LoadLevel(currentStage + 1);
+
         //LoadLevel(player.transform, currentStage + 1);
 
         currentStage++;
         Debug.Log("next stage: " + currentStage);
     }
-    //IEnumerator LoadLevel(Transform playerTransform, int scene)
-    //{
-    //    SceneManager.LoadScene(scene);
-    //    player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-    //    playerTransform.position = new Vector3(0, 0, -1);
-    //    yield return new WaitForSeconds(1);
-    //}
+    private void LoadLevel(int sceneInd)
+    {
+        StartCoroutine(LoadLevelAsync(sceneInd));
+    }
+    IEnumerator LoadLevelAsync(int sceneId)
+    {
+        AsyncOperation loadingDone = SceneManager.LoadSceneAsync(sceneId);
+        // whatever loading scene is called in either scene or gameObject form
+        //loading.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        //loading.SetActive(true);
+        while (!loadingDone.isDone)
+        {
+            yield return null;
+        }
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        player.transform.position = new Vector3(0, 0, -1);
+        //loading.SetActive(false);
+    }
 }
