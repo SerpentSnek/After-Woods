@@ -48,9 +48,31 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 ## Animation and Visuals
 
-**List your assets, including their sources and licenses.**
+### Assets
 
-**Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
+Underground Background from SlashDashGamesStudio:
+https://slashdashgamesstudio.itch.io/cave-background-assets
+Contains layers to add parallax to
+Licensed under Creative Commons Attribution v4.0 International 
+
+*All other assets made by me.
+
+### Visual Style
+
+In developing our game, we aimed to incorporate two distinct themes: the surface and the subsurface. The surface is depicted as a desolate wasteland, scarred by the aftermath of radiation. In contrast, the subsurface offers a refuge from the radiation but is fraught with dangers, as monsters hide within its depths. The game adopts a 2D pixel art aesthetic, ideal for platform gameplay. I created all the sprites and assets, with the exception being the background for the underground scenes.
+
+### Animation System
+
+For the animation process in our game, I utilized Aseprite, a program that also served as my workspace for designing all the sprites and assets for After Woods. Aseprite allows me to create individual frames and hand-draw each animation for our animated sprites. Once an animation sequence for a sprite is complete, I export the entire character as a sprite sheet, which compiles all necessary frames for the character's animation.
+![PlayerAnimation](https://github.com/SerpentSnek/After-Woods/assets/146702122/a7e94e30-4291-4677-892e-6e74fedee3e5)
+
+
+This sprite sheet is then imported into Unity, where I can dissect the frames using the sprite editor. Using Unity's Animation tab, I create the animations for each character or entity. For instance, the player character has eight animations, all of which are observable during gameplay.
+![Screenshot_28](https://github.com/SerpentSnek/After-Woods/assets/146702122/d7b44b36-c03f-45a5-a3ff-d8ef6490b4d5)
+
+The Animator is then used to connect the animations together. Below is an image of the player state. The transition works by connecting to the PlayerMovementv2 script. If the “Player_Idle” state detects that the xSpeed in the script is higher than 0, then it will transition to the “Player_Walk” state. The “Player_Walk” state will transition into the “Player_Run” state if the player presses the shift button to run. The state will check for an xSpeed above 13 which means the character is at running speed. There are other states that trigger from the movement and controller script.
+![Screenshot_29](https://github.com/SerpentSnek/After-Woods/assets/146702122/f1692ded-a32c-4fd2-89db-025ef7812704)
+
 
 ## Game Logic
 
