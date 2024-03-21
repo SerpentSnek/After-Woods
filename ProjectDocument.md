@@ -40,13 +40,17 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 When designing the user interface, I wanted to follow a design pattern where the UI design aesthetic is simple, clean, and intuitive. The aim is to make all crucial information readily available to the player without overwhelming any of the screens. The UI is designed to be clear and readable, ensuring that important information is accessible but does not disrupt the player's immersion throughout the game.
 
-*Main Menu/Game Over Screen* - I implemented the logic for both the game over menu and main menu, providing players with options to exit or enter the game without disrupting the flow of the game. There's also the option to view the tutorial page of the game. The UI elements, including the two menus and the fonts, were later improved upon by other group members.
+`Pause/Main/Game Over Menu` - I implemented the logic for the main menu, game over menu, and pause menu. These screens provide players with options to pause, exit or enter the game without disrupting the flow of the game. There's also the option to view the tutorial page of the game. The UI elements, including the menus and the fonts, were later improved upon by other group members.
+
+[Code for the pause menu implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/PauseMenuController.cs).
+
 [Code for the main menu implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/MainMenuController.cs).
-[Code for the game over screen implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/GameOverController.cs).
 
-*Health/Radiation Bars* - I implemented the logic for both the health and radiation bar, which incorporated the slider component to adjust the values of the bar and also allowed changes to the color of the values depending on how low or high they were. The UI elements I made were later improved upon by other memebers who wanted to incorporate their own improvements or game mechanics for their own usage. [Code for the implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/HealthBarController.cs).
+[Code for the game over menu implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/GameOverController.cs).
 
-*Player Stat Display* - On the game over screen, I implemented a UI panel that shows the player's stats. This includes the run time of the game, the player's remaining health, radiation percentage, and food remaining. This information is critical for players so they are able to strategize their growth and make decisions on resource allocation and skill upgrades during their next playthrough.
+`Health/Radiation Bars` - I implemented the logic for both the health and radiation bar, which incorporated the slider component to adjust the values of the bar and also allowed changes to the color of the values depending on how low or high they were. The UI elements I made were later improved upon by other memebers who wanted to incorporate their own improvements or game mechanics for their own usage. [Code for the implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/HealthBarController.cs).
+
+`Player Stat Display` - On the game over screen, I implemented a UI panel that shows the player's stats. This includes the run time of the game, the player's remaining health, radiation percentage, and food remaining. This information is critical for players so they are able to strategize their growth and make decisions on resource allocation and skill upgrades during their next playthrough.
 
 One of the great benefits that came with the UI designs was how modular they were. This modularity made it possible to easily scale the UI, adapt it to new requirements, and integrate new features without disrupting the overall design.
 
@@ -54,8 +58,10 @@ One of the great benefits that came with the UI designs was how modular they wer
 
 ## Movement/Physics
 
-**Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
+The movement system of the main character is quite similar to other popular 2D games. The player is able to move left and right, press space to jump, and press up to climb ladders. At the same time, the player can choose to jump higher if the player keeps holding the space instead of releasing it right after pressing it. The player can also sprint. 
 
+We use A* pathfinding to implement our enemies' ai. As the picture shows, all enemies are given a path to the player by A*. After the player enters their chase range, they will chase the player according to the path. Otherwise, they will patrol in a certain area. To avoid flying enemies falling to the ground, we set its gravity to 0. One of the key points of our game is our beast ai. The beast cannot fly, so it will jump to platforms according to the height of the player. However, there are some problems with A* pathfinding. It cannot set the best path for the beast to chase the player. Sometimes it will stuck because its collider is too big. Other enemies are small enough so this problem won't happen to them. We set a check condition so everytime if a beast get stuck in an area for a while, it will try to jump out of there.
+![Screenshot 2024-03-21 115754](https://github.com/SerpentSnek/After-Woods/assets/130005599/794f7229-db1a-4e4a-8b21-81c40a2dd1b9)
 ## Animation and Visuals
 
 ### Assets
