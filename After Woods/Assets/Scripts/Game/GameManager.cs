@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour, IReset
     private Timer timer;
     private int currentStage;
     private PlayerData checkpointInfo;
-    private GameObject loading;
+    //private GameObject loading;
 
     class PlayerData
     {
@@ -61,11 +61,11 @@ public class GameManager : MonoBehaviour, IReset
     void Awake()
     {
         //LoadingScreen = GameObject.Find("LoadingScreen");
-        if (loading == null)
-        {
-            loading = Instantiate(LoadingScreen, new Vector2(0, 0), Quaternion.identity, gameObject.transform);
-        }
-        loading.SetActive(false);
+        //if (loading == null)
+        //{
+        //    loading = Instantiate(LoadingScreen, new Vector2(0, 0), Quaternion.identity, gameObject.transform);
+        //}
+        //loading.SetActive(false);
         currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
         if (_instance != null)
         {
