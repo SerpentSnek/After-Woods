@@ -127,6 +127,8 @@ Free Download: https://hypeddit.com/ahl2eq
 
 After discovering the artist, Ghostrifter, I found that their sound fit perfectly with the game as most of what they dabble in is either lo-fi or synthwave, which is the main reason why I chose to revolve the soundtrack around their songs. Since we envisioned the game to be something that a player would want to cozy up to, the tracks had the right amount of calmness to them as well as a lot of suspense to match the survival aspect.
 
+Aside from the regular soundtrack, we decided to give the beast its own soundtrack during battle scenes to make the entire game more intense. This is the reason I chose [Not dead YET! (battle theme) chiptune remix](https://youtu.be/6HvFLkuFOvc?feature=shared) because it perfectly suited the chiptune vibe we were looking for: something gripping and exciting.
+
 ### Sound Effects
 
 [`Monster Footsteps Sound effects | No Copyright`](https://youtu.be/UM7VjF_FIwM?si=xR0REuBLpwTAibt7) by *Film Masters* - Stomping for the beast
