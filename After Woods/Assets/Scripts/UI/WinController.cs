@@ -1,6 +1,6 @@
-using UnityEngine;
-using TMPro;
 using System;
+using TMPro;
+using UnityEngine;
 
 public class WinController : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class WinController : MonoBehaviour
     public void StartGame()
     {
         // TODO load the start scene
-        GameManager.Instance.LoadStartStage();
+        GameManager.Instance.LoadMainMenu();
     }
 
 }
