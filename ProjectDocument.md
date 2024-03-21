@@ -17,6 +17,7 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 
 **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
+(stage design, insert stage prototypes and drawings)
 
 # Main Roles #
 
@@ -76,7 +77,10 @@ The Animator is then used to connect the animations together. Below is an image 
 
 ## Game Logic
 
-**Document the game states and game data you managed and the design patterns you used to complete your task.**
+<!-- **Document the game states and game data you managed and the design patterns you used to complete your task.** -->
+Game logic was handled through a game manager singleton in `GameManager.cs`. The game manager is responsible for handling scene changes and saving player data across the stages.
+
+Information that needed to persist across stages was player data. Specifically, how much HP, food, and radiation damage they have upon progressing to the next level. 
 
 # Sub-Roles
 
