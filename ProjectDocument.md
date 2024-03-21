@@ -40,9 +40,13 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 When designing the user interface, I wanted to follow a design pattern where the UI design aesthetic is simple, clean, and intuitive. The aim is to make all crucial information readily available to the player without overwhelming any of the screens. The UI is designed to be clear and readable, ensuring that important information is accessible but does not disrupt the player's immersion throughout the game.
 
-*Main Menu/Game Over Screen* - I implemented the logic for both the game over menu and main menu, providing players with options to exit or enter the game without disrupting the flow of the game. There's also the option to view the tutorial page of the game. The UI elements, including the two menus and the fonts, were later improved upon by other group members.
+*Pause/Main/Game Over Menu* - I implemented the logic for the main menu, game over menu, and pause menu. These screens provide players with options to pause, exit or enter the game without disrupting the flow of the game. There's also the option to view the tutorial page of the game. The UI elements, including the menus and the fonts, were later improved upon by other group members.
+
+[Code for the pause menu implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/PauseMenuController.cs).
+
 [Code for the main menu implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/MainMenuController.cs).
-[Code for the game over screen implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/GameOverController.cs).
+
+[Code for the game over menu implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/GameOverController.cs).
 
 *Health/Radiation Bars* - I implemented the logic for both the health and radiation bar, which incorporated the slider component to adjust the values of the bar and also allowed changes to the color of the values depending on how low or high they were. The UI elements I made were later improved upon by other memebers who wanted to incorporate their own improvements or game mechanics for their own usage. [Code for the implementation](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/UI/HealthBarController.cs).
 
