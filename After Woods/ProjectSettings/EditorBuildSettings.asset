@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage3v2.unity
     guid: 391136ed520b18b45babc9c1f5152958
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: aa5f5b49bedbddd49b441738fb04eb93
   m_configObjects: {}

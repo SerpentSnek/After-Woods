@@ -225,7 +225,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         GameManager.Instance.LoadNextStage();
         //isFinished = true;
-        Debug.Log("entered bunker");
+        // Debug.Log("entered bunker");
     }
 
     private void OnEnemyTriggerEnter2D(Collider2D collider)
