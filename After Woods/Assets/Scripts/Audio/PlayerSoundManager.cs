@@ -2,22 +2,30 @@ using UnityEngine;
 
 public class PlayerSoundManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource baitingSound;
     [SerializeField] private AudioSource climbingSound;
     [SerializeField] private AudioSource deathSound;
+    [SerializeField] private AudioSource eatingSound;
     [SerializeField] private AudioSource jumpingSound;
     [SerializeField] private AudioSource pickupSound;
     [SerializeField] private AudioSource walkingSound;
 
     public void PlaySound(string soundName)
     {
-        var sound = climbingSound;
+        var sound = baitingSound;
         switch (soundName)
         {
+            case "baiting":
+                sound = baitingSound;
+                break;
             case "climbing":
                 sound = climbingSound;
                 break;
             case "death":
                 sound = deathSound;
+                break;
+            case "eating":
+                sound = eatingSound;
                 break;
             case "jumping":
                 sound = jumpingSound;
@@ -41,14 +49,20 @@ public class PlayerSoundManager : MonoBehaviour
 
     public void StopSound(string soundName)
     {
-        var sound = climbingSound;
+        var sound = baitingSound;
         switch (soundName)
         {
+            case "baiting":
+                sound = baitingSound;
+                break;
             case "climbing":
                 sound = climbingSound;
                 break;
             case "death":
                 sound = deathSound;
+                break;
+            case "eating":
+                sound = eatingSound;
                 break;
             case "jumping":
                 sound = jumpingSound;
@@ -69,8 +83,10 @@ public class PlayerSoundManager : MonoBehaviour
 
     public void StopAllSounds()
     {
+        baitingSound.Stop();
         climbingSound.Stop();
         deathSound.Stop();
+        eatingSound.Stop();
         jumpingSound.Stop();
         pickupSound.Stop();
         walkingSound.Stop();
