@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour, IReset
     }
 
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private GameObject LoadingScreen;
+    // [SerializeField] private GameObject LoadingScreen;
 
     public static GameManager Instance
     {
@@ -126,9 +126,10 @@ public class GameManager : MonoBehaviour, IReset
         }
 
         //https://gamedev.stackexchange.com/questions/153707/how-to-get-current-scene-name
-        currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
-        LoadLevel(currentStage);
-        Debug.Log("stage at start: " + currentStage);
+        // currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
+        // Debug.Log(SceneManager.GetSceneByName("Stage1v2"));
+        LoadLevel(2);
+        // Debug.Log("stage at start: " + currentStage);
     }
 
     public void LoadGameOverScreen()
@@ -179,7 +180,7 @@ public class GameManager : MonoBehaviour, IReset
         // whatever loading scene is called in either scene or gameObject form
         //loading.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
         //loading.SetActive(true);
-        Debug.Log("loadingdone: " + loadingDone);
+        // Debug.Log("loadingdone: " + loadingDone);
         if (loadingDone == null)
         {
             currentStage = 2;
@@ -202,11 +203,11 @@ public class GameManager : MonoBehaviour, IReset
         if (isRuntimeActive == true)
         {
             runtime += Time.deltaTime;
-            Debug.Log("runtime active: " + runtime);
+            // Debug.Log("runtime active: " + runtime);
         }
         else
         {
-            Debug.Log("inactive runtime:" + runtime);
+            // Debug.Log("inactive runtime:" + runtime);
         }
     }
 }
