@@ -24,22 +24,15 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 # Main Roles #
 
-Your goal is to relate the work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
+## Producer: Peter Yu
 
-Below is a template for you to highlight items of your work. These provide the evidence needed for your work to be evaluated. Try to have at least four such descriptions. They will be assessed on the quality of the underlying system and how they are linked to course content. 
+### Non-coding
 
-*Short Description* - Long description of your work item that includes how it is relevant to topics discussed in class. [link to evidence in your repository](https://github.com/dr-jam/ECS189L/edit/project-description/ProjectDocumentTemplate.md)
+*Written Assignments* - The [initial plan](https://docs.google.com/document/d/1ZG_nL658Qwq4rc7UTI8SlzvpBwOXCNT1n6zbbzj0QBQ/edit?usp=sharing), [progress report 1](https://docs.google.com/document/d/1SC_x6n1bsTGYA8Tgv95ggh9HGJ3HCrG0VfrrEPa9mHU/edit?usp=sharing), [progress report 2](https://docs.google.com/document/d/1jJxUzAHDPk3SvkeVdmtgrM9w4y97XMc9aAQX44GDA5o/edit?usp=sharing), and the non-role specific portions of this document were primarily written and edited by me. The team as a whole contributes their ideas, and then I synthesize them into a cohesive written document. I also proofread and adjust the formatting of everything to make it consistent. You can view the version history of the linked documents as proof.
 
-Here is an example:  
-*Procedural Terrain* - The game's background consists of procedurally generated terrain produced with Perlin noise. The game can modify this terrain at run-time via a call to its script methods. The intent is to allow the player to modify the terrain. This system is based on the component design pattern and the procedural content generation portions of the course. [The PCG terrain generation script](https://github.com/dr-jam/CameraControlExercise/blob/513b927e87fc686fe627bf7d4ff6ff841cf34e9f/Obscura/Assets/Scripts/TerrainGenerator.cs#L6).
+*Team Logistics* - To coordinate everyone, we decided that meeting asynchronously would work best. I would individually meet with each team member over Discord once or twice a week for around 30 minutes each. During these meetings, we would discuss what responsibilities of their role needed to be completed that week, what they had the time to complete, and arrived at a compromise between them and put it on the [Trello board](https://trello.com/b/hbwSh7Km/after-woods). This was the primary method of task management. Additionally, I organized the [Discord server](https://discord.gg/kVjCzYHy45) for us to communicate in, creating separate channels to streamline communication. Finally, I set up the progress report meeting times with the other teams; I had my team fill out a [when2meet](https://www.when2meet.com/?24008798-RUJLM) before initiating contact with the other team to quickly be able to set up a meeting time.
 
-You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
-
-## Producer
-
-**Describe the steps you took in your role as producer. Typical items include group scheduling mechanisms, links to meeting notes, descriptions of team logistics problems with their resolution, project organization tools (e.g., timelines, dependency/task tracking, Gantt charts, etc.), and repository management methodology.**
-
-## User Interface and Input - Esther Cheng
+## User Interface and Input: Esther Cheng
 
 When designing the user interface, I wanted to follow a design pattern where the UI design aesthetic is simple, clean, and intuitive. The aim is to make all crucial information readily available to the player without overwhelming any of the screens. The UI is designed to be clear and readable, ensuring that important information is accessible but does not disrupt the player's immersion throughout the game.
 
@@ -59,7 +52,7 @@ One of the great benefits that came with the UI designs was how modular they wer
 
 **Add an entry for each platform or input style your project supports.**
 
-## Movement/Physics
+## Movement/Physics: Chenhaoran Jin
 
 The movement system of the main character is quite similar to other popular 2D games. The player is able to move left and right, press space to jump, and press up to climb ladders. At the same time, the player can choose to jump higher if the player keeps holding the space instead of releasing it right after pressing it. The player can also sprint. 
 
@@ -67,7 +60,7 @@ The movement system of the main character is quite similar to other popular 2D g
 
 We use A* pathfinding to implement our enemies' ai. As the picture shows, all enemies are given a path to the player by A*. After the player enters their chase range, they will chase the player according to the path. Otherwise, they will patrol in a certain area. To avoid flying enemies falling to the ground, we set its gravity to 0. One of the key points of our game is our beast ai. The beast cannot fly, so it will jump to platforms according to the height of the player. However, there are some problems with A* pathfinding. It cannot set the best path for the beast to chase the player. Sometimes it will stuck because its collider is too big. Other enemies are small enough so this problem won't happen to them. We set a check condition so everytime if a beast get stuck in an area for a while, it will try to jump out of there.
 ![Screenshot 2024-03-21 115754](https://github.com/SerpentSnek/After-Woods/assets/130005599/794f7229-db1a-4e4a-8b21-81c40a2dd1b9)
-## Animation and Visuals
+## Animation and Visuals: Brandon Fong
 
 ### Assets
 
@@ -98,7 +91,7 @@ The Animator is then used to connect the animations together. Below is an image 
 
 The background of the above ground and underground use parallax to create an effect where different layers move at different speeds, simulating depth as the player traverses the level. There are three scripts that work together: `ParallaxCamera.cs`, `ParallaxBackground.cs`, and `ParallaxLayer.cs`. The depth of the layers are controlled in the ParallaxLayer script by a variable called parallaxFactor which is the rate at which the layer moves in response to camera movement along the x-axis. A smaller number means the layer moves slower, adding to the depth effect. When the camera moves, ParallaxCamera calculates the movement delta and notifies ParallaxBackground via the onCameraTranslate event. ParallaxBackground then tells each ParallaxLayer to move accordingly.
 
-## Game Logic
+## Game Logic: Kris Wong
 
 <!-- **Document the game states and game data you managed and the design patterns you used to complete your task.** -->
 #### Beast's timer
