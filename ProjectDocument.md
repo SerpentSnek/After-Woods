@@ -21,15 +21,15 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 **Stage design - Kris**
 
 Initial stage designs were much more grid like, and the camera was to jumpcut to each room upon the player entering them:
-![initialstage.png](initialstage.png)
-![initialstage2.png](initialstage2.png)
+![initialstage.png](DocumentImages/initialstage.png)
+![initialstage2.png](DocumentImages/initialstage2.png)
 
 This was eventually changed such that each stage was relatively smaller and that the camera was to follow the player, with the camera small enough to hide most of the stage:
 
 ![protostage1.png](DocumentImages/protostage1.png)
 
 The stages were then made shorter and smaller to emphasize the beast timer's countdown, in that the beast is never far from the player:
-![protostage1v2.png](protostage1v2.png)
+![protostage1v2.png](DocumentImages/protostage1v2.png)
 
 # Main Roles #
 
