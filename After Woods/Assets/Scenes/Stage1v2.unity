@@ -36976,6 +36976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI v2
       objectReference: {fileID: 0}
+    - target: {fileID: 1481456437335616614, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1982247459424215796, guid: 5eca99a59d6c44841b410619f35dd292, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -38197,6 +38201,10 @@ PrefabInstance:
     - target: {fileID: 8095616716283219114, guid: e06451fb52b9f28469cb79e142898467, type: 3}
       propertyPath: m_Name
       value: Minimap Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095616716283219114, guid: e06451fb52b9f28469cb79e142898467, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

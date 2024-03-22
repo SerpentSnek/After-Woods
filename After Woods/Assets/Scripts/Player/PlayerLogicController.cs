@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class PlayerLogicController : MonoBehaviour, IReset
@@ -21,6 +22,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     private bool dead = false;
     [SerializeField] private float timeBonusWindow;
     [SerializeField] private float bonusTimeMultiplier;
+    [SerializeField] private GameObject floatingTextPrefab;
     private float currentTime;
     private int baitPressCount;
     private float firstBaitPressTime;
@@ -166,9 +168,9 @@ public class PlayerLogicController : MonoBehaviour, IReset
                 case "Bunker":
                     OnBunkerTriggerEnter2D(collider);
                     break;
-                case "Enemy":
-                    OnEnemyTriggerEnter2D(collider);
-                    break;
+                // case "Enemy":
+                //     OnEnemyTriggerEnter2D(collider);
+                //     break;
                 case "Food":
                     OnFoodTriggerEnter2D(collider);
                     break;
@@ -213,6 +215,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
         if (enemyController != null)
         {
             currentHp -= enemyController.Damage();
+            ShowDamage(enemyController.Damage());
             // Debug.Log(currentHp);
         }
         else
@@ -228,19 +231,19 @@ public class PlayerLogicController : MonoBehaviour, IReset
         // Debug.Log("entered bunker");
     }
 
-    private void OnEnemyTriggerEnter2D(Collider2D collider)
-    {
-        var enemyController = collider.gameObject.GetComponent<IDamage>();
-        if (enemyController != null)
-        {
-            currentHp -= enemyController.Damage();
-            // Debug.Log(currentHp);
-        }
-        else
-        {
-            Debug.LogError("missing enemy controller");
-        }
-    }
+    // private void OnEnemyTriggerEnter2D(Collider2D collider)
+    // {
+    //     var enemyController = collider.gameObject.GetComponent<IDamage>();
+    //     if (enemyController != null)
+    //     {
+    //         currentHp -= enemyController.Damage();
+    //         // Debug.Log(currentHp);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("missing enemy controller");
+    //     }
+    // }
 
     private void OnFoodTriggerEnter2D(Collider2D collider)
     {
@@ -347,5 +350,14 @@ public class PlayerLogicController : MonoBehaviour, IReset
         {
             return 4;
         }
+    }
+
+    private void ShowDamage(float damage)
+    {
+        var floatingText = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
+        floatingText.transform.Translate(new Vector3(0.4f, 0, 0));
+        floatingText.transform.SetParent(gameObject.transform);
+        floatingText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+        Destroy(floatingText, 1f);
     }
 }
