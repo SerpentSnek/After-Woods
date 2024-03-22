@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour, IReset
     // see https://www.youtube.com/watch?v=HBEStd96UzI
     public void LoadNextStage()
     {
-        // Only reset HP upon advancing to next stage and set player to starting position
+        // Restore some HP upon advancing to next stage and set player to starting position
         player.GetComponent<PlayerLogicController>().CurrentHp += 20f;
         timer.Reset();
         DontDestroyOnLoad(gameObject);
