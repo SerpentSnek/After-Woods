@@ -46,6 +46,22 @@ Here are just a couple examples of each of the things mentioned since there are 
 
 *Hooking up* - I [hooked up all the audio and fixed a bug in parallax to stop stuttering](https://github.com/SerpentSnek/After-Woods/commit/58a48d9fa1848fb14939b4a416b3b8cb6529616d) and [hooked up the HUD from the UI branch to the GameManager on the game logic branch](https://github.com/SerpentSnek/After-Woods/commit/bc7f0d58fc3cac649ac3fa17587cb9dd1f77ecc1#diff-2a0e12efc5ace7fb188e4dddd005006d8ddc0192fa31bf1ceb925fd2a0fb513e).
 
+### Additional Roles
+
+Note: Since my subrole is Game Feel, some of the features mentioned here are also relevant to that.
+
+To make sure we stayed on schedule, if some things were not getting done, or if they were buggy, or if a team member's time was best used for a different responsibility of their role, I would implement the feature instead. 
+
+*Movement* - Chenhaoran made the initial player movement system, but it was a little buggy and very laggy. As a result, [I replaced most of it](https://github.com/SerpentSnek/After-Woods/commit/c97bd560aecd190951ce6636afc69887555cd1bd) since we needed the system working as soon as possible in order to test all the other gameplay systems. I used many of the ideas in his original code in my rewrite, such as the ladder and jump logic. Additionally, I felt that it would be the most beneficial if Chenhaoran also began working on the enemy AI's as soon as possible, rather than spending time implementing our movement system which does not require much specialization. Chenhaoran is the only team member that understands the AStar package beyond just how to use it, so I thought it would be better for him to dedicate his time on the AI. Since my subrole is game feel, it also made sense that making sure the movement felt good would partially fall under my responsibility.
+
+*Input* - Consequentially, since movement and input are very intertwined, I ended up implementing the basic inputs for keyboard and mouse as well. I used Unity's newer input manager package rather than the old one, which made coding much easier since it was event based rather than polling based. Initially, we were using the command pattern for input, but it was difficult to manage and the code was too spread out, so we decided to just put it in one file.
+
+*Animators* - I set up all the logic for [all the animator controllers](https://github.com/SerpentSnek/After-Woods/commit/924e0b1437f0d88146d44e0510bb42fbf6690d01). Brandon created the animations, and he definitely would have been able to set up the animators if I had asked, but I decided to have him focus on art because he is the only team member capable of creating the art assets. Throughout the entire project, we were constantly asking him to make new assets for whatever feature we might need, like the game over screen or win screen. It does not take specialized skill to set up the animator, so I did it instead.
+
+*A couple UI features* - Esther was busy with the audio and setting up the other UI scenes, so I implemented a couple features. The first was when the player dies, it plays the player death animation, the sound effect, and fades into the game over screen. Initially on death it immediately cut to the game over scene. Brandon had already created a fading script for when the player goes above ground, so I just reused that, and it was a pretty simple feature to implement, and I preferred that Esther focused on the more important parts. The second was the damage text; I added the animation and sound. This was implemented after the showcase, and Esther had a final, and I was done with everything so I just implemented it. Both of these features also somewhat fall under game feel as well.
+
+Overall, I think taking on these additional responsibilities was a good decision. Brandon created amazing art that makes our game truly unique, Chenhaoran developed a beast AI that is so fun to watch chase the player, and Esther found some great music tracks and sound effects that round out the style of our game. Kris was also able to completely redesign the stages twice, and you can't even tell that they had no experience with stage design and little experience with 2D platformers when coming into the project.
+
 ## User Interface and Input: Esther Cheng
 
 When designing the user interface, I wanted to follow a design pattern where the UI design aesthetic is simple, clean, and intuitive. The aim is to make all crucial information readily available to the player without overwhelming any of the screens. The UI is designed to be clear and readable, ensuring that important information is accessible but does not disrupt the player's immersion throughout the game.
@@ -66,7 +82,7 @@ One of the great benefits that came with the UI designs was how modular they wer
 
 **Add an entry for each platform or input style your project supports.**
 
-## Movement/Physics: Chenhaoran Jin
+## Movement and Physics: Chenhaoran Jin
 
 The movement system of the main character is quite similar to other popular 2D games. The player is able to move left and right, press space to jump, and press up to climb ladders. At the same time, the player can choose to jump higher if the player keeps holding the space instead of releasing it right after pressing it. The player can also sprint. 
 
