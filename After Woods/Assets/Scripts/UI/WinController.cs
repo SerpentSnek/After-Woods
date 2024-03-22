@@ -9,7 +9,7 @@ public class WinController : MonoBehaviour
 
     void Awake()
     {
-        this.runTime.text = "Runtime: " + Math.Round(Time.time, 2) + " seconds";
+        this.runTime.text = "Runtime: " + Math.Round(GameManager.Instance.Runtime, 2) + " seconds";
     }
 
     public void StartGame()

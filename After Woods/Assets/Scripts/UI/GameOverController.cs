@@ -1,5 +1,5 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class GameOverController : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class GameOverController : MonoBehaviour
 
     void Awake()
     {
-        this.runTime.text = "Runtime: " + Math.Round(Time.time, 2) + " seconds";
+        this.runTime.text = "Runtime: " + Math.Round(GameManager.Instance.Runtime, 2) + " seconds";
         this.hpLeft.text = "Health at checkpoint: "
             + Mathf.Round(GameManager.Instance.GetCheckpointHp());
         this.rpPercentage.text = "Radiation: "

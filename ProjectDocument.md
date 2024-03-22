@@ -97,7 +97,7 @@ The Animator is then used to connect the animations together. Below is an image 
 <!-- **Document the game states and game data you managed and the design patterns you used to complete your task.** -->
 Game logic was handled through a game manager singleton in `GameManager.cs`. The game manager is responsible for handling scene changes and saving player data across the stages.
 
-Information that needed to persist across stages was player data. Specifically, how much HP, food, and radiation damage they have upon progressing to the next level. 
+Information that needed to persist across stages was player data, stored in `PlayerLogicController.cs`. Specifically, how much HP, food, and radiation damage they have upon progressing to the next level. Additionally, `PlayerLogicController.cs` holds the logic for different kinds of collisions i.e. what happens when running into ladders, radiation, food, and the beast.
 
 # Sub-Roles
 

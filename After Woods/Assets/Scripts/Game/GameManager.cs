@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour, IReset
     private Timer timer;
     private int currentStage;
     private PlayerData checkpointInfo;
+    private float runtime;
+    private bool isRuntimeActive;
     //private GameObject loading;
 
     class PlayerData
@@ -44,6 +46,12 @@ public class GameManager : MonoBehaviour, IReset
     {
         get => currentStage; set => currentStage = value;
     }
+    public float Runtime
+    {
+        get => runtime;
+        set => runtime = value;
+    }
+
     public float GetCheckpointHp()
     {
         return checkpointInfo.hp;
@@ -66,6 +74,16 @@ public class GameManager : MonoBehaviour, IReset
         //    loading = Instantiate(LoadingScreen, new Vector2(0, 0), Quaternion.identity, gameObject.transform);
         //}
         //loading.SetActive(false);
+        //runtime = 0f;
+        //if (currentStage == 0)
+        //{
+        //    isRuntimeActive = false;
+        //}
+        //else
+        //{
+        //    isRuntimeActive = true;
+        //}
+        isRuntimeActive = true;
         currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
         if (_instance != null)
         {
@@ -103,6 +121,8 @@ public class GameManager : MonoBehaviour, IReset
     // Return to title (reset all player stats i.e. destroy the player object)
     public void LoadMainMenu()
     {
+        runtime = 0f;
+        isRuntimeActive = false;
         this.Reset();
         // for all Load methods just use SceneManager.LoadScene(scene_name)
         DontDestroyOnLoad(gameObject);
@@ -111,19 +131,23 @@ public class GameManager : MonoBehaviour, IReset
 
     public void LoadStartStage()
     {
+        //DontDestroyOnLoad(gameObject);
+        runtime = 0f;
+        isRuntimeActive = true;
         if (timer != null)
         {
             timer.Reset();
             timer.IsActive = true;
         }
-        if (player != null)
-        {
-            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            player.transform.position = new Vector3(0, 0, -1);
-        }
-        SceneManager.LoadSceneAsync("Stage1v2");
+        //if (player != null)
+        //{
+        //    player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        //    player.transform.position = new Vector3(0, 0, -1);
+        //}
+        //SceneManager.LoadSceneAsync("Stage1v2");
         //https://gamedev.stackexchange.com/questions/153707/how-to-get-current-scene-name
         currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
+        LoadLevel(currentStage);
         Debug.Log("stage at start: " + currentStage);
     }
 
@@ -131,33 +155,21 @@ public class GameManager : MonoBehaviour, IReset
     {
         // Don't destroy the player just yet in case they want to start from a checkpoint.
         // player.GetComponent<PlayerLogicController>().CurrentHp = player.GetComponent<PlayerLogicController>().TotalHp;
-        DontDestroyOnLoad(player);
+        isRuntimeActive = false;
+        //DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
         AsyncOperation sceneLoading = SceneManager.LoadSceneAsync("GameOver");
-        //if (sceneLoading.isDone)
-        //{
-        //    var ui = GameObject.Find("Canvas").transform.Find("Score");
-        //    var runTime = ui.transform.GetChild(0).GetComponent<Text>();
-        //    runTime.text += Mathf.Round(Time.time);
-        //    var hpLeft = ui.transform.GetChild(1).GetComponent<Text>();
-        //    hpLeft.text += checkpointInfo.hp;
-        //    var rppPercentage = ui.transform.GetChild(2).GetComponent<Text>();
-        //    rppPercentage.text += checkpointInfo.radiation;
-        //    var foodLeft = ui.transform.GetChild(3).GetComponent<Text>();
-        //    foodLeft.text += checkpointInfo.food;
-        //    var distanceToHome = ui.transform.GetChild(4).GetComponent<Text>();
-        //    distanceToHome.text += Mathf.Round((currentStage - 1) / 3);
-        //}
     }
 
     public void LoadCurrentStage()
     {
+        isRuntimeActive = true;
         player.GetComponent<PlayerLogicController>().Reset();
         player.GetComponent<PlayerLogicController>().CurrentHp = checkpointInfo.hp;
         player.GetComponent<PlayerLogicController>().CurrentRadiation = checkpointInfo.radiation;
         player.GetComponent<PlayerLogicController>().FoodAmount = checkpointInfo.food;
         timer.Reset();
-        SceneManager.LoadSceneAsync(currentStage);
+        LoadLevel(currentStage);
         Debug.Log("stage from load: " + currentStage);
         //currentStage = SceneManager.GetActiveScene().buildIndex;
     }
@@ -175,8 +187,6 @@ public class GameManager : MonoBehaviour, IReset
         checkpointInfo.food = player.GetComponent<PlayerLogicController>().FoodAmount;
         LoadLevel(currentStage + 1);
 
-        //LoadLevel(player.transform, currentStage + 1);
-
         currentStage++;
         Debug.Log("next stage: " + currentStage);
     }
@@ -190,12 +200,34 @@ public class GameManager : MonoBehaviour, IReset
         // whatever loading scene is called in either scene or gameObject form
         //loading.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
         //loading.SetActive(true);
-        while (!loadingDone.isDone)
+        Debug.Log("loadingdone: " + loadingDone);
+        if (loadingDone == null)
         {
-            yield return null;
+            currentStage = 2;
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            while (!loadingDone.isDone)
+            {
+                yield return null;
+            }
         }
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.transform.position = new Vector3(0, 0, -1);
+        isRuntimeActive = true;
         //loading.SetActive(false);
+    }
+    void Update()
+    {
+        if (isRuntimeActive == true)
+        {
+            runtime += Time.deltaTime;
+            Debug.Log("runtime active: " + runtime);
+        }
+        else
+        {
+            Debug.Log("inactive runtime:" + runtime);
+        }
     }
 }
