@@ -9,6 +9,7 @@ public class PlayerSoundManager : MonoBehaviour
     [SerializeField] private AudioSource jumpingSound;
     [SerializeField] private AudioSource pickupSound;
     [SerializeField] private AudioSource walkingSound;
+    [SerializeField] private AudioSource takeDamageSound;
 
     public void PlaySound(string soundName)
     {
@@ -35,6 +36,9 @@ public class PlayerSoundManager : MonoBehaviour
                 break;
             case "walking":
                 sound = walkingSound;
+                break;
+            case "damage":
+                sound = takeDamageSound;
                 break;
             default:
                 Debug.LogError("Sound name not found");
@@ -73,6 +77,9 @@ public class PlayerSoundManager : MonoBehaviour
             case "walking":
                 sound = walkingSound;
                 break;
+            case "damage":
+                sound = takeDamageSound;
+                break;
             default:
                 Debug.LogError("Sound name not found");
                 break;
@@ -90,5 +97,6 @@ public class PlayerSoundManager : MonoBehaviour
         jumpingSound.Stop();
         pickupSound.Stop();
         walkingSound.Stop();
+        takeDamageSound.Stop();
     }
 }

@@ -359,5 +359,6 @@ public class PlayerLogicController : MonoBehaviour, IReset
         floatingText.transform.SetParent(gameObject.transform);
         floatingText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
         Destroy(floatingText, 1f);
+        sm.PlaySound("damage");
     }
 }
