@@ -6,7 +6,9 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 ## Project Resources
 
-[Web version](https://salamence613.itch.io/after-woods)
+[Web version](https://salamence613.itch.io/after-woods) note: the UI font is bugged for some reason so it is the default font, it works fine in the windows version
+
+[Google drive with Windows version](https://drive.google.com/drive/u/1/folders/1zyeyuR3lNI4-jNHqjvj7LM4cyRFByDX3)
 
 [Trailor](https://www.youtube.com/watch?v=-kWLeWQXMrU)
 
