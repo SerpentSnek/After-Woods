@@ -161,7 +161,7 @@ The sound implementation mostly consisted of sorting sounds into 5 categories: m
 
 ## Gameplay Testing
 
-**Add a link to the full results of your gameplay tests.**
+Gameplay Test: [Google Sheets](https://docs.google.com/spreadsheets/d/1aB2VPktOJOlsKiQgjbMoH-WWTjLiJDt2ScPesxurOmU/edit?usp=sharing)
 
 ### Controls
 
