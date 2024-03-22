@@ -91,6 +91,9 @@ The Animator is then used to connect the animations together. Below is an image 
 
 ![Screenshot_29](https://github.com/SerpentSnek/After-Woods/assets/146702122/f1692ded-a32c-4fd2-89db-025ef7812704)
 
+### Parallax
+
+The background of the above ground and underground use parallax to create an effect where different layers move at different speeds, simulating depth as the player traverses the level. There are three scripts that work together: 'ParallaxCamera.cs', 'ParallaxBackground.cs', and 'ParallaxLayer.cs'. The depth of the layers are controlled in the ParallaxLayer script by a variable called parallaxFactor which is the rate at which the layer moves in response to camera movement along the x-axis. A smaller number means the layer moves slower, adding to the depth effect. When the camera moves, ParallaxCamera calculates the movement delta and notifies ParallaxBackground via the onCameraTranslate event. ParallaxBackground then tells each ParallaxLayer to move accordingly.
 
 ## Game Logic
 
@@ -160,7 +163,18 @@ The sound implementation mostly consisted of sorting sounds into 5 categories: m
 
 **Add a link to the full results of your gameplay tests.**
 
-**Summarize the key findings from your gameplay tests.**
+### Controls
+
+While some found the controls to be very intuitive, others rated them as somewhat intuitive, suggesting a learning curve or possible need for clearer instructions or feedback within the game.
+
+### Movement
+
+A good number of testers expressed dissatisfaction with the ladder interaction mechanics in the game. Specifically, players would automatically ascend a ladder upon crossing its tile. Furthermore, it was too simple for players to accidentally dismount the ladder, leading to suggestions that the character's movement should be restricted to the ladder's vertical axis during ascent. Reaching the top of the ladder would cause an additional struggle in movement as the player does small bounces. An additional recommendation involves requiring players to press the upward direction key to initiate climbing, as opposed to the automatic engagement currently in place.
+
+### Mobs
+
+Many testers expressed a wish for a way to eliminate mobs, suggesting either by jumping on them or using some kind of weapon. This feedback indicates a preference for more interactive combat mechanics, which could add depth and strategy to the game. Most testers appreciated the game's challenges, indicating that the overall experience was engaging but could be enhanced with additional combat options.
+This feedback suggests that incorporating combat or defense mechanisms against mobs could improve player engagement and satisfaction. It indicates a desire for more varied gameplay interactions and the ability to influence the game environment more directly, which could make the gameplay experience more dynamic and rewarding.
 
 ## Narrative Design
 
