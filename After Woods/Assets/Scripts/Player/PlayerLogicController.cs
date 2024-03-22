@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -216,6 +218,9 @@ public class PlayerLogicController : MonoBehaviour, IReset
         {
             currentHp -= enemyController.Damage();
             ShowDamage(enemyController.Damage());
+            SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+            renderer.color = new Color(1, 0, 0);
+            StartCoroutine("ReturnColor");
             // Debug.Log(currentHp);
         }
         else
@@ -270,6 +275,8 @@ public class PlayerLogicController : MonoBehaviour, IReset
             // Debug.Log("called");
             // Get the game manager to load the game over screen
             dead = true;
+            SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+            renderer.color = new Color(1, 1, 1);
             GameManager.Instance.Player.GetComponent<PlayerMovementV2>().enabled = false;
             var bgm = GameObject.FindWithTag("StageBGM");
             if (bgm)
@@ -360,5 +367,12 @@ public class PlayerLogicController : MonoBehaviour, IReset
         floatingText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
         Destroy(floatingText, 1f);
         sm.PlaySound("damage");
+    }
+
+    IEnumerator ReturnColor()
+    {
+        yield return new WaitForSeconds(0.2f);
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.color = new Color(1, 1, 1);
     }
 }
