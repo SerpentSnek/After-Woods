@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour, IReset
         runtime = 0f;
         isRuntimeActive = false;
         this.Reset();
+        currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
         // for all Load methods just use SceneManager.LoadScene(scene_name)
         DontDestroyOnLoad(gameObject);
         SceneManager.LoadSceneAsync("MainMenu");
@@ -126,9 +127,9 @@ public class GameManager : MonoBehaviour, IReset
         }
 
         //https://gamedev.stackexchange.com/questions/153707/how-to-get-current-scene-name
-        // currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
+        currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
         // Debug.Log(SceneManager.GetSceneByName("Stage1v2"));
-        LoadLevel(2);
+        LoadLevel(currentStage);
         // Debug.Log("stage at start: " + currentStage);
     }
 
