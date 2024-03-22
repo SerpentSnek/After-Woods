@@ -130,7 +130,7 @@ This was eventually changed such that each stage was relatively smaller and that
 
 ![protostage1.png](DocumentImages/protostage1.png)
 
-The stages were then made shorter and smaller to emphasize the beast timer's countdown, in that the beast is never far from the player:
+The stages were then made shorter and smaller to emphasize the beast timer's countdown, in that the beast can catch the player from any angle, hence the spacious stage with small platforms:
 ![protostage1v2.png](DocumentImages/protostage1v2.png)
 
 # Sub-Roles
