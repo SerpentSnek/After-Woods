@@ -6,7 +6,7 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 ## Project Resources
 
-[Web version](https://salamence613.itch.io/after-woods) note: the UI font is bugged for some reason so it is the default font, it works fine in the windows version
+[Web version](https://salamence613.itch.io/after-woods)
 
 [Google drive with Windows version](https://drive.google.com/drive/u/1/folders/1zyeyuR3lNI4-jNHqjvj7LM4cyRFByDX3)
 
@@ -42,7 +42,7 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 Here are just a couple examples of each of the things mentioned since there are too many to list them all; I would basically just be listing the commit history.
 
-*Cleaning Up Code* - I tidied up the [initial game logic code](https://github.com/SerpentSnek/After-Woods/commit/b873c3fab86006d156eb48d0a12c746130bd5ecc), the [inital enemy AI code](https://github.com/SerpentSnek/After-Woods/commit/afc14c9e97ef80ed1e83716fa5b296de8ba252e0#diff-6bd3b7a4b67141f7fe70bbab3b61f2aa01b0b228f58e3258b674afbb7b08e424), and [made the HP bars more modular](https://github.com/SerpentSnek/After-Woods/commit/76975fae9d9280db0998425796137315b308c7e0).
+*Cleaning Up Code* - I tidied up the [initial game logic code](https://github.com/SerpentSnek/After-Woods/commit/b873c3fab86006d156eb48d0a12c746130bd5ecc), the [inital enemy AI code](https://github.com/SerpentSnek/After-Woods/commit/afc14c9e97ef80ed1e83716fa5b296de8ba252e0#diff-6bd3b7a4b67141f7fe70bbab3b61f2aa01b0b228f58e3258b674afbb7b08e424), and [made the HP bars more modular](https://github.com/SerpentSnek/After-Woods/commit/76975fae9d9280db0998425796137315b308c7e0). The HP bar sprites were from [here](https://www.youtube.com/watch?v=BLfNP4Sc_iA).
 
 *Creating prefabs* - At the end of week 2, I [created all the major prefabs needed for a working stage](https://github.com/SerpentSnek/After-Woods/commit/13e5d648ba0aaf2b33fa9695fed8b901370f09c0) after merging all the branches together so that we could begin prototyping and playing stages.
 
@@ -126,30 +126,31 @@ The background of the above ground and underground use parallax to create an eff
 ## Game Logic: Kris Wong
 
 <!-- **Document the game states and game data you managed and the design patterns you used to complete your task.** -->
-#### Beast's timer
+### Beast's timer
 The timer used to countdown the beast's chase is implemented through `Timer.cs`, which the game manager [has a reference of](https://github.com/SerpentSnek/After-Woods/blob/45cd8e60a24c00b6933d1f58ee9353f390c159cb/After%20Woods/Assets/Scripts/Game/GameManager.cs#L86). The game manager will use this reference to reset the timer after every stage completion or stage restart.
 
-#### Game manager
+### Game manager
 Game logic was handled through a game manager singleton in `GameManager.cs`. The game manager is responsible for handling scene changes, saving player data across the stages, and tracking the player's run time. All menu controllers (`MainMenuController.cs`, `WinController.cs`, `GameOverController.cs`) use `GameManager.Instance` to access player stats and call for scene changes. There were a total of 6 states to be managed, as seen in the state diagram below.
 
 ![image.png](DocumentImages/image.png)
 
 When first starting the game, the player game object is spawned [as a child object to the game manager](https://github.com/SerpentSnek/After-Woods/blob/45cd8e60a24c00b6933d1f58ee9353f390c159cb/After%20Woods/Assets/Scripts/Game/GameManager.cs#L84) as to more easily bring the player across levels.
 
-#### Scene and level management
+### Scene and level management
 The current stage is tracked by the variable [currentStage, which is set to stage 1 upon starting the game from the title screen](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L72). The following methods deal with scene transition:
+
 - Upon completing a level, `currentStage` is incremented in [LoadNextStage()](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L170). Since player position is reset to the origin every stage, a [coroutine](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L175) is used to load the next level so that players cannot see themselves teleporting to the origin before the next stage is fully loaded.
 - [LoadGameOver()](https://github.com/SerpentSnek/After-Woods/blob/45cd8e60a24c00b6933d1f58ee9353f390c159cb/After%20Woods/Assets/Scripts/Game/GameManager.cs#L135) pauses the runtime timer and invokes `DontDestroyOnLoad(gameObject)` in case players wish to restart from a checkpoint. The game over screen is called by `PlayerLogicController.cs` upon death.
 - [LoadMainMenu()](https://github.com/SerpentSnek/After-Woods/blob/45cd8e60a24c00b6933d1f58ee9353f390c159cb/After%20Woods/Assets/Scripts/Game/GameManager.cs#L107) loads the title screen and resets player stats and all timers and load in te first level.
 - Like `LoadMainMenu()`, [`LoadStartStage()`](https://github.com/SerpentSnek/After-Woods/blob/45cd8e60a24c00b6933d1f58ee9353f390c159cb/After%20Woods/Assets/Scripts/Game/GameManager.cs#L117) resets the beast's timer but will also start the runtime timer.
 - [LoadCurrentStage()](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L148) will load in the last saved player stats and reset player position back to the start of the stage the player died in.
 
-#### Player logic
+### Player logic
 Information that needed to persist across stages was player data, stored under the [variable `checkpointInfo`, a `PlayerData` class within the game manager](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L16). Specifically, this class remembers how much HP, food, and radiation damage the player has at the start of each level. Restarting the stage the player died in with [LoadCurrentStage()](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L148) means reassigning the stats within the player's `PlayerLogicController.cs` with checkpoint data, while progressing to the next stage means [reassigning the checkpoint fields](https://github.com/SerpentSnek/After-Woods/blob/45cd8e60a24c00b6933d1f58ee9353f390c159cb/After%20Woods/Assets/Scripts/Game/GameManager.cs#L165). The point of checkpoints was to reduce frustration from repeated deaths we expected from new players.
 
 **`PlayerLogicController.cs`** holds the logic for different kinds of collisions i.e. what happens when running into ladders, radiation, food, and the beast. The controller is attached to the player game object that is referenced by the game manager.
 
-#### Stage designs
+### Stage designs
 Initial stage designs were much more grid like, and the camera was to jumpcut to each room upon the player entering them:
 ![initialstage.png](DocumentImages/initialstage.png)
 ![initialstage2.png](DocumentImages/initialstage2.png)
@@ -251,4 +252,20 @@ I choose these screenshots in our press kit because they can show different area
 
 ## Game Feel and Polish
 
-**Document what you added to and how you tweaked your game to improve its game feel.**
+### Things Covered in Producer Section
+
+*Movement* - When rewriting the movement, I also spent a lot of time tuning how fast everything should be. I just messed around with values and eventually got to something that with practice, feels extremely fluid and satisfying to play. We wanted the player to have extremely precise movement, so settling on a simple `rb.velocity = value` for all movement seemed to be the best opposed to using `AddForce` or ADSR movement. The script can be found [here](https://github.com/SerpentSnek/After-Woods/blob/main/After%20Woods/Assets/Scripts/Player/PlayerMovementV2.cs). The actual physics updates are done in `FixedUpdated()` but we get the input in `Update()`.
+
+*Death Transition* - I [implemented this feature](https://github.com/SerpentSnek/After-Woods/commit/ef0ecaa582dd03651be2577dcefb3cb8bf7f3843) because the death felt very sudden. There are two main parts to the transition. The first is the fade to black; since the game over screen is primarily black, fading to black results in a very smooth transition to that screen. The second is the slow mo; this emulates a "wasted"-like effect from GTA5, which is more interesting than simply dying.
+
+*Damage/Heal effects* - We had initially wanted this in the game, but we did not have time before the game jam to add it. During the game jam, I overheard the professor suggest that some sort of feedback should be present for another group's game. When people were playing our game, they usually did not register that they were taking damage from the monsters, so I decided that it has to be in the game and [implemented these effects](https://github.com/SerpentSnek/After-Woods/commit/6175f0c78cf64944e8b97b3ac4101eaad19db913#diff-19f3c60cb80c58cd42ffeef260cfb602f643c77f96a4f90cfece9f451c8218eb) and found the audio from Pixabay as well.
+
+### Tutorial Stage
+
+The main critique both Kyle and the professor had when playing our game was that it was overwhelming to be thrown into the first stage without a proper tutorial. when other students played the game as well, I found myself needing to explain the gameplay concepts over and over because just the controls image was not enough. Therefore, I [created a tutorial stage](https://github.com/SerpentSnek/After-Woods/commit/66a985a36488b27ab22220a0170fa5c5443de27e) to mitigate this problem. It slowly introduces each feature in our game so it is less overwhelming for new players.
+
+### Minor Things
+
+*Game feel suggestions* - I thought of several features that probably should be added from a game feel POV, but the implementations of these were delegated to others. I suggested that we add a minimap, which Kris implemented, parallax on the background (particularly in the vertical direction), which Brandon implemented, and a patrol for the enemy AI so the stage feels more alive, which Chenhaoran implemented. The minimap idea was a little bit of a fail because there isn't enough room on the screen to make it bigger, and when it's small you can't really see much, but the other two make the game feel that little bit better.
+
+*Minor changes* - I made a lot of small changes throughout the project. For example, I tuned the beast AI values with Chenhaoran, the other enemy values and all the player logic values (HP, radiation damage, etc.) with Kris, modified the layout of the HUD, switched the positions of the buttons in the game over screen, and moved the minimap to the bottom left and made the camera view bigger, so you can see stuff that is outside of the regular view on the minimap. Additionally, just like with the producer role, I made a lot of minor bug fixes that contribute to the overall polish of the game.
