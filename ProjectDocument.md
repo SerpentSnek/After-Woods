@@ -38,6 +38,14 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 *Merging and Bug Fixes* - This is the largest portion of the producer role for me. I aimed to merge all the branches together at least once a week. Essentially, everyone was able to code and mess around with the Unity project however they wanted in their own branch, so long as they had a basic version of the feature they were supposed to implement working. Then, when I merged, I would revise their code/scenes for style, fix bugs, and create prefabs so that to begin designing a stage you can just drag all the prefabs into an empty scene and begin drawing the stage. Finally, I would hook their code into the rest of the project. In the last few days of the project, I decided that we should all just work in the main branch since we were primarily making minor changes, so it was not worth the overhead of merging and dealing with the Unity scene merge.
 
+Here are just a couple examples of each of the things mentioned since there are too many to list them all; I would basically just be listing the commit history.
+
+*Cleaning Up Code* - I tidied up the [initial game logic code](https://github.com/SerpentSnek/After-Woods/commit/b873c3fab86006d156eb48d0a12c746130bd5ecc), the [inital enemy AI code](https://github.com/SerpentSnek/After-Woods/commit/afc14c9e97ef80ed1e83716fa5b296de8ba252e0#diff-6bd3b7a4b67141f7fe70bbab3b61f2aa01b0b228f58e3258b674afbb7b08e424), and [made the HP bars more modular](https://github.com/SerpentSnek/After-Woods/commit/76975fae9d9280db0998425796137315b308c7e0).
+
+*Creating prefabs* - At the end of week 2, I [created all the major prefabs needed for a working stage](https://github.com/SerpentSnek/After-Woods/commit/13e5d648ba0aaf2b33fa9695fed8b901370f09c0) after merging all the branches together so that we could begin prototyping and playing stages.
+
+*Hooking up* - I [hooked up all the audio and fixed a bug in parallax to stop stuttering](https://github.com/SerpentSnek/After-Woods/commit/58a48d9fa1848fb14939b4a416b3b8cb6529616d) and [hooked up the HUD from the UI branch to the GameManager on the game logic branch](https://github.com/SerpentSnek/After-Woods/commit/bc7f0d58fc3cac649ac3fa17587cb9dd1f77ecc1#diff-2a0e12efc5ace7fb188e4dddd005006d8ddc0192fa31bf1ceb925fd2a0fb513e).
+
 ## User Interface and Input: Esther Cheng
 
 When designing the user interface, I wanted to follow a design pattern where the UI design aesthetic is simple, clean, and intuitive. The aim is to make all crucial information readily available to the player without overwhelming any of the screens. The UI is designed to be clear and readable, ensuring that important information is accessible but does not disrupt the player's immersion throughout the game.
