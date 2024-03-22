@@ -121,8 +121,6 @@ When designing the user interface, I wanted to follow a design pattern where the
 
 One of the great benefits that came with the UI designs was how modular they were. This modularity made it possible to easily scale the UI, adapt it to new requirements, and integrate new features without disrupting the overall design.
 
-**Add an entry for each platform or input style your project supports.**
-
 ## Movement and Physics: Chenhaoran Jin
 
 The movement system of the main character is quite similar to other popular 2D games. The player is able to move left and right, press space to jump, and press up to climb ladders. At the same time, the player can choose to jump higher if the player keeps holding the space instead of releasing it right after pressing it. The player can also sprint. 
