@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour, IReset
     private PlayerData checkpointInfo;
     private float runtime;
     private bool isRuntimeActive;
+    public bool fromTutorial = false;
     //private GameObject loading;
 
     class PlayerData
@@ -106,6 +107,7 @@ public class GameManager : MonoBehaviour, IReset
     // Return to title (reset all player stats i.e. destroy the player object)
     public void LoadMainMenu()
     {
+        fromTutorial = false;
         runtime = 0f;
         isRuntimeActive = false;
         this.Reset();
@@ -210,5 +212,10 @@ public class GameManager : MonoBehaviour, IReset
         {
             // Debug.Log("inactive runtime:" + runtime);
         }
+    }
+
+    public void LoadTutorialStage()
+    {
+        SceneManager.LoadSceneAsync("Tutorial");
     }
 }

@@ -13,6 +13,7 @@ public class GameOverController : MonoBehaviour
     private UnityEngine.UI.Text foodLeft;
     [SerializeField]
     private UnityEngine.UI.Text distanceToHome;
+    [SerializeField] private GameObject loadButton;
 
     void Awake()
     {
@@ -25,6 +26,16 @@ public class GameOverController : MonoBehaviour
             + GameManager.Instance.GetCheckpointFood();
         //this.distanceToHome.text = "Distance completed: "
         //    + ((GameManager.Instance.CurrentStage - 1) / 3) + "%";
+        
+    }
+
+    void Start()
+    {
+        if (GameManager.Instance.fromTutorial)
+        {
+            loadButton.SetActive(false);
+            GameManager.Instance.Timer.InitialTime = 10f;
+        }
     }
 
     // Go back to main menu and restart the whole game from there.

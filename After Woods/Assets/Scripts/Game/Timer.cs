@@ -21,6 +21,11 @@ public class Timer : MonoBehaviour, IReset
         get => isActive; set => isActive = value;
     }
 
+    public float InitialTime
+    {
+        set => initialTime = value;
+    }
+
     public void AddTime(float timeRestored)
     {
         this.currentTime += timeRestored;

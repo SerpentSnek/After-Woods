@@ -506,8 +506,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97162bf1f5945e43a141421943d1b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fromTutorial: 0
   playerPrefab: {fileID: 6214276302770305210, guid: 48201565aa49017469bc32892cf96964, type: 3}
-  LoadingScreen: {fileID: 0}
 --- !u!4 &832128942
 Transform:
   m_ObjectHideFlags: 0
@@ -634,6 +634,7 @@ MonoBehaviour:
   rpPercentage: {fileID: 1074245816}
   foodLeft: {fileID: 2077183986}
   distanceToHome: {fileID: 405343871}
+  loadButton: {fileID: 57136839}
 --- !u!114 &856770074
 MonoBehaviour:
   m_ObjectHideFlags: 0

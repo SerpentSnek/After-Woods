@@ -7,4 +7,9 @@ public class MainMenuController : MonoBehaviour
         // TODO load the start scene
         GameManager.Instance.LoadStartStage();
     }
+
+    public void StartTutorial()
+    {
+        GameManager.Instance.LoadTutorialStage();
+    }
 }

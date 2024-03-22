@@ -32,6 +32,8 @@ public class PlayerLogicController : MonoBehaviour, IReset
     private Animator a;
     private PlayerSoundManager sm;
 
+    public bool baitEnabled = true;
+
 
     [SerializeField] private InputActionReference bait, eat;
 
@@ -303,7 +305,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
 
     private void OnBaitPress(InputAction.CallbackContext obj)
     {
-        if (foodAmount > 0 && !dead)
+        if (foodAmount > 0 && !dead && baitEnabled)
         {
             sm.PlaySound("baiting");
             currentTime = Time.time;

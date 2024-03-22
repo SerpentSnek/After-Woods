@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TutorialController : MonoBehaviour
+public class ControlsController : MonoBehaviour
 {
     [SerializeField] private GameObject tutorialPanel;
     public void StartTutorial()
