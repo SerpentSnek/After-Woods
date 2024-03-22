@@ -99,9 +99,9 @@ The background of the above ground and underground use parallax to create an eff
 
 <!-- **Document the game states and game data you managed and the design patterns you used to complete your task.** -->
 #### Game manager
-Game logic was handled through a game manager singleton in `GameManager.cs`. The game manager is responsible for handling scene changes, saving player data across the stages, and tracking the player's run time. All menu controllers (`MainMenuController.cs`, `WinController.cs`, `GameOverController.cs`) use `GameManager.Instance` to access player stats and call for scene changes. 
+Game logic was handled through a game manager singleton in `GameManager.cs`. The game manager is responsible for handling scene changes, saving player data across the stages, and tracking the player's run time. All menu controllers (`MainMenuController.cs`, `WinController.cs`, `GameOverController.cs`) use `GameManager.Instance` to access player stats and call for scene changes. There were a total of 6 states to be managed, as seen in the diagram below.
 
-![state change diagram](image.png)
+![image.png](DocumentImages/image.png)
 
 Information that needed to persist across stages was player data, stored in `PlayerLogicController.cs`. Specifically, this controller how much HP, food, and radiation damage they have upon progressing to the next level. Additionally, `PlayerLogicController.cs` holds the logic for different kinds of collisions i.e. what happens when running into ladders, radiation, food, and the beast.
 
