@@ -264,7 +264,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
     {
         if (!invulnerable)
         {
-            Debug.Log("called");
+            // Debug.Log("called");
             // Get the game manager to load the game over screen
             dead = true;
             GameManager.Instance.Player.GetComponent<PlayerMovementV2>().enabled = false;

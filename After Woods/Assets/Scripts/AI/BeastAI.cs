@@ -162,7 +162,11 @@ public class BeastAI : MonoBehaviour
             {
                 if (isInAir) return; 
                 isJumping = true;
-                rb.AddForce(Vector2.up * modifiedJumpForce);
+                if (modifiedJumpForce > 1f)
+                {
+                    rb.AddForce(Vector2.up * modifiedJumpForce);
+                }
+                
                 jumpTimer = 0f;
                 // Debug.Log("jumped");
             }
