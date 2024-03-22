@@ -68,21 +68,6 @@ public class GameManager : MonoBehaviour, IReset
     // https://learn.unity.com/tutorial/implement-data-persistence-between-scenes
     void Awake()
     {
-        //LoadingScreen = GameObject.Find("LoadingScreen");
-        //if (loading == null)
-        //{
-        //    loading = Instantiate(LoadingScreen, new Vector2(0, 0), Quaternion.identity, gameObject.transform);
-        //}
-        //loading.SetActive(false);
-        //runtime = 0f;
-        //if (currentStage == 0)
-        //{
-        //    isRuntimeActive = false;
-        //}
-        //else
-        //{
-        //    isRuntimeActive = true;
-        //}
         isRuntimeActive = true;
         currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
         if (_instance != null)
@@ -139,12 +124,7 @@ public class GameManager : MonoBehaviour, IReset
             timer.Reset();
             timer.IsActive = true;
         }
-        //if (player != null)
-        //{
-        //    player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        //    player.transform.position = new Vector3(0, 0, -1);
-        //}
-        //SceneManager.LoadSceneAsync("Stage1v2");
+
         //https://gamedev.stackexchange.com/questions/153707/how-to-get-current-scene-name
         currentStage = SceneManager.GetSceneByName("Stage1v2").buildIndex;
         LoadLevel(currentStage);
@@ -156,7 +136,6 @@ public class GameManager : MonoBehaviour, IReset
         // Don't destroy the player just yet in case they want to start from a checkpoint.
         // player.GetComponent<PlayerLogicController>().CurrentHp = player.GetComponent<PlayerLogicController>().TotalHp;
         isRuntimeActive = false;
-        //DontDestroyOnLoad(player);
         DontDestroyOnLoad(gameObject);
         AsyncOperation sceneLoading = SceneManager.LoadSceneAsync("GameOver");
     }
