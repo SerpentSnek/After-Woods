@@ -18,18 +18,6 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 <!-- **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 (stage design, insert stage prototypes and drawings) -->
-**Stage design - Kris**
-
-Initial stage designs were much more grid like, and the camera was to jumpcut to each room upon the player entering them:
-![initialstage.png](DocumentImages/initialstage.png)
-![initialstage2.png](DocumentImages/initialstage2.png)
-
-This was eventually changed such that each stage was relatively smaller and that the camera was to follow the player, with the camera small enough to hide most of the stage:
-
-![protostage1.png](DocumentImages/protostage1.png)
-
-The stages were then made shorter and smaller to emphasize the beast timer's countdown, in that the beast is never far from the player:
-![protostage1v2.png](DocumentImages/protostage1v2.png)
 
 # Main Roles #
 
@@ -132,6 +120,18 @@ The current stage is tracked by the variable [currentStage, which is set to stag
 Information that needed to persist across stages was player data, stored under the [variable `checkpointInfo`, a `PlayerData` class within the game manager](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L16). Specifically, this class remembers how much HP, food, and radiation damage the player has at the start of each level. Restarting the stage the player died in with [LoadCurrentStage()](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L148) means reassigning the stats within the player's `PlayerLogicController.cs` with checkpoint data, while progressing to the next stage means [reassigning the checkpoint fields](https://github.com/SerpentSnek/After-Woods/blob/45cd8e60a24c00b6933d1f58ee9353f390c159cb/After%20Woods/Assets/Scripts/Game/GameManager.cs#L165). The point of checkpoints was to reduce frustration from repeated deaths we expected from new players.
 
 **`PlayerLogicController.cs`** holds the logic for different kinds of collisions i.e. what happens when running into ladders, radiation, food, and the beast. The controller is attached to the player game object that is referenced by the game manager.
+
+#### Stage designs
+Initial stage designs were much more grid like, and the camera was to jumpcut to each room upon the player entering them:
+![initialstage.png](DocumentImages/initialstage.png)
+![initialstage2.png](DocumentImages/initialstage2.png)
+
+This was eventually changed such that each stage was relatively smaller and that the camera was to follow the player, with the camera small enough to hide most of the stage:
+
+![protostage1.png](DocumentImages/protostage1.png)
+
+The stages were then made shorter and smaller to emphasize the beast timer's countdown, in that the beast is never far from the player:
+![protostage1v2.png](DocumentImages/protostage1v2.png)
 
 # Sub-Roles
 
