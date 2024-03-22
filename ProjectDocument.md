@@ -6,10 +6,13 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 ## Project Resources
 
-[Web-playable version of your game.](https://itch.io/)  
-[Trailor](https://youtube.com)  
-[Press Kit](https://dopresskit.com/)  
-[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1qwWCpMwKJGOLQ-rRJt8G8zisCa2XHFhv6zSWars0eWM/edit?usp=sharing)  
+[Web version](https://salamence613.itch.io/after-woods)
+
+[Trailor](https://www.youtube.com/watch?v=-kWLeWQXMrU)
+
+[Press Kit](https://jolly-boba-3dd847.netlify.app/) 
+
+[Initial Plan](https://docs.google.com/document/d/1ZG_nL658Qwq4rc7UTI8SlzvpBwOXCNT1n6zbbzj0QBQ/edit?usp=sharing)  
 
 ## Gameplay Explanation ##
 
