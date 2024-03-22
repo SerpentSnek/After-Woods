@@ -93,14 +93,17 @@ The Animator is then used to connect the animations together. Below is an image 
 
 ### Parallax
 
-The background of the above ground and underground use parallax to create an effect where different layers move at different speeds, simulating depth as the player traverses the level. There are three scripts that work together: 'ParallaxCamera.cs', 'ParallaxBackground.cs', and 'ParallaxLayer.cs'. The depth of the layers are controlled in the ParallaxLayer script by a variable called parallaxFactor which is the rate at which the layer moves in response to camera movement along the x-axis. A smaller number means the layer moves slower, adding to the depth effect. When the camera moves, ParallaxCamera calculates the movement delta and notifies ParallaxBackground via the onCameraTranslate event. ParallaxBackground then tells each ParallaxLayer to move accordingly.
+The background of the above ground and underground use parallax to create an effect where different layers move at different speeds, simulating depth as the player traverses the level. There are three scripts that work together: `ParallaxCamera.cs`, `ParallaxBackground.cs`, and `ParallaxLayer.cs`. The depth of the layers are controlled in the ParallaxLayer script by a variable called parallaxFactor which is the rate at which the layer moves in response to camera movement along the x-axis. A smaller number means the layer moves slower, adding to the depth effect. When the camera moves, ParallaxCamera calculates the movement delta and notifies ParallaxBackground via the onCameraTranslate event. ParallaxBackground then tells each ParallaxLayer to move accordingly.
 
 ## Game Logic
 
 <!-- **Document the game states and game data you managed and the design patterns you used to complete your task.** -->
-Game logic was handled through a game manager singleton in `GameManager.cs`. The game manager is responsible for handling scene changes and saving player data across the stages.
+#### Game manager
+Game logic was handled through a game manager singleton in `GameManager.cs`. The game manager is responsible for handling scene changes, saving player data across the stages, and tracking the player's run time. All menu controllers (`MainMenuController.cs`, `WinController.cs`, `GameOverController.cs`) use `GameManager.Instance` to access player stats and call for scene changes. 
 
-Information that needed to persist across stages was player data, stored in `PlayerLogicController.cs`. Specifically, how much HP, food, and radiation damage they have upon progressing to the next level. Additionally, `PlayerLogicController.cs` holds the logic for different kinds of collisions i.e. what happens when running into ladders, radiation, food, and the beast.
+![state change diagram](image.png)
+
+Information that needed to persist across stages was player data, stored in `PlayerLogicController.cs`. Specifically, this controller how much HP, food, and radiation damage they have upon progressing to the next level. Additionally, `PlayerLogicController.cs` holds the logic for different kinds of collisions i.e. what happens when running into ladders, radiation, food, and the beast.
 
 # Sub-Roles
 
