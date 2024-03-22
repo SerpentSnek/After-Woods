@@ -99,11 +99,18 @@ The background of the above ground and underground use parallax to create an eff
 
 <!-- **Document the game states and game data you managed and the design patterns you used to complete your task.** -->
 #### Game manager
-Game logic was handled through a game manager singleton in `GameManager.cs`. The game manager is responsible for handling scene changes, saving player data across the stages, and tracking the player's run time. All menu controllers (`MainMenuController.cs`, `WinController.cs`, `GameOverController.cs`) use `GameManager.Instance` to access player stats and call for scene changes. There were a total of 6 states to be managed, as seen in the diagram below.
+Game logic was handled through a game manager singleton in `GameManager.cs`. The game manager is responsible for handling scene changes, saving player data across the stages, and tracking the player's run time. All menu controllers (`MainMenuController.cs`, `WinController.cs`, `GameOverController.cs`) use `GameManager.Instance` to access player stats and call for scene changes. There were a total of 6 states to be managed, as seen in the state diagram below.
 
 ![image.png](DocumentImages/image.png)
 
-Information that needed to persist across stages was player data, stored in `PlayerLogicController.cs`. Specifically, this controller how much HP, food, and radiation damage they have upon progressing to the next level. Additionally, `PlayerLogicController.cs` holds the logic for different kinds of collisions i.e. what happens when running into ladders, radiation, food, and the beast.
+
+#### Scene and level management
+The current stage is tracked by the variable [currentStage, which is set to stage 1 upon starting the game from the title screen](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L72). Upon completing a level, `currentStage` is incremented in [LoadNextStage()](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L170). Since player position is reset to the origin every stage, a [coroutine](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L175) is used to load the next level so that players cannot see themselves teleporting to the origin before the next stage is fully loaded.
+
+#### Player logic
+Information that needed to persist across stages was player data, stored under the [variable `checkpointInfo`, a `PlayerData` class within the game manager](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L16). Specifically, this class remembers how much HP, food, and radiation damage the player has at the start of each level. Restarting the stage the player died in with [LoadCurrentStage()](https://github.com/SerpentSnek/After-Woods/blob/01c7fa5162763dd472516aa37e824d419dc681c7/After%20Woods/Assets/Scripts/Game/GameManager.cs#L148) means reassigning the stats within the player's `PlayerLogicController.cs` with checkpoint data.
+
+**`PlayerLogicController.cs`** holds the logic for different kinds of collisions i.e. what happens when running into ladders, radiation, food, and the beast. The controller is attached to the player game object that is referenced by the game manager.
 
 # Sub-Roles
 
