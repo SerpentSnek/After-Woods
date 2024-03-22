@@ -6,9 +6,7 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 ## Project Resources
 
-[Web version](https://salamence613.itch.io/after-woods)
-
-[Google drive with Windows version](https://drive.google.com/drive/u/1/folders/1zyeyuR3lNI4-jNHqjvj7LM4cyRFByDX3)
+[Web version](https://salamence613.itch.io/after-woods), [Google drive with Windows version](https://drive.google.com/drive/u/1/folders/1zyeyuR3lNI4-jNHqjvj7LM4cyRFByDX3)
 
 [Trailor](https://www.youtube.com/watch?v=-kWLeWQXMrU)
 
@@ -18,8 +16,49 @@ After Woods is a 2D side-view platformer focused around exploration and survival
 
 ## Gameplay Explanation ##
 
-**In this section, explain how the game should be played. Treat this as a manual within a game. Explaining the button mappings and the most optimal gameplay strategy is encouraged.**
+PLEASE DO THE TUTORIAL! There is a tutorial stage in the game that tells you everything you need to know about the game. Below is all the controls in the game.
 
+![Tutorial.png](DocumentImages/Tutorial.png)
+
+We have also provided the stage layouts and the speedrun path. The best time we got was 22.54s. However, the purpose of the game is to explore and fail, so just looking at the "solution" may ruin your gameplay experience.
+
+<details>
+  <summary>Stage 1 Layout</summary>
+
+  ![stage1.png](DocumentImages/stage1.png)
+</details>
+
+<details>
+  <summary>Stage 2 Layout</summary>
+
+  ![stage2.png](DocumentImages/stage2.png)
+</details>
+
+<details>
+  <summary>Stage 3 Layout</summary>
+
+  ![stage3.png](DocumentImages/stage3.png)
+</details>
+
+<details>
+  <summary>Stage 1 Layout with Path</summary>
+
+  ![stage1path.png](DocumentImages/stage1path.png)
+</details>
+
+<details>
+  <summary>Stage 2 Layout with Path</summary>
+
+  ![stage2path.png](DocumentImages/stage2path.png)
+</details>
+
+<details>
+  <summary>Stage 3 Layout with Path</summary>
+
+  ![stage3path.png](DocumentImages/stage3path.png)
+</details>
+
+One more secret. You can jump on the bats and use them to fly. This was an unintended feature when we first implemented the basic chase AI, but it was fun so we decided to keep it in even after switching to AStar for the bat; we hardcoded the bat to switch back to the basic chase AI once the player was close to it.
 
 <!-- **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 (stage design, insert stage prototypes and drawings) -->
@@ -164,7 +203,7 @@ The stages were then made shorter and smaller to emphasize the beast timer's cou
 
 # Sub-Roles
 
-## Audio - Esther Cheng
+## Audio: Esther Cheng
 
 ### Background Music
 
@@ -219,7 +258,7 @@ I made sure to find sounds that were realistic and could be easily envisioned wi
 
 The sound implementation mostly consisted of sorting sounds into 5 categories: main menu background music, background music for the stages, player sounds, mob sounds, and beast sounds. Then I created a SoundManager prefab for each category and assigning all sounds under the category as a sound component. Depending on what sound it was adding, I would locate and proceed to call the sound through playing the corresponding sound's array index in its sound manager. This gave the me an easier way to find and add in audio, since I would not have to spend time counting Audio Source components to find the indexing of each sound. The exceptions were sounds that were always played upon use, where I opted to directly add the SoundManager prefab to the particular scene as the Audio Source componenets are set to "Play on Awake."
 
-## Gameplay Testing
+## Gameplay Testing: Brandon Fong
 
 Gameplay Test: [Google Sheets](https://docs.google.com/spreadsheets/d/1aB2VPktOJOlsKiQgjbMoH-WWTjLiJDt2ScPesxurOmU/edit?usp=sharing)
 
@@ -236,13 +275,13 @@ A good number of testers expressed dissatisfaction with the ladder interaction m
 Many testers expressed a wish for a way to eliminate mobs, suggesting either by jumping on them or using some kind of weapon. This feedback indicates a preference for more interactive combat mechanics, which could add depth and strategy to the game. Most testers appreciated the game's challenges, indicating that the overall experience was engaging but could be enhanced with additional combat options.
 This feedback suggests that incorporating combat or defense mechanisms against mobs could improve player engagement and satisfaction. It indicates a desire for more varied gameplay interactions and the ability to influence the game environment more directly, which could make the gameplay experience more dynamic and rewarding.
 
-## Narrative Design
+## Narrative Design: Kris Wong
 
 While narrative design occupies a smaller aspect of this game, the design is primarily expressed through the art assets and gameplay to create a form of environmental storytelling. The setting is a post-apocalyptic world, where radiation is ubiquitous. The surface world is decorated with nothing but dead trees and radiation, and the bones of monsters litter the grounds. Players may be able to see the piles of bones surrounding the beast somewhere in the level. 
 
 The world is hostile, and the player notably cannot fight any of the mutated creatures he encounters. Thus, the only option is to flee. If the player plays well enough, they may be able to use food to bait the beast and buy some time. Additionally, we wanted to induce a sense of anxiety of not knowing exactly which direction to go while being pressured by the presence of the beast, who can catch up to the player at blinding speeds. The only grace a player is given is a 10 second headstart. To hammer home the feeling of an unforgiving world, your progress will not be saved until you reach the bunker somewhere in the level. This aspect takes inspiration from the games `Rain World` and `Dredge`, the former having a timer before the titular rain crushes the player and the latter having various creatures of the night hunting the player until sunrise. 
 
-## Press Kit and Trailer
+## Press Kit and Trailer: Chenhaoran Jin
 
 [**After-Woods Press kit(with trailer in it).**](https://jolly-boba-3dd847.netlify.app/)
 
@@ -250,7 +289,7 @@ I first showed the art and a part of the map design of our game in the trailer. 
 
 I choose these screenshots in our press kit because they can show different areas of our game map. They can also show the basic UI and one of our key designs: the beast.
 
-## Game Feel and Polish
+## Game Feel and Polish: Peter Yu
 
 ### Things Covered in Producer Section
 
@@ -268,4 +307,4 @@ The main critique both Kyle and the professor had when playing our game was that
 
 *Game feel suggestions* - I thought of several features that probably should be added from a game feel POV, but the implementations of these were delegated to others. I suggested that we add a minimap, which Kris implemented, parallax on the background (particularly in the vertical direction), which Brandon implemented, and a patrol for the enemy AI so the stage feels more alive, which Chenhaoran implemented. The minimap idea was a little bit of a fail because there isn't enough room on the screen to make it bigger, and when it's small you can't really see much, but the other two make the game feel that little bit better.
 
-*Minor changes* - I made a lot of small changes throughout the project. For example, I tuned the beast AI values with Chenhaoran, the other enemy values and all the player logic values (HP, radiation damage, etc.) with Kris, modified the layout of the HUD, switched the positions of the buttons in the game over screen, and moved the minimap to the bottom left and made the camera view bigger, so you can see stuff that is outside of the regular view on the minimap. Additionally, just like with the producer role, I made a lot of minor bug fixes that contribute to the overall polish of the game.
+*Minor changes* - I made a lot of small changes throughout the project. For example, I tuned the beast AI values with Chenhaoran, the other enemy values and all the player logic values (HP, radiation damage, etc.) with Kris, slightly modified the layout of some stages and added more food to make it easier, made the spawn bunker darker so it is more obvious which bunker you have to reach, modified the layout of the HUD, switched the positions of the buttons in the game over screen, and moved the minimap to the bottom left and made the camera view bigger, so you can see stuff that is outside of the regular view on the minimap. Additionally, just like with the producer role, I made a lot of minor bug fixes that contribute to the overall polish of the game.
