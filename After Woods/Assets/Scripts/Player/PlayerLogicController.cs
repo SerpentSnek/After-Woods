@@ -219,7 +219,7 @@ public class PlayerLogicController : MonoBehaviour, IReset
         if (enemyController != null)
         {
             currentHp -= enemyController.Damage();
-            ShowDamage(enemyController.Damage());
+            ShowDamage(enemyController.Damage() * -1);
             SpriteRenderer renderer = GetComponent<SpriteRenderer>();
             renderer.color = new Color(1, 0, 0);
             StartCoroutine("ReturnColor");
@@ -332,7 +332,9 @@ public class PlayerLogicController : MonoBehaviour, IReset
         if (foodAmount > 0 && currentHp < totalHp && !dead)
         {
             sm.PlaySound("eating");
+            ShowDamage(foodHealingValue);
             CurrentHp += foodHealingValue;
+
             foodAmount -= 1;
         }
     }
@@ -366,7 +368,13 @@ public class PlayerLogicController : MonoBehaviour, IReset
         var floatingText = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
         floatingText.transform.Translate(new Vector3(0.4f, 0, 0));
         floatingText.transform.SetParent(gameObject.transform);
+        var color = new Color(0, 1, 0);
         floatingText.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+        if (damage < 0)
+        {
+            color = new Color(1, 0, 0);
+        }
+        floatingText.GetComponentInChildren<TextMeshPro>().color = color;
         Destroy(floatingText, 1f);
         sm.PlaySound("damage");
     }
