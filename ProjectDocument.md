@@ -123,18 +123,18 @@ One of the great benefits that came with the UI designs was how modular they wer
 
 ## Movement and Physics: Chenhaoran Jin
 
-###Player Movement System
+### Player Movement System
 
 The movement system of the main character is quite similar to other popular 2D games. The player is able to move left and right, press space to jump, and press up to climb ladders. At the same time, the player can choose to jump higher if the player keeps holding the space instead of releasing it right after pressing it. The player can also sprint. 
 
 ![Playermove.gif](DocumentImages/Playermove.gif)
 
-###Enemy AI
+### Enemy AI
 
 We use A* pathfinding to implement our enemies' ai. As the picture shows, all enemies are given a path to the player by A*. After the player enters their chase range, they will chase the player according to the path. Otherwise, they will patrol in a certain area. To avoid flying enemies falling to the ground, we set its gravity to 0. One of the key points of our game is our beast ai. The beast cannot fly, so it will jump to platforms according to the height of the player. However, there are some problems with A* pathfinding. It cannot set the best path for the beast to chase the player. Sometimes it will stuck because its collider is too big. Other enemies are small enough so this problem won't happen to them. We set a check condition so everytime if a beast get stuck in an area for a while, it will try to jump out of there.
 ![Screenshot 2024-03-21 115754](https://github.com/SerpentSnek/After-Woods/assets/130005599/794f7229-db1a-4e4a-8b21-81c40a2dd1b9)
 
-###Patrol System
+### Patrol System
 
 The patrol system of ground enemies and flying enemies is different. The ground enemy will only patrol between two points while the flying enemies can patrol in a certain area. Another interesting part we add to the flying enemy is that it can keep moving up if the player jumps onto it. Which means the player can ride the flying enemy.
 
