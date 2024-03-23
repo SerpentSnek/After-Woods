@@ -300,7 +300,7 @@ We used a very rhythmic music as the trailer's background music. The main things
 
 ### Press Kit
 
-The design of our press kit primarily follows a clean and clear approach. Special thanks to Brandon for creating a cover illustration. I've created an HTML webpage as our press kit, showcasing the background story of our game, its features, including our trailer, and some screenshots. I chose these screenshots because they effectively demonstrate various locations, the game's characteristics, as well as the starting and ending interfaces. Additionally, we've included our game icon in the press kit, also created by Brandon. The link of the press kit can be found above.
+The design of our press kit primarily follows a clean and clear approach. Special thanks to Brandon for creating a cover illustration. I've created an HTML webpage as our press kit, showcasing the background story of our game, its features, including our trailer, and some screenshots.I also added navigation texts so you can quickly go to the part you want to look at. I chose these screenshots because they effectively demonstrate various locations, the game's characteristics, as well as the starting and ending interfaces. Additionally, we've included our game icon in the press kit, also created by Brandon. The link of the press kit can be found above.
 
 ## Game Feel and Polish: Peter Yu
 
