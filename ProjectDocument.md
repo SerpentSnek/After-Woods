@@ -125,7 +125,7 @@ One of the great benefits that came with the UI designs was how modular they wer
 
 ### Player Movement System
 
-The movement system of the main character is quite similar to other popular 2D games. The player is able to move left and right, press space to jump, and press up to climb ladders. At the same time, the player can choose to jump higher if the player keeps holding the space instead of releasing it right after pressing it. The player can also sprint. 
+The movement system of the main character is quite similar to other popular 2D games. The player is able to move left and right, press space to jump, and press up to climb ladders. At the same time, the player can choose to jump higher if the player keeps holding the space instead of releasing it right after pressing it. The player can also sprint.
 
 ![Playermove.gif](DocumentImages/Playermove.gif)
 
@@ -294,9 +294,13 @@ The world is hostile, and the player notably cannot fight any of the mutated cre
 
 [**After-Woods Press kit(with trailer in it).**](https://jolly-boba-3dd847.netlify.app/)
 
-I first showed the art and a part of the map design of our game in the trailer. Then I show how the player is trying to find a way to escape. When the player is getting close to the bunk which is the checkpoint in the game, the beast starts to awake and start to hunt the player. I am trying to tell the background and show most gameplays in my trailer so the audience can know how to play the game and how the story is going on based on my trailer.
+### Trailer
 
-I choose these screenshots in our press kit because they can show different areas of our game map. They can also show the basic UI and one of our key designs: the beast.
+We used a very rhythmic music as the trailer's background music. The main things we want to show in the trailer is an overview of our map designs, a brief introduction to our gameplay. In the latter part of the trailer, we primarily showcase one of our main gameplay features, which is our beast system. You can see in the latter part of the trailer how players interact with the beasts, and whether the player ultimately gets killed by the beasts is the suspense we leave in the trailer. I believe this can effectively attract the audience to enjoy our game.
+
+### Press Kit
+
+The design of our press kit primarily follows a clean and clear approach. Special thanks to Brandon for creating a cover illustration. I've created an HTML webpage as our press kit, showcasing the background story of our game, its features, including our trailer, and some screenshots. I chose these screenshots because they effectively demonstrate various locations, the game's characteristics, as well as the starting and ending interfaces. Additionally, we've included our game icon in the press kit, also created by Brandon. The link of the press kit can be found above.
 
 ## Game Feel and Polish: Peter Yu
 
